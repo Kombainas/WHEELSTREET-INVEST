@@ -18,6 +18,11 @@ export default function DeckHero() {
     }
   }
 
+  const handlePrint = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    window.print()
+  }
+
   return (
     <div
       className={`hero-wrap transition-opacity duration-1000 ${
@@ -46,14 +51,13 @@ export default function DeckHero() {
           >
             Peržiūrėti planą
           </a>
-          <a
-            href="/files/business-plan.pdf"
-            download
+          <button
+            onClick={handlePrint}
             className="btn"
-            aria-label="Atsisiųsti verslo planą PDF formatu"
+            aria-label="Spausdinti arba išsaugoti PDF formatu"
           >
-            Atsisiųsti PDF
-          </a>
+            Spausdinti / PDF
+          </button>
         </div>
       </div>
     </div>

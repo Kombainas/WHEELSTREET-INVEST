@@ -104,7 +104,7 @@ export default function KPICard({ metric, index = 0 }: KPICardProps) {
   return (
     <div
       ref={cardRef}
-      className="border border-black/10 p-8 hover:border-black transition-colors focus-within:ring-2 focus-within:ring-black"
+      className="border border-black/10 rounded-lg p-8 bg-white hover:border-black/20 hover:-translate-y-1 transition-all duration-200 focus-within:ring-2 focus-within:ring-black shadow-sm hover:shadow-lg"
       role="region"
       aria-label={`${metric.label}: ${formattedValue}`}
     >

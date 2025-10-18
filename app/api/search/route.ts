@@ -77,10 +77,25 @@ export async function GET(request: NextRequest) {
         if (heading.toLowerCase().includes(query) || sectionContent.toLowerCase().includes(query)) {
           let excerpt = sectionContent.substring(0, 150).replace(/^##\s+.+$/m, '').trim()
 
+          // Convert heading to slug for URL hash
+          const slug = heading
+            .toLowerCase()
+            .replace(/ą/g, 'a')
+            .replace(/č/g, 'c')
+            .replace(/ę/g, 'e')
+            .replace(/ė/g, 'e')
+            .replace(/į/g, 'i')
+            .replace(/š/g, 's')
+            .replace(/ų/g, 'u')
+            .replace(/ū/g, 'u')
+            .replace(/ž/g, 'z')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '')
+
           results.push({
             title: heading,
             excerpt: excerpt.substring(0, 150) + '...',
-            url: '/deck',
+            url: `/deck#${slug}`,
             type: 'deck'
           })
         }
