@@ -1310,3 +1310,72 @@ html.garage .label-caps {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ===================================
+   BONUSAS PAGE - VAULT ANIMATION
+   =================================== */
+
+/* Vault content states */
+.bonus-vault-content {
+  transition: all 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bonus-vault-locked {
+  opacity: 0;
+  transform: scale(0.9) rotateX(10deg);
+  transform-origin: center center;
+}
+
+.bonus-vault-unlocked {
+  opacity: 1;
+  transform: scale(1) rotateX(0deg);
+  transform-origin: center center;
+}
+
+/* Bonus project cards cascade animation */
+.bonus-card {
+  opacity: 0;
+  animation: card-cascade 0.6s ease-out forwards;
+}
+
+@keyframes card-cascade {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Print styles for bonus page */
+@media print {
+  .bonus-card {
+    box-shadow: none;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    page-break-inside: avoid;
+  }
+
+  .bonus-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .bonus-vault-content {
+    transition: none !important;
+  }
+
+  .bonus-vault-locked {
+    opacity: 1;
+    transform: none;
+  }
+
+  .bonus-card {
+    animation: none !important;
+    opacity: 1;
+  }
+}
