@@ -89,7 +89,7 @@ export default function BonusHero() {
           <div className="max-w-4xl mx-auto">
             {/* Trophy Lottie Animation */}
             <motion.div
-              className="w-[200px] h-[200px] mx-auto mb-6"
+              className="w-[250px] h-[250px] mx-auto mb-6"
               initial={{ rotate: -15, scale: 0, opacity: 0 }}
               animate={isUnlocked ? {
                 rotate: 0,
@@ -107,7 +107,7 @@ export default function BonusHero() {
                 animationUrl="/animations/trophy-animation.json"
                 className="w-full h-full"
                 loop={true}
-                autoplay={isUnlocked}
+                autoplay={true}
               />
             </motion.div>
 

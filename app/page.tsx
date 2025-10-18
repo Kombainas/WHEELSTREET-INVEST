@@ -2,6 +2,7 @@ import Section from '@/components/Section'
 import Hero from '@/components/Hero'
 import DiagonalConnector from '@/components/DiagonalConnector'
 import KPICard from '@/components/KPICard'
+import WhyWheelStreet from '@/components/WhyWheelStreet'
 import { metrics } from '@/content/metrics'
 
 export default function Home() {
@@ -21,6 +22,8 @@ export default function Home() {
           ))}
         </div>
       </Section>
+
+      <WhyWheelStreet />
     </>
   )
 }

@@ -1351,8 +1351,91 @@ html.garage .label-caps {
   }
 }
 
-/* Print styles for bonus page */
+/* Print styles */
 @media print {
+  /* General print styles */
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Hide interactive elements */
+  nav,
+  footer,
+  .deck-sidebar,
+  button,
+  .scroll-progress,
+  .back-to-top,
+  .download-deck-button {
+    display: none !important;
+  }
+
+  /* Deck-specific print styles */
+  .deck-main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .deck-logo {
+    margin: 0 auto 20px !important;
+    page-break-after: avoid;
+  }
+
+  .summary-strip {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+    page-break-inside: avoid;
+    margin-bottom: 30px !important;
+  }
+
+  .summary-card {
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+    padding: 10px !important;
+  }
+
+  /* Prose content */
+  .prose-deck h1 {
+    page-break-before: always;
+    page-break-after: avoid;
+    margin-top: 0 !important;
+  }
+
+  .prose-deck h2 {
+    page-break-before: always;
+    page-break-after: avoid;
+    margin-top: 30px !important;
+  }
+
+  .prose-deck h3,
+  .prose-deck h4 {
+    page-break-after: avoid;
+  }
+
+  .prose-deck table {
+    page-break-inside: avoid;
+    border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .prose-deck blockquote {
+    page-break-inside: avoid;
+  }
+
+  /* Links */
+  .prose-deck a {
+    text-decoration: underline !important;
+  }
+
+  .prose-deck a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    font-style: italic;
+  }
+
+  /* Bonus page */
   .bonus-card {
     box-shadow: none;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -1362,6 +1445,16 @@ html.garage .label-caps {
   .bonus-card:hover {
     transform: none;
     box-shadow: none;
+  }
+
+  /* Page margins and layout */
+  @page {
+    margin: 2cm;
+  }
+
+  body {
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
   }
 }
 
