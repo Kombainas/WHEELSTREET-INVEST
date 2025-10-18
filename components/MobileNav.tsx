@@ -99,12 +99,6 @@ export default function MobileNav() {
                 >
                   Bonusas ⭐
                 </Link>
-                <Link
-                  href="/book-a-call"
-                  className="block px-6 py-3 text-base hover:bg-black/5 transition-colors"
-                >
-                  Susisiekti
-                </Link>
               </div>
 
               {/* Logout Button */}
