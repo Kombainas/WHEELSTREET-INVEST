@@ -94,6 +94,18 @@ export default function MobileNav() {
                   Naujienos
                 </Link>
                 <Link
+                  href="/partners"
+                  className="block px-6 py-3 text-base hover:bg-black/5 transition-colors"
+                >
+                  Partneriai
+                </Link>
+                <Link
+                  href="/team"
+                  className="block px-6 py-3 text-base hover:bg-black/5 transition-colors"
+                >
+                  Komanda
+                </Link>
+                <Link
                   href="/bonusas"
                   className="block px-6 py-3 text-base hover:bg-black/5 transition-colors"
                 >

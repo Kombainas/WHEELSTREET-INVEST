@@ -51,6 +51,18 @@ export default async function Nav() {
                 Naujienos
               </Link>
               <Link
+                href="/partners"
+                className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
+              >
+                Partneriai
+              </Link>
+              <Link
+                href="/team"
+                className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
+              >
+                Komanda
+              </Link>
+              <Link
                 href="/bonusas"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
               >
