@@ -7,7 +7,6 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import SkipLink from '@/components/SkipLink'
 import PageTransitions from '@/components/PageTransitions'
-import LaunchIntro from '@/components/LaunchIntro'
 import GarageMode from '@/components/GarageMode'
 
 const inter = Inter({
@@ -44,7 +43,6 @@ export default function RootLayout({
         <SkipLink />
         <GridBackground />
         <NoiseOverlay />
-        <LaunchIntro />
         <GarageMode />
         <Nav />
         <main id="main-content" className="min-h-screen">

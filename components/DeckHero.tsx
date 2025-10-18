@@ -27,7 +27,7 @@ export default function DeckHero() {
     >
       <div className="flex flex-col items-center text-center">
         {/* Headline */}
-        <h1 id="hero-heading" className="text-5xl md:text-6xl font-bold tracking-tighter mb-4">
+        <h1 id="hero-heading" className="hero-breathe text-5xl md:text-6xl font-bold tracking-tighter mb-4">
           Investuotojų pristatymas 2025
         </h1>
 

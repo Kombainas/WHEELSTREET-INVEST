@@ -13,7 +13,7 @@ export default function Home() {
 
       <Section id="metrics" className="border-t border-black/10">
         <div className="mb-8">
-          <span className="label-caps text-black/60">Key Performance Indicators</span>
+          <span className="label-caps text-black/60">Pagrindiniai veiklos rodikliai</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {metrics.map((metric, index) => (

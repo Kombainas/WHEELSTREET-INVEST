@@ -7,13 +7,8 @@ const SESSION_KEY = 'wheelstreet-intro-shown'
 
 export default function LaunchIntro() {
   const [show, setShow] = useState(false)
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
-    // Check reduced motion preference
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
-
     // Check if intro has been shown in this session
     const hasShown = sessionStorage.getItem(SESSION_KEY)
 
@@ -21,21 +16,29 @@ export default function LaunchIntro() {
       setShow(true)
       sessionStorage.setItem(SESSION_KEY, 'true')
 
-      // Auto-hide after 2 seconds
+      // Check reduced motion preference
+      const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+      const reducedMotion = mediaQuery.matches
+
+      // Auto-hide after duration (800ms for reduced motion, 2000ms for full animation)
+      const duration = reducedMotion ? 800 : 2000
       const timer = setTimeout(() => {
         setShow(false)
-      }, 2000)
+      }, duration)
 
       return () => clearTimeout(timer)
     }
   }, [])
 
-  if (prefersReducedMotion) {
-    return null
-  }
+  // Check reduced motion for rendering
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+  }, [])
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {show && (
         <motion.div
           className="intro-overlay"
@@ -46,14 +49,16 @@ export default function LaunchIntro() {
         >
           <div className="intro-content">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
             >
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-2">
-                Wheelstreet
-              </h1>
-              <p className="text-lg text-black/60">Investor Portal</p>
+              <div className={`intro-text ${prefersReducedMotion ? 'static' : ''}`}>
+                <p className="label-caps text-black/50 mb-2">Wheelstreet</p>
+                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
+                  Investuotojų portalas
+                </h1>
+              </div>
             </motion.div>
           </div>
         </motion.div>

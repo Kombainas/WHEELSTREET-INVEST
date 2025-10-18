@@ -1,4 +1,5 @@
 import type { MDXComponents } from 'mdx/types'
+import React from 'react'
 import Callout from './Callout'
 import Quote from './Quote'
 import Figure from './Figure'
@@ -86,11 +87,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     },
     th: ({ children, ...props }) => {
       const align = isNumericCell(children) ? 'right' : 'left'
-      return <TableComponents.Th align={align} {...props}>{children}</TableComponents.Th>
+      const { align: _align, ...restProps } = props as any
+      return <TableComponents.Th align={align} {...restProps}>{children}</TableComponents.Th>
     },
     td: ({ children, ...props }) => {
       const align = isNumericCell(children) ? 'right' : 'left'
-      return <TableComponents.Td align={align} {...props}>{children}</TableComponents.Td>
+      const { align: _align, ...restProps } = props as any
+      return <TableComponents.Td align={align} {...restProps}>{children}</TableComponents.Td>
     },
     // Editorial components
     Callout,

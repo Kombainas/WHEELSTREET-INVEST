@@ -9,7 +9,7 @@ function extractDeltas(text: string): Array<{ value: string; type: 'up' | 'down'
   const deltaRegex = /([+\-↑↓]?\d+(?:\.\d+)?%)/g
   const matches = text.match(deltaRegex) || []
 
-  return matches.map((match) => {
+  return matches.map((match): { value: string; type: 'up' | 'down' } => {
     const isNegative = match.startsWith('-') || match.startsWith('↓')
     const cleanValue = match.replace(/[+\-↑↓]/, '')
     return {

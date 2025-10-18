@@ -6,38 +6,38 @@ export default function BookACallPage() {
   return (
     <Section className="pt-16 pb-24">
       <div className="max-w-5xl">
-        <h1 className="text-4xl font-bold mb-4">Book a Call</h1>
+        <h1 className="text-4xl font-bold mb-4">Suplanuoti pokalbį</h1>
         <p className="text-lg text-black/70 mb-12">
-          Schedule a time to discuss investment opportunities
+          Pasirinkite laiką aptarti investavimo galimybes
         </p>
 
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           <div className="border border-black/10 p-6">
-            <h3 className="font-bold mb-3">What to Expect</h3>
+            <h3 className="font-bold mb-3">Ko tikėtis</h3>
             <ul className="space-y-2 text-sm text-black/70">
-              <li>• 30-minute introductory call</li>
-              <li>• Deep dive into our business model</li>
-              <li>• Q&A session</li>
-              <li>• Investment process overview</li>
+              <li>• 30 minučių įvadinis skambutis</li>
+              <li>• Išsami verslo modelio apžvalga</li>
+              <li>• Klausimų ir atsakymų sesija</li>
+              <li>• Investavimo proceso pristatymas</li>
             </ul>
           </div>
 
           <div className="border border-black/10 p-6">
-            <h3 className="font-bold mb-3">Who You'll Meet</h3>
+            <h3 className="font-bold mb-3">Su kuo susitiksite</h3>
             <ul className="space-y-2 text-sm text-black/70">
-              <li>• Founding team members</li>
-              <li>• Head of Investor Relations</li>
-              <li>• Technical leadership (if needed)</li>
+              <li>• Įkūrėjų komandos nariai</li>
+              <li>• Investuotojų santykių vadovas</li>
+              <li>• Techninė vadovybė (jei reikia)</li>
             </ul>
           </div>
 
           <div className="border border-black/10 p-6">
-            <h3 className="font-bold mb-3">Next Steps</h3>
+            <h3 className="font-bold mb-3">Kiti žingsniai</h3>
             <ul className="space-y-2 text-sm text-black/70">
-              <li>• Access to data room</li>
-              <li>• Follow-up materials</li>
-              <li>• Term sheet discussion</li>
-              <li>• Due diligence process</li>
+              <li>• Prieiga prie duomenų kambario</li>
+              <li>• Papildoma medžiaga</li>
+              <li>• Sąlygų aptarimas</li>
+              <li>• Due diligence procesas</li>
             </ul>
           </div>
         </div>
@@ -48,7 +48,7 @@ export default function BookACallPage() {
             width="100%"
             height="700"
             frameBorder="0"
-            title="Book a Call"
+            title="Suplanuoti pokalbį"
             className="w-full"
           />
         </div>

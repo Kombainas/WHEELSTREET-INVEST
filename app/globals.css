@@ -1078,3 +1078,195 @@ html.garage .label-caps {
     animation: none !important;
   }
 }
+
+/* ===================================
+   CINEMATIC POLISH
+   =================================== */
+
+/* Launch Intro - Light Streak Effect */
+.intro-text {
+  position: relative;
+  animation: light-streak 2s ease-out forwards;
+}
+
+.intro-text.static {
+  animation: none;
+}
+
+@keyframes light-streak {
+  0% {
+    opacity: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 75%, transparent 100%);
+    background-size: 200% 100%;
+    background-position: -100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  40% {
+    background-position: 100% 0;
+    -webkit-text-fill-color: transparent;
+  }
+  60% {
+    background-position: 100% 0;
+    -webkit-text-fill-color: transparent;
+  }
+  100% {
+    opacity: 1;
+    background: none;
+    -webkit-text-fill-color: inherit;
+  }
+}
+
+/* Hero Breathing Effect */
+.hero-breathe {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    letter-spacing: -0.02em;
+  }
+  50% {
+    letter-spacing: 0.005em;
+  }
+}
+
+/* Final CTA Section */
+.final-cta {
+  @apply w-full max-w-4xl mx-auto px-6 py-20 mt-16 mb-12 text-center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.final-cta-content {
+  @apply flex flex-col items-center;
+}
+
+.final-cta-buttons {
+  @apply flex flex-col sm:flex-row gap-4 justify-center;
+}
+
+/* Button variants */
+.btn-primary {
+  @apply bg-black text-white border-black;
+}
+
+.btn-primary:hover {
+  @apply bg-white text-black;
+}
+
+.btn-secondary {
+  @apply bg-white text-black border-black;
+}
+
+.btn-secondary:hover {
+  @apply bg-black text-white;
+}
+
+/* Print: hide final CTA */
+@media print {
+  .final-cta {
+    display: none !important;
+  }
+}
+
+/* Reduced motion: disable cinematic effects */
+@media (prefers-reduced-motion: reduce) {
+  .intro-text {
+    animation: none !important;
+  }
+
+  .hero-breathe {
+    animation: none !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    transition: none !important;
+  }
+}
+
+/* ===================================
+   DATA ROOM
+   =================================== */
+
+.file-card {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.file-card:hover {
+  border-color: #000;
+}
+
+.file-preview {
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.02);
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.25rem;
+  height: 100%;
+  padding: 0.5rem;
+}
+
+.bar {
+  width: 10%;
+  background: #000;
+  opacity: 0.25;
+}
+
+.bar:nth-child(odd) {
+  opacity: 0.4;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+}
+
+.modal {
+  background: #fff;
+  color: #000;
+  max-width: 900px;
+  width: 90vw;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+@media print {
+  .file-preview,
+  .backdrop,
+  .modal {
+    display: none !important;
+  }
+
+  /* Hide download button in print */
+  button[aria-label*="PDF"] {
+    display: none !important;
+  }
+}
+
+/* ===================================
+   SEARCH MODAL
+   =================================== */
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

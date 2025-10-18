@@ -26,7 +26,7 @@ export default function LoginPage() {
       const data = await response.json()
 
       if (!response.ok) {
-        setError(data.error || 'Invalid password')
+        setError(data.error || 'Neteisingas slaptažodis')
         setLoading(false)
         return
       }
@@ -34,7 +34,7 @@ export default function LoginPage() {
       const next = searchParams.get('next') || '/'
       window.location.href = next
     } catch (err) {
-      setError('Something went wrong')
+      setError('Kažkas nutiko. Bandykite dar kartą.')
       setLoading(false)
     }
   }
@@ -54,12 +54,12 @@ export default function LoginPage() {
           />
         </div>
 
-        <h1 className="text-3xl font-bold text-black mb-8 text-center">Investor Login</h1>
+        <h1 className="text-3xl font-bold text-black mb-8 text-center">Investuotojų prisijungimas</h1>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-black mb-2">
-              Password
+              Slaptažodis
             </label>
             <input
               id="password"
@@ -84,7 +84,7 @@ export default function LoginPage() {
             disabled={loading}
             className="w-full bg-black text-white py-2 px-4 font-medium hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Prisijungiama...' : 'Prisijungti'}
           </button>
         </form>
       </div>

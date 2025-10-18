@@ -14,6 +14,8 @@ import BackToTop from '@/components/BackToTop'
 import DeckHero from '@/components/DeckHero'
 import SkeletonDeck from '@/components/SkeletonDeck'
 import TractionTimeline from '@/components/TractionTimeline'
+import FinalCTA from '@/components/FinalCTA'
+import DownloadDeckButton from '@/components/DownloadDeckButton'
 
 interface TocItem {
   id: string
@@ -115,10 +117,11 @@ async function MDXContent() {
             )}
 
             {/* Version info badge */}
-            <div className="mb-6">
+            <div className="mb-6 flex items-center justify-between">
               <span className="label-caps text-black/40">
                 Last updated: v{lastUpdated.date} • {lastUpdated.hash}
               </span>
+              <DownloadDeckButton />
             </div>
 
             {/* Summary strip with key metrics */}
@@ -130,6 +133,9 @@ async function MDXContent() {
             <article className="prose prose-lg prose-deck">
               <MDXRemote source={source} components={useMDXComponents({})} />
             </article>
+
+            {/* Final CTA */}
+            <FinalCTA />
           </div>
         </div>
       </>

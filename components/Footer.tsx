@@ -4,17 +4,17 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-black/60">
-            © {new Date().getFullYear()} WheelStreet Invest. All rights reserved.
+            © {new Date().getFullYear()} WheelStreet Invest. Visos teisės saugomos.
           </p>
           <div className="flex gap-6">
             <a href="mailto:invest@wheelstreet.com" className="text-sm text-black/60 hover:text-black transition-colors">
-              Contact
+              Kontaktai
             </a>
             <a href="/privacy" className="text-sm text-black/60 hover:text-black transition-colors">
-              Privacy
+              Privatumas
             </a>
             <a href="/terms" className="text-sm text-black/60 hover:text-black transition-colors">
-              Terms
+              Sąlygos
             </a>
           </div>
         </div>

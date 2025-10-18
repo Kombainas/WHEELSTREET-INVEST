@@ -1,6 +1,6 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const session = request.cookies.get('investor_session')
     const validToken = process.env.SESSION_TOKEN

@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getSession } from '@/lib/auth'
 import LogoutButton from './LogoutButton'
+import SearchButton from './SearchButton'
 
 export default async function Nav() {
   const session = await getSession()
@@ -28,29 +29,30 @@ export default async function Nav() {
         <div className="flex items-center gap-6">
           {isLoggedIn ? (
             <>
+              <SearchButton />
               <Link
                 href="/deck"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
               >
-                Deck
+                Planas
               </Link>
               <Link
                 href="/data-room"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
               >
-                Data Room
+                Duomenys
               </Link>
               <Link
                 href="/updates"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
               >
-                Updates
+                Naujienos
               </Link>
               <Link
                 href="/book-a-call"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
               >
-                Book a Call
+                Susisiekti
               </Link>
               <LogoutButton />
             </>
@@ -59,7 +61,7 @@ export default async function Nav() {
               href="/login"
               className="text-sm px-4 py-2 border border-black hover:bg-black hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
             >
-              Login
+              Prisijungti
             </Link>
           )}
         </div>

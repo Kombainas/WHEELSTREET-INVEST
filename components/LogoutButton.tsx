@@ -15,7 +15,7 @@ export default function LogoutButton() {
       onClick={handleLogout}
       className="text-sm px-4 py-2 border border-black hover:bg-black hover:text-white transition-colors"
     >
-      Logout
+      Atsijungti
     </button>
   )
 }
