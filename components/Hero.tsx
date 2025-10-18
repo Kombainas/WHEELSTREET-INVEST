@@ -18,18 +18,14 @@ const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
 export default function Hero() {
   const { elementRef, position } = useMagnetic<HTMLAnchorElement>({ strength: 12 })
   const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 300], [0, 100])
-  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const y = useTransform(scrollY, [0, 300], [0, 50])
 
   return (
-    <section id="hero" className="relative overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-white animate-gradient" />
-
-      {/* Content with parallax */}
+    <section id="hero" className="relative overflow-hidden bg-white">
+      {/* Content with subtle parallax */}
       <motion.div
         className="container mx-auto px-4 pt-32 pb-24 relative z-10"
-        style={{ y, opacity }}
+        style={{ y }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl">
           {/* Left: Content */}

@@ -36,7 +36,7 @@ export default function WhyWheelStreet() {
   const { elementRef, isVisible } = useScrollAnimation({ threshold: 0.2 })
 
   return (
-    <section id="why" className="py-24 bg-black text-white" ref={elementRef}>
+    <section id="why" className="py-24 bg-white border-t border-black/10" ref={elementRef}>
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           {/* Heading with fade in */}
@@ -49,7 +49,7 @@ export default function WhyWheelStreet() {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               Kodėl WheelStreet?
             </h2>
-            <p className="text-lg text-white/70 max-w-2xl mx-auto">
+            <p className="text-lg text-black/70 max-w-2xl mx-auto">
               Keturios pagrindinės priežastys, kodėl keičiame automobilių pirkimo ir pardavimo rinką Baltijos šalyse.
             </p>
           </motion.div>
@@ -66,11 +66,11 @@ export default function WhyWheelStreet() {
                   delay: 0.2 + index * 0.1,
                   ease: [0.25, 0.4, 0.25, 1]
                 }}
-                className="border border-white/20 p-8 hover:border-white/40 hover:bg-white/5 transition-all duration-200"
+                className="border border-black/10 p-8 rounded-lg bg-white hover:border-black/20 hover:bg-black/[0.02] transition-all duration-200 shadow-sm hover:shadow-md"
               >
                 <div className="text-5xl mb-4">{benefit.icon}</div>
                 <h3 className="text-2xl font-bold mb-3">{benefit.title}</h3>
-                <p className="text-white/70 leading-relaxed">
+                <p className="text-black/70 leading-relaxed">
                   {benefit.description}
                 </p>
               </motion.div>
