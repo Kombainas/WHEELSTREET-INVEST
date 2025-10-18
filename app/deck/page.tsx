@@ -11,6 +11,9 @@ import { getLastUpdated } from '@/lib/lastUpdated'
 import DeckTOC from '@/components/DeckTOC'
 import ScrollProgress from '@/components/ScrollProgress'
 import BackToTop from '@/components/BackToTop'
+import DeckHero from '@/components/DeckHero'
+import SkeletonDeck from '@/components/SkeletonDeck'
+import TractionTimeline from '@/components/TractionTimeline'
 
 interface TocItem {
   id: string
@@ -79,6 +82,12 @@ async function MDXContent() {
         <ScrollProgress />
         <BackToTop />
 
+        {/* Hero Section */}
+        <DeckHero />
+
+        {/* Main Article Anchor */}
+        <div id="main-article" className="scroll-mt-28" />
+
         <div className="deck-layout">
           {/* Sidebar TOC - hidden on mobile, sticky on desktop */}
           <aside className="deck-sidebar">
@@ -115,10 +124,8 @@ async function MDXContent() {
             {/* Summary strip with key metrics */}
             <SummaryStrip metrics={summaryMetrics} />
 
-            {/* Table features note */}
-            <p className="label-caps text-black/40 mb-2">
-              Finansinės lentelės: scrollable • CSV export
-            </p>
+            {/* Traction Timeline */}
+            <TractionTimeline />
 
             <article className="prose prose-lg prose-deck">
               <MDXRemote source={source} components={useMDXComponents({})} />
@@ -144,13 +151,7 @@ export default function DeckPage() {
   return (
     <ErrorBoundary>
       <Section className="pt-6 pb-16">
-        <Suspense
-          fallback={
-            <div className="max-w-4xl">
-              <p className="text-lg text-black/60">Loading deck...</p>
-            </div>
-          }
-        >
+        <Suspense fallback={<SkeletonDeck />}>
           <MDXContent />
         </Suspense>
       </Section>

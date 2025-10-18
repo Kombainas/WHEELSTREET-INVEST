@@ -2,6 +2,7 @@ export interface Update {
   date: string
   title: string
   body: string
+  pinned?: boolean
 }
 
 export const updates: Update[] = [
@@ -13,21 +14,22 @@ export const updates: Update[] = [
 This funding will accelerate our expansion into three new metropolitan areas and allow us to build out our proprietary risk assessment platform. We're also planning to grow our team from 12 to 30 members over the next 18 months.
 
 Key milestones achieved this quarter:
-- Reached $2.5M ARR (150% YoY growth)
-- Expanded to 12,000 active users
+- Reached $2.5M ARR (MRR +150% YoY growth)
+- Expanded to 12,000 active users (+34% from last quarter)
 - Launched partnerships with 3 major fleet operators
 - Improved platform uptime to 99.97%
 
 Thank you to all our investors and partners for your continued support.`,
+    pinned: true,
   },
   {
     date: '2024-02-08',
     title: 'Q4 2023 Performance Update',
-    body: `Q4 2023 was our strongest quarter yet, with revenue growing 62% QoQ to reach $780K. User acquisition exceeded targets by 34%, and we successfully launched our automated portfolio rebalancing feature.
+    body: `Q4 2023 was our strongest quarter yet, with revenue growing +62% QoQ to reach $780K. User acquisition exceeded targets by +34%, and we successfully launched our automated portfolio rebalancing feature.
 
 Highlights:
 - Total assets under management: $45M (+85% from Q3)
-- Average investor IRR: 14.2%
+- Average investor IRR: +14.2%
 - New city launch: Austin, TX
 - Platform uptime: 99.94%
 
@@ -46,7 +48,7 @@ We'll be hosting a virtual investor update on February 22nd. Calendar invites wi
 
 This partnership will enable:
 - Real-time asset tracking and health monitoring
-- Predictive maintenance algorithms to reduce downtime
+- Predictive maintenance algorithms to reduce downtime by -25%
 - Enhanced data insights for investors
 - Improved risk assessment models
 
