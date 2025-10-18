@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'motion/react'
 import type { BonusProject } from '@/content/bonusas-projects'
 
 interface BonusProjectCardProps {
@@ -13,10 +14,19 @@ export default function BonusProjectCard({ project, index }: BonusProjectCardPro
   }
 
   return (
-    <div
-      className="bonus-card border border-black/10 rounded-lg p-8 bg-white transition-all duration-200 hover:border-black/20 hover:-translate-y-1 shadow-sm hover:shadow-lg"
-      style={{
-        animationDelay: `${0.1 * (index + 1)}s`,
+    <motion.div
+      className="border border-black/10 rounded-lg p-8 bg-white shadow-sm hover:shadow-lg"
+      initial={{ opacity: 0, y: 50, scale: 0.9 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        delay: 1.2 + (index * 0.15), // Stagger after hero animation
+        duration: 0.6,
+        ease: [0.34, 1.56, 0.64, 1], // Spring easing
+      }}
+      whileHover={{
+        y: -4,
+        scale: 1.02,
+        transition: { duration: 0.2 }
       }}
     >
       {/* Project number badge */}
@@ -54,6 +64,6 @@ export default function BonusProjectCard({ project, index }: BonusProjectCardPro
       >
         Spausdinti PDF
       </button>
-    </div>
+    </motion.div>
   )
 }
