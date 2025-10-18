@@ -1,0 +1,630 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-white text-black;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
+  }
+
+  *:focus-visible {
+    outline: 2px solid black;
+    outline-offset: 2px;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid black;
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .label-caps {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .kpi-number {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (min-width: 768px) {
+    .kpi-number {
+      font-size: 64px;
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Enhanced prose styles for deck reading UX */
+@layer components {
+  .prose-deck {
+    /* Scroll margin for anchor links (fixed nav offset) */
+    scroll-margin-top: 6rem;
+  }
+
+  .prose-deck h1 {
+    @apply text-5xl font-bold tracking-tight mb-8 mt-12;
+    scroll-margin-top: 6rem;
+  }
+
+  .prose-deck h2 {
+    @apply text-3xl font-bold tracking-tight mb-6 mt-12 border-b border-black/10 pb-3;
+    scroll-margin-top: 6rem;
+  }
+
+  .prose-deck h3 {
+    @apply text-2xl font-semibold tracking-tight mb-4 mt-8;
+    scroll-margin-top: 6rem;
+  }
+
+  .prose-deck h4 {
+    @apply text-xl font-semibold mb-3 mt-6;
+  }
+
+  .prose-deck p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose-deck ul,
+  .prose-deck ol {
+    @apply mb-6 space-y-2;
+  }
+
+  .prose-deck li {
+    @apply leading-relaxed;
+  }
+
+  /* Tables with zebra stripes */
+  .prose-deck table {
+    @apply w-full border-collapse mb-8 text-sm;
+  }
+
+  .prose-deck thead {
+    @apply border-b-2 border-black;
+  }
+
+  .prose-deck th {
+    @apply text-left font-semibold py-3 px-4 bg-black/5;
+  }
+
+  .prose-deck td {
+    @apply py-3 px-4 border-t border-black/10;
+  }
+
+  .prose-deck tbody tr:nth-child(even) {
+    @apply bg-black/[0.02];
+  }
+
+  .prose-deck tbody tr:hover {
+    @apply bg-black/[0.04];
+  }
+
+  /* Blockquote with subtle left border */
+  .prose-deck blockquote {
+    @apply border-l-4 border-black/20 pl-6 py-2 my-6 italic text-black/70;
+  }
+
+  .prose-deck blockquote strong {
+    @apply not-italic font-semibold text-black;
+  }
+
+  /* Horizontal rules with generous spacing */
+  .prose-deck hr {
+    @apply border-0 border-t border-black/10 my-12;
+  }
+
+  /* Code blocks */
+  .prose-deck code {
+    @apply bg-black/5 px-2 py-1 rounded text-sm font-mono;
+  }
+
+  .prose-deck pre {
+    @apply bg-black/5 p-4 rounded overflow-x-auto mb-6;
+  }
+
+  .prose-deck pre code {
+    @apply bg-transparent p-0;
+  }
+
+  /* Links */
+  .prose-deck a {
+    @apply text-black underline decoration-black/30 hover:decoration-black transition-colors;
+  }
+
+  /* Strong emphasis */
+  .prose-deck strong {
+    @apply font-semibold text-black;
+  }
+
+  /* Anchor links in headings */
+  .prose-deck h2 .anchor-link {
+    @apply no-underline text-black;
+  }
+
+  .prose-deck h2 .anchor-link:hover {
+    @apply text-black;
+  }
+}
+
+/* ============================================
+   PREMIUM INVESTOR DECK REDESIGN
+   Magazine-like editorial layout with minimal JS
+   ============================================ */
+
+@layer components {
+  /* Layout: Two-column deck with sticky TOC */
+  .deck-layout {
+    @apply lg:flex lg:gap-12 lg:items-start;
+  }
+
+  .deck-sidebar {
+    @apply hidden lg:block lg:w-64 lg:shrink-0;
+  }
+
+  .deck-main {
+    @apply flex-1 min-w-0 max-w-4xl;
+  }
+
+  /* Progress bar at top */
+  .progress-bar {
+    @apply fixed top-0 left-0 right-0 z-50 h-0.5 bg-black/5;
+  }
+
+  .progress-bar-fill {
+    @apply h-full bg-black transition-all duration-300 ease-out;
+  }
+
+  /* Back to top button */
+  .back-to-top {
+    @apply fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full bg-white border-2 border-black
+           flex items-center justify-center shadow-lg hover:bg-black hover:text-white
+           transition-all duration-200 focus-visible:outline focus-visible:outline-2
+           focus-visible:outline-offset-2 focus-visible:outline-black;
+  }
+
+  @media print {
+    .back-to-top,
+    .progress-bar,
+    .deck-sidebar {
+      @apply hidden;
+    }
+  }
+
+  /* TOC link states */
+  .toc-link[aria-current='true'] {
+    @apply text-black bg-black/5 font-semibold;
+  }
+
+  .toc-link[aria-current='true'] .section-badge {
+    @apply text-black font-bold;
+  }
+
+  /* Section number badges */
+  .section-badge {
+    @apply inline-flex items-center justify-center w-6 h-6 text-xs font-semibold
+           text-black/40 rounded-full border border-black/10 mr-3;
+  }
+
+  .prose-deck h2 .section-badge {
+    @apply mr-4 text-sm w-8 h-8;
+  }
+
+  /* Summary strip refinement */
+  .summary-strip {
+    @apply mb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-black/10 rounded-lg overflow-hidden;
+  }
+
+  .summary-card {
+    @apply bg-white p-6 flex flex-col justify-between min-h-[120px];
+  }
+
+  .summary-value {
+    @apply text-2xl font-bold tracking-tight tabular-nums mt-1;
+  }
+
+  /* Section dividers */
+  .section-divider {
+    @apply border-0 border-t border-black/10 my-16;
+  }
+
+  /* Callout component */
+  .callout {
+    @apply relative border rounded-lg p-6 my-8 bg-white;
+  }
+
+  .callout-label {
+    @apply absolute -top-3 left-4 px-2 bg-white text-xs uppercase tracking-wider font-semibold text-black/60;
+  }
+
+  .callout-content {
+    @apply text-sm leading-relaxed;
+  }
+
+  /* Pull quote */
+  .pull-quote {
+    @apply my-12 border-l-4 border-black pl-8 pr-4;
+  }
+
+  .pull-quote blockquote {
+    @apply text-2xl leading-relaxed font-normal text-black/90 italic;
+  }
+
+  .pull-quote-cite {
+    @apply text-sm text-black/60 mt-4 not-italic;
+  }
+
+  /* Figure component */
+  .deck-figure {
+    @apply my-10;
+  }
+
+  .deck-figure-content {
+    @apply border border-black/10 rounded-lg overflow-hidden;
+  }
+
+  .deck-figure-caption {
+    @apply text-sm text-black/60 mt-3 text-center italic;
+  }
+}
+
+/* Enhanced prose-deck styles for editorial feel */
+@layer components {
+  .prose-deck {
+    @apply max-w-none;
+  }
+
+  /* Headings with editorial spacing */
+  .prose-deck h1 {
+    @apply text-4xl md:text-5xl font-bold tracking-tight mb-6 mt-0 leading-tight;
+    scroll-margin-top: 7rem;
+  }
+
+  .prose-deck h2 {
+    @apply text-2xl md:text-3xl font-bold tracking-tight mb-6 mt-16 pb-4
+           border-b border-black/10 flex items-center leading-tight;
+    scroll-margin-top: 7rem;
+  }
+
+  .prose-deck h3 {
+    @apply text-xl md:text-2xl font-semibold tracking-tight mb-4 mt-10 leading-tight;
+    scroll-margin-top: 7rem;
+  }
+
+  .prose-deck h4 {
+    @apply text-lg font-semibold mb-3 mt-8 leading-snug;
+  }
+
+  /* Paragraphs and lists */
+  .prose-deck p {
+    @apply mb-5 leading-relaxed text-black/90;
+  }
+
+  .prose-deck ul,
+  .prose-deck ol {
+    @apply mb-6 space-y-2.5 pl-6;
+  }
+
+  .prose-deck li {
+    @apply leading-relaxed text-black/90;
+  }
+
+  .prose-deck ul > li {
+    @apply relative pl-2;
+  }
+
+  .prose-deck ul > li::marker {
+    @apply text-black/40;
+  }
+
+  /* Tables - compact and clean */
+  .prose-deck table {
+    @apply w-full border-collapse mb-10 text-sm mt-8;
+  }
+
+  .prose-deck thead {
+    @apply border-b-2 border-black;
+  }
+
+  .prose-deck th {
+    @apply text-left font-semibold py-3 px-4 bg-black/[0.03] text-xs uppercase tracking-wider;
+  }
+
+  .prose-deck td {
+    @apply py-3 px-4 border-t border-black/10;
+  }
+
+  .prose-deck tbody tr:nth-child(even) {
+    @apply bg-black/[0.015];
+  }
+
+  .prose-deck tbody tr:hover {
+    @apply bg-black/[0.03];
+  }
+
+  /* Blockquote - subtle style */
+  .prose-deck blockquote {
+    @apply border-l-2 border-black/20 pl-6 py-1 my-6 italic text-black/80;
+  }
+
+  .prose-deck blockquote strong {
+    @apply not-italic font-semibold text-black;
+  }
+
+  .prose-deck blockquote p {
+    @apply mb-2;
+  }
+
+  /* Code styling */
+  .prose-deck code {
+    @apply bg-black/[0.04] px-1.5 py-0.5 rounded text-sm font-mono before:content-none after:content-none;
+  }
+
+  .prose-deck pre {
+    @apply bg-black/[0.04] p-4 rounded-lg overflow-x-auto mb-6 border border-black/10;
+  }
+
+  .prose-deck pre code {
+    @apply bg-transparent p-0 text-xs;
+  }
+
+  /* Links */
+  .prose-deck a {
+    @apply text-black underline decoration-black/20 underline-offset-2
+           hover:decoration-black transition-colors;
+  }
+
+  .prose-deck a:focus-visible {
+    @apply outline-2 outline-offset-2 outline-black rounded-sm;
+  }
+
+  /* Strong and emphasis */
+  .prose-deck strong {
+    @apply font-semibold text-black;
+  }
+
+  .prose-deck em {
+    @apply italic;
+  }
+
+  /* First paragraph lead */
+  .prose-deck > p:first-of-type {
+    @apply text-lg text-black/90;
+  }
+}
+
+/* Print styles */
+@media print {
+  .progress-bar,
+  .back-to-top,
+  .deck-sidebar,
+  .summary-strip {
+    display: none !important;
+  }
+
+  .prose-deck h2 {
+    page-break-before: always;
+    page-break-after: avoid;
+  }
+
+  .prose-deck h3,
+  .prose-deck h4 {
+    page-break-after: avoid;
+  }
+
+  .prose-deck table,
+  .prose-deck figure,
+  .callout {
+    page-break-inside: avoid;
+  }
+
+  .prose-deck {
+    max-width: 100%;
+  }
+
+  .section-badge {
+    border: 1px solid #000;
+  }
+}
+
+/* ===================================
+   TABLE COMPONENTS
+   =================================== */
+
+.table-wrap {
+  @apply relative overflow-x-auto rounded-lg border border-black/10 my-8;
+}
+
+/* Gradient shadows to indicate scrollable content */
+.table-wrap::before,
+.table-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.table-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.95), transparent);
+}
+
+.table-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.95), transparent);
+}
+
+/* Show shadows when content is scrollable */
+.table-wrap:hover::before,
+.table-wrap:hover::after {
+  opacity: 1;
+}
+
+/* Numeric cell styling */
+.num-right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Disclosure component */
+.disclosure-container {
+  @apply border border-black/10 rounded-lg overflow-hidden;
+}
+
+.disclosure-button {
+  @apply w-full px-6 py-4 text-left flex items-center justify-between bg-white hover:bg-black/[0.02] transition-colors;
+}
+
+.disclosure-icon {
+  @apply transition-transform;
+}
+
+.disclosure-content {
+  @apply overflow-hidden transition-all duration-300 ease-in-out;
+}
+
+/* Print styles for tables */
+@media print {
+  .table-wrap {
+    overflow-x: visible;
+    border: none;
+  }
+
+  .table-wrap::before,
+  .table-wrap::after {
+    display: none !important;
+  }
+
+  table {
+    width: 100%;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  .disclosure-button svg {
+    display: none;
+  }
+
+  .disclosure-content {
+    max-height: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar-fill,
+  .back-to-top,
+  .toc-link,
+  .disclosure-icon,
+  .disclosure-content {
+    transition: none !important;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+  }
+
+  .table-wrap::before,
+  .table-wrap::after {
+    transition: none !important;
+  }
+}
