@@ -958,3 +958,123 @@
     transform: none !important;
   }
 }
+
+/* ===================================
+   MOTION & TRANSITIONS
+   =================================== */
+
+/* Launch Intro Overlay */
+.intro-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(8px);
+}
+
+.intro-content {
+  @apply text-center;
+}
+
+/* Garage Mode - Dark concrete aesthetic */
+html.garage {
+  background: #0d0d0d;
+  transition: background 0.3s ease-out, color 0.3s ease-out;
+}
+
+html.garage body {
+  background: transparent;
+  color: #fff;
+}
+
+html.garage a,
+html.garage button {
+  color: #fff;
+}
+
+html.garage .btn {
+  border-color: #fff;
+  color: #fff;
+}
+
+html.garage .btn:hover {
+  background: #fff;
+  color: #0d0d0d;
+}
+
+html.garage nav,
+html.garage footer {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+html.garage .update-card,
+html.garage .ai-card,
+html.garage .thesis-card,
+html.garage .timeline-item,
+html.garage .summary-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+html.garage .label-caps {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Page transition utilities */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.slide-up-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.slide-up-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 200ms ease-out, transform 200ms ease-out;
+}
+
+/* Print: hide intro overlay */
+@media print {
+  .intro-overlay {
+    display: none !important;
+  }
+
+  html.garage {
+    background: white !important;
+  }
+
+  html.garage body {
+    color: black !important;
+  }
+}
+
+/* Reduced motion: disable all transitions */
+@media (prefers-reduced-motion: reduce) {
+  html.garage,
+  html.garage body,
+  .fade-enter-active,
+  .fade-exit-active,
+  .slide-up-enter-active {
+    transition: none !important;
+  }
+
+  .intro-overlay {
+    animation: none !important;
+  }
+}
