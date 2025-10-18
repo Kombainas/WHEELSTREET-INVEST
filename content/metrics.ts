@@ -9,28 +9,30 @@ export interface Metric {
 
 export const metrics: Metric[] = [
   {
-    label: 'Monthly Recurring Revenue',
-    value: 208000,
+    label: 'Mėnesinės pajamos',
+    value: 20000,
     format: 'currency',
     decimals: 0,
   },
   {
-    label: 'Gross Margin',
-    value: 68.5,
-    format: 'percentage',
-    decimals: 1,
-  },
-  {
-    label: 'YoY Growth',
-    value: 150,
-    format: 'percentage',
+    label: 'Vidutinė marža',
+    value: 950,
+    format: 'currency',
     decimals: 0,
   },
   {
-    label: 'CAC / LTV Ratio',
-    value: 14.8,
-    format: 'ratio',
-    decimals: 1,
+    label: 'Atsiskaitymas',
+    value: 24,
+    format: 'number',
+    decimals: 0,
+    suffix: 'h',
+  },
+  {
+    label: 'Peržiūros (90d)',
+    value: 400,
+    format: 'number',
+    decimals: 0,
+    suffix: 'K+',
   },
 ]
 
@@ -39,13 +41,14 @@ export function formatMetric(metric: Metric): string {
 
   switch (format) {
     case 'currency':
-      const formatted = new Intl.NumberFormat('en-US', {
+      const formatted = new Intl.NumberFormat('lt-LT', {
         style: 'currency',
-        currency: 'USD',
+        currency: 'EUR',
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals,
       }).format(value)
-      return prefix ? `${prefix}${formatted}` : formatted
+      const result = prefix ? `${prefix}${formatted}` : formatted
+      return suffix ? `${result}${suffix}` : result
 
     case 'percentage':
       const pct = value.toFixed(decimals)
@@ -56,7 +59,7 @@ export function formatMetric(metric: Metric): string {
       return `1 : ${ratio}`
 
     case 'number':
-      const num = value.toLocaleString('en-US', {
+      const num = value.toLocaleString('lt-LT', {
         minimumFractionDigits: decimals,
         maximumFractionDigits: decimals,
       })

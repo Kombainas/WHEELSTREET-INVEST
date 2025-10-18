@@ -2,6 +2,12 @@
 
 import { motion, AnimatePresence } from 'motion/react'
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
+
+const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full"></div>,
+})
 
 export default function BonusHero() {
   const [isUnlocked, setIsUnlocked] = useState(false)
@@ -81,13 +87,14 @@ export default function BonusHero() {
       >
         <div className="container mx-auto px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            {/* Star icon with rotation */}
+            {/* Trophy Lottie Animation */}
             <motion.div
-              className="text-5xl mb-6"
-              initial={{ rotate: -180, scale: 0 }}
+              className="w-[200px] h-[200px] mx-auto mb-6"
+              initial={{ rotate: -15, scale: 0, opacity: 0 }}
               animate={isUnlocked ? {
                 rotate: 0,
-                scale: 1
+                scale: 1,
+                opacity: 1
               } : {}}
               transition={{
                 delay: 0.5,
@@ -96,7 +103,12 @@ export default function BonusHero() {
                 damping: 15
               }}
             >
-              ⭐
+              <LottieAnimation
+                animationUrl="/animations/trophy-animation.json"
+                className="w-full h-full"
+                loop={true}
+                autoplay={isUnlocked}
+              />
             </motion.div>
 
             {/* Heading with blur fade */}

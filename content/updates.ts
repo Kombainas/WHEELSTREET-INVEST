@@ -7,53 +7,56 @@ export interface Update {
 
 export const updates: Update[] = [
   {
-    date: '2024-03-15',
-    title: 'Series A Funding Round Announcement',
-    body: `We're excited to announce that we've closed our Series A funding round, raising $8.5M led by Mobility Ventures with participation from Urban Growth Partners and several strategic angels from the fintech and mobility sectors.
+    date: '2025-01-15',
+    title: 'Investicinio plano atnaujinimas ir 2025 metų tikslai',
+    body: `Pasiruošę naujam augimo etapui su aiškia strategija plėstis Baltijos šalyse ir didinti importo apimtis iš Kinijos.
 
-This funding will accelerate our expansion into three new metropolitan areas and allow us to build out our proprietary risk assessment platform. We're also planning to grow our team from 12 to 30 members over the next 18 months.
+Pagrindiniai rodikliai:
+- Mėnesinės pajamos: 15,000-25,000 EUR (paskutiniai 3 mėn)
+- Vidutinė marža: ~950 EUR per sandorį
+- Socialinės medijos pasiekimas: ↑400K+ organinių peržiūrų (90d)
+- Atsiskaitymo greitis: 24h (greičiausi rinkoje)
 
-Key milestones achieved this quarter:
-- Reached $2.5M ARR (MRR +150% YoY growth)
-- Expanded to 12,000 active users (+34% from last quarter)
-- Launched partnerships with 3 major fleet operators
-- Improved platform uptime to 99.97%
-
-Thank you to all our investors and partners for your continued support.`,
+2025 metų fokusas:
+- Pasiekti 200-300 automobilių inventorių
+- 80 automobilių pardavimai/mėn (Lietuva)
+- Kinijos importo programos plėtra (120 auto/metai)
+- Latvijos rinkos paruošimas (startas Q4)
+- Komandos plėtra: 15-20 žmonių`,
     pinned: true,
   },
   {
-    date: '2024-02-08',
-    title: 'Q4 2023 Performance Update',
-    body: `Q4 2023 was our strongest quarter yet, with revenue growing +62% QoQ to reach $780K. User acquisition exceeded targets by +34%, and we successfully launched our automated portfolio rebalancing feature.
+    date: '2024-10-15',
+    title: 'Socialinių medijų proveržis ir organinis augimas',
+    body: `Spalio mėnesį pasiekėme rekordinius socialinius rodiklius, įrodydami platformos virusinį potencialą be didelių reklamos biudžetų.
 
-Highlights:
-- Total assets under management: $45M (+85% from Q3)
-- Average investor IRR: +14.2%
-- New city launch: Austin, TX
-- Platform uptime: 99.94%
+Instagram rezultatai (90 dienų):
+- 271,921 peržiūra (88.4% organinės)
+- Populiariausias Reels: 121K peržiūrų
+- 119,872 paskyros pasiektos (↑377% augimas)
+- 84% peržiūrų iš ne-sekėjų
 
-Looking ahead to Q1 2024, we're focused on:
-1. Launching our mobile app (iOS & Android)
-2. Expanding our asset insurance coverage
-3. Building strategic partnerships with 2-3 institutional investors
-4. Growing our data science team to improve risk models
+Rugsėjo proveržis:
+- 147K peržiūrų (x15 kartų daugiau nei rugpjūtį)
+- 750 sekėjų (615 naujų)
+- Keletas Reels pasiekė ↑400K+ peržiūrų
 
-We'll be hosting a virtual investor update on February 22nd. Calendar invites will be sent separately.`,
+Tai patvirtina komandos retą gebėjimą kurti virusinio pobūdžio turinį, kuris yra milžiniškas konkurencinis pranašumas automobilių rinkoje.`,
   },
   {
-    date: '2024-01-12',
-    title: 'New Partnership with MobilityTech Solutions',
-    body: `We're thrilled to announce a strategic partnership with MobilityTech Solutions, a leading provider of IoT sensors and telematics for micro-mobility fleets.
+    date: '2024-09-01',
+    title: 'WSInsurance ir lizingo sprendimų integracija',
+    body: `Sėkmingai integravome papildomas paslaugas į Wheelstreet ekosistemą, didindami vidutinę pajamą per sandorį.
 
-This partnership will enable:
-- Real-time asset tracking and health monitoring
-- Predictive maintenance algorithms to reduce downtime by -25%
-- Enhanced data insights for investors
-- Improved risk assessment models
+Produktų prisijungimo rodikliai:
+- Garantijos: 20% attach rate (800 EUR/sandoris)
+- Lizingo sprendimai: 30% attach rate (~300 EUR/sandoris)
+- WSInsurance draudimo paketai aktyviai siūlomi klientams
+- Kombinuotas vidutinis komisas: ~950 EUR per automobilį
 
-MobilityTech's sensor platform is already deployed across 50,000+ vehicles in 25 cities worldwide. Integrating their technology into our platform will give our investors unprecedented visibility into asset performance and help us further optimize returns.
-
-The integration is currently in beta testing with select partners and will roll out to all users in Q2 2024.`,
+Tikslas 2025:
+- WSInsurance attach rate padidinti iki 25%+
+- Išplėsti lizingo partnerystes su 2-3 naujais tiekėjais
+- Vieno langelio aptarnavimo modelis - nuo įvertinimo iki pinigų gavimo`,
   },
 ]
