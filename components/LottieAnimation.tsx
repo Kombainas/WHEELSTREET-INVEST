@@ -1,7 +1,7 @@
 'use client'
 
 import Lottie from 'lottie-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 interface LottieAnimationProps {
   animationUrl: string
@@ -18,9 +18,33 @@ export default function LottieAnimation({
 }: LottieAnimationProps) {
   const [animationData, setAnimationData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
   const [error, setError] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  // Intersection Observer to only load when visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
+    if (!isVisible) return
+
     fetch(animationUrl)
       .then((res) => res.json())
       .then((data) => {
@@ -32,12 +56,14 @@ export default function LottieAnimation({
         setError(true)
         setIsLoading(false)
       })
-  }, [animationUrl])
+  }, [animationUrl, isVisible])
 
-  if (isLoading) {
+  if (!isVisible || isLoading) {
     return (
-      <div className={`flex items-center justify-center ${className}`}>
-        <div className="text-black/20 text-sm">Loading animation...</div>
+      <div ref={containerRef} className={`flex items-center justify-center ${className}`}>
+        <div className="text-black/20 text-sm">
+          {!isVisible ? '' : 'Loading animation...'}
+        </div>
       </div>
     )
   }
@@ -47,12 +73,16 @@ export default function LottieAnimation({
   }
 
   return (
-    <div className={className}>
+    <div ref={containerRef} className={className}>
       <Lottie
         animationData={animationData}
         loop={loop}
         autoplay={autoplay}
         style={{ width: '100%', height: '100%' }}
+        rendererSettings={{
+          preserveAspectRatio: 'xMidYMid slice',
+          progressiveLoad: true,
+        }}
       />
     </div>
   )

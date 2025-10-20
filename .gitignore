@@ -32,6 +32,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Analytics data
+data/analytics.json
+
 # OS
 .DS_Store
 Thumbs.db

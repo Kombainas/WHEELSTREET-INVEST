@@ -17,19 +17,48 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'WheelStreet Invest',
-  description: 'Investment platform',
+  title: {
+    default: 'WheelStreet Invest | Automobilių ateitis Baltijos šalyse',
+    template: '%s | WheelStreet Invest',
+  },
+  description: '€10B Baltijos automobilių rinka. 24h atsiskaitymas. 88% organinis social media reach. Investuokite į integruotą automobilių prekybos ekosistemą.',
+  keywords: ['investicijos', 'automobiliai', 'Baltijos šalys', 'startup', 'fintech', 'marketplace'],
+  authors: [{ name: 'WheelStreet' }],
+  creator: 'WheelStreet',
+  publisher: 'WheelStreet',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+    viewportFit: 'cover',
+  },
   icons: {
     icon: '/wheel-street-logo.png',
+    shortcut: '/wheel-street-logo.png',
+    apple: '/wheel-street-logo.png',
   },
   openGraph: {
-    title: 'WheelStreet Invest',
-    description: 'Investment platform',
+    type: 'website',
+    locale: 'lt_LT',
+    siteName: 'WheelStreet Invest',
+    title: 'WheelStreet Invest | Automobilių ateitis Baltijos šalyse',
+    description: '€10B Baltijos automobilių rinka. 24h atsiskaitymas. 88% organinis social media reach. Investuokite į integruotą automobilių prekybos ekosistemą.',
+    images: ['/wheel-street-logo.png'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WheelStreet Invest | Automobilių ateitis Baltijos šalyse',
+    description: '€10B Baltijos automobilių rinka. 24h atsiskaitymas. 88% organinis social media reach.',
     images: ['/wheel-street-logo.png'],
   },
   robots: {
     index: false,
     follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
   },
 }
 
@@ -39,7 +68,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="lt">
       <body className={inter.className}>
         <SkipLink />
         <ScrollProgress />

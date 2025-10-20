@@ -18,7 +18,7 @@ export default function LatestUpdate() {
       className="max-w-5xl mx-auto"
     >
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Naujausia naujienа</h2>
+        <h2 className="text-2xl font-bold">Naujausia naujiena</h2>
         <Link
           href="/updates"
           className="text-sm hover:underline text-black/60 hover:text-black transition-colors"

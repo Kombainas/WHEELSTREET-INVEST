@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { useAnalytics } from '@/hooks/useAnalytics'
 
 interface SearchResult {
   title: string
@@ -18,7 +19,9 @@ interface SearchModalProps {
 export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResult[]>([])
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+  const { trackEvent } = useAnalytics()
 
   // Close on Escape key
   useEffect(() => {
@@ -39,17 +42,24 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
   useEffect(() => {
     if (query.trim().length < 2) {
       setResults([])
+      setIsLoading(false)
       return
     }
 
     const searchContent = async () => {
+      setIsLoading(true)
       try {
         const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
         const data = await response.json()
         setResults(data.results || [])
+
+        // Track search query
+        trackEvent('search', { query, resultCount: data.results?.length || 0 })
       } catch (error) {
         console.error('Search failed:', error)
         setResults([])
+      } finally {
+        setIsLoading(false)
       }
     }
 
@@ -91,6 +101,11 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
           {query.trim().length < 2 ? (
             <div className="p-8 text-center text-black/40 text-sm">
               Įveskite bent 2 simbolius paieškai
+            </div>
+          ) : isLoading ? (
+            <div className="p-8 text-center">
+              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-black border-r-transparent"></div>
+              <div className="mt-2 text-sm text-black/40">Ieškoma...</div>
             </div>
           ) : results.length === 0 ? (
             <div className="p-8 text-center text-black/40 text-sm">

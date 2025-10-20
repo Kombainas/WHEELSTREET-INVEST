@@ -18,13 +18,14 @@ const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
 export default function Hero() {
   const { elementRef, position } = useMagnetic<HTMLAnchorElement>({ strength: 12 })
   const { scrollY } = useScroll()
-  const y = useTransform(scrollY, [0, 300], [0, 50])
+  // Reduce parallax on mobile for performance (only 20px movement)
+  const y = useTransform(scrollY, [0, 300], [0, 20])
 
   return (
     <section id="hero" className="relative overflow-hidden bg-white">
       {/* Content with subtle parallax */}
       <motion.div
-        className="container mx-auto px-4 pt-32 pb-24 relative z-10"
+        className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-32 pb-16 sm:pb-24 relative z-10"
         style={{ y }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl">
@@ -78,9 +79,11 @@ export default function Hero() {
                 ref={elementRef}
                 href="/deck"
                 aria-label="Peržiūrėti investicinį planą"
-                className="inline-block px-8 py-4 bg-black text-white font-medium text-lg hover:bg-white hover:text-black border border-black transition-all duration-200 hover:shadow-2xl"
+                className="inline-block px-8 py-4 bg-black text-white font-medium text-lg hover:bg-white hover:text-black border border-black transition-all duration-200 hover:shadow-2xl touch-manipulation active:scale-95 md:active:scale-100"
                 style={{
-                  transform: `translate(${position.x}px, ${position.y}px)`,
+                  transform: typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches
+                    ? `translate(${position.x}px, ${position.y}px)`
+                    : 'none',
                 }}
               >
                 Peržiūrėti planą
