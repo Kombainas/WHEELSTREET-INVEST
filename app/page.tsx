@@ -5,12 +5,18 @@ import KPICard from '@/components/KPICard'
 import WhyWheelStreet from '@/components/WhyWheelStreet'
 import InvestmentHighlight from '@/components/InvestmentHighlight'
 import LatestUpdate from '@/components/LatestUpdate'
+import PersonalizedWelcome from '@/components/PersonalizedWelcome'
 import { metrics } from '@/content/metrics'
 
 export default function Home() {
   return (
     <>
       <Hero />
+
+      {/* Personalized Welcome Banner */}
+      <Section className="pt-8">
+        <PersonalizedWelcome />
+      </Section>
 
       <DiagonalConnector fromId="hero" toId="investment" />
 

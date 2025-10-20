@@ -9,6 +9,7 @@ import SkipLink from '@/components/SkipLink'
 import PageTransitions from '@/components/PageTransitions'
 import GarageMode from '@/components/GarageMode'
 import ScrollProgress from '@/components/ScrollProgress'
+import InvestorSelector from '@/components/InvestorSelector'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -72,6 +73,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SkipLink />
         <ScrollProgress />
+        <InvestorSelector />
         <GridBackground />
         <NoiseOverlay />
         <GarageMode />
