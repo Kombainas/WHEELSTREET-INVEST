@@ -10,8 +10,6 @@ import RevenueChart from '@/components/RevenueChart'
 import CompetitiveTable from '@/components/CompetitiveTable'
 import UseOfFundsChart from '@/components/UseOfFundsChart'
 import SocialMediaStats from '@/components/SocialMediaStats'
-import TeamSection from '@/components/TeamSection'
-import RiskDisclosures from '@/components/RiskDisclosures'
 import { metrics } from '@/content/metrics'
 
 export default function Home() {
@@ -72,12 +70,6 @@ export default function Home() {
           <UseOfFundsChart />
         </div>
       </Section>
-
-      {/* Team Section */}
-      <TeamSection />
-
-      {/* Risk Disclosures */}
-      <RiskDisclosures />
 
       <WhyWheelStreet />
     </>
