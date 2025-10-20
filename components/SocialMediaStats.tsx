@@ -105,7 +105,11 @@ export default function SocialMediaStats() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+              className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6 hover:bg-white/10 hover:border-white/30 transition-all duration-300"
+              style={{
+                boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)',
+                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              }}
             >
               {/* Icon */}
               <div className="text-4xl mb-3">{stat.icon}</div>
@@ -154,7 +158,10 @@ export default function SocialMediaStats() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6"
+            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6"
+            style={{
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)',
+            }}
           >
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
               <span>📈</span>
@@ -197,7 +204,10 @@ export default function SocialMediaStats() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.6 }}
-            className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6"
+            className="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg p-6"
+            style={{
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06)',
+            }}
           >
             <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
               <span>💡</span>

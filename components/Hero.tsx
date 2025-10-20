@@ -49,22 +49,23 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-[1.1]"
+              style={{ letterSpacing: '-0.02em' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <span className="block text-black">Investuokite į</span>
-              <span className="inline-block bg-[#111] text-white px-6 py-2 mt-2">
+              <span className="block text-black mb-2">Investuokite į</span>
+              <span className="inline-block bg-[#111] text-white px-6 py-2 mt-2 shadow-xl">
                 automobilių ateitį
               </span>
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl text-black/70 mb-10"
+              className="text-lg md:text-xl text-black/70 mb-10 leading-relaxed max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               €10B Baltijos automobilių rinka. 24h atsiskaitymas. 88% organinis social media reach.
               Integruota ekosistema nuo pardavimo iki draudimo.
@@ -73,21 +74,31 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <Link
-                ref={elementRef}
-                href="/deck"
-                aria-label="Peržiūrėti investicinį planą"
-                className="inline-block px-8 py-4 bg-black text-white font-medium text-lg hover:bg-white hover:text-black border border-black transition-all duration-200 hover:shadow-2xl touch-manipulation active:scale-95 md:active:scale-100"
-                style={{
-                  transform: typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches
-                    ? `translate(${position.x}px, ${position.y}px)`
-                    : 'none',
-                }}
-              >
-                Peržiūrėti planą
-              </Link>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  ref={elementRef}
+                  href="/deck"
+                  aria-label="Peržiūrėti investicinį planą"
+                  className="inline-block px-8 py-4 bg-black text-white font-medium text-lg hover:bg-white hover:text-black border-2 border-black transition-all duration-300 touch-manipulation active:scale-95 md:active:scale-100"
+                  style={{
+                    transform: typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches
+                      ? `translate(${position.x}px, ${position.y}px)`
+                      : 'none',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)',
+                    transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = '0 20px 25px rgba(0, 0, 0, 0.08), 0 8px 10px rgba(0, 0, 0, 0.04), 0 4px 6px rgba(0, 0, 0, 0.02)'
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)'
+                  }}
+                >
+                  Peržiūrėti planą
+                </Link>
+              </motion.div>
             </motion.div>
           </motion.div>
 

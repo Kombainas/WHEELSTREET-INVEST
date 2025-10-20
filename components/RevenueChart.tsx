@@ -62,31 +62,56 @@ export default function RevenueChart() {
   })
 
   return (
-    <div className="bg-white border border-black/10 rounded-lg p-8">
+    <motion.div
+      className="bg-white border border-black/10 rounded-lg p-8"
+      style={{
+        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)',
+      }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
       {/* Header */}
       <div className="mb-8">
-        <h3 className="text-2xl font-bold mb-2">Pajamų Augimas</h3>
+        <h3 className="text-2xl font-bold mb-2" style={{ letterSpacing: '-0.01em' }}>Pajamų Augimas</h3>
         <p className="text-black/60">Mėnesinės pajamos 2024 metais</p>
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-black/[0.02] p-4 rounded-lg">
+        <motion.div
+          className="bg-black/[0.02] p-4 rounded-lg border border-black/5"
+          whileHover={{ scale: 1.02, backgroundColor: 'rgba(0, 0, 0, 0.03)' }}
+          transition={{ duration: 0.2 }}
+        >
           <div className="text-sm text-black/60 mb-1">Iš viso augimas</div>
-          <div className="text-2xl font-bold text-green-600">+{growth.totalGrowth}%</div>
-        </div>
-        <div className="bg-black/[0.02] p-4 rounded-lg">
+          <div className="text-2xl font-bold text-green-600" style={{ fontVariantNumeric: 'tabular-nums' }}>+{growth.totalGrowth}%</div>
+        </motion.div>
+        <motion.div
+          className="bg-black/[0.02] p-4 rounded-lg border border-black/5"
+          whileHover={{ scale: 1.02, backgroundColor: 'rgba(0, 0, 0, 0.03)' }}
+          transition={{ duration: 0.2 }}
+        >
           <div className="text-sm text-black/60 mb-1">Q3 augimas</div>
-          <div className="text-xl font-bold">+{growth.q3Growth}%</div>
-        </div>
-        <div className="bg-black/[0.02] p-4 rounded-lg">
+          <div className="text-xl font-bold" style={{ fontVariantNumeric: 'tabular-nums' }}>+{growth.q3Growth}%</div>
+        </motion.div>
+        <motion.div
+          className="bg-black/[0.02] p-4 rounded-lg border border-black/5"
+          whileHover={{ scale: 1.02, backgroundColor: 'rgba(0, 0, 0, 0.03)' }}
+          transition={{ duration: 0.2 }}
+        >
           <div className="text-sm text-black/60 mb-1">Q4 augimas</div>
-          <div className="text-xl font-bold">+{growth.q4Growth}%</div>
-        </div>
-        <div className="bg-black/[0.02] p-4 rounded-lg">
+          <div className="text-xl font-bold" style={{ fontVariantNumeric: 'tabular-nums' }}>+{growth.q4Growth}%</div>
+        </motion.div>
+        <motion.div
+          className="bg-black/[0.02] p-4 rounded-lg border border-black/5"
+          whileHover={{ scale: 1.02, backgroundColor: 'rgba(0, 0, 0, 0.03)' }}
+          transition={{ duration: 0.2 }}
+        >
           <div className="text-sm text-black/60 mb-1">Dabartinis MRR</div>
-          <div className="text-xl font-bold">€20K</div>
-        </div>
+          <div className="text-xl font-bold" style={{ fontVariantNumeric: 'tabular-nums' }}>€20K</div>
+        </motion.div>
       </div>
 
       {/* Chart */}
@@ -217,6 +242,6 @@ export default function RevenueChart() {
           <span className="text-black/60">Projekcija</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
