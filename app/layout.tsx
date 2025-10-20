@@ -15,7 +15,9 @@ import ExitIntentPopup from '@/components/ExitIntentPopup'
 const inter = Inter({
   subsets: ['latin'],
   weight: ['400', '600', '700'],
-  display: 'swap',
+  display: 'optional', // Prevents layout shift during font loading
+  preload: true,
+  fallback: ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
 })
 
 export const metadata: Metadata = {
