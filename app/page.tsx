@@ -6,6 +6,7 @@ import WhyWheelStreet from '@/components/WhyWheelStreet'
 import InvestmentHighlight from '@/components/InvestmentHighlight'
 import LatestUpdate from '@/components/LatestUpdate'
 import PersonalizedWelcome from '@/components/PersonalizedWelcome'
+import PressMentions from '@/components/PressMentions'
 import { metrics } from '@/content/metrics'
 
 export default function Home() {
@@ -42,6 +43,9 @@ export default function Home() {
       <Section className="py-20 bg-black/[0.02]">
         <LatestUpdate />
       </Section>
+
+      {/* Press Mentions Section */}
+      <PressMentions />
 
       <WhyWheelStreet />
     </>

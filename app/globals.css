@@ -1562,3 +1562,212 @@ html.garage .label-caps {
   background-size: 200% 200%;
   animation: gradient 15s ease infinite;
 }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  /* Reset page margins for better control */
+  @page {
+    margin: 1.5cm 2cm;
+    size: A4 portrait;
+  }
+
+  /* Hide navigation, footer, and interactive elements */
+  nav,
+  footer,
+  .scroll-progress,
+  .back-to-top,
+  .deck-sidebar,
+  .skip-link,
+  .search-button,
+  .download-deck-button,
+  button,
+  .mobile-nav,
+  .garage-mode {
+    display: none !important;
+  }
+
+  /* Remove backgrounds and optimize for print */
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Remove decorative elements */
+  .grid-background,
+  .noise-overlay,
+  .diagonal-connector {
+    display: none !important;
+  }
+
+  /* Optimize deck content for print */
+  .deck-main {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .deck-layout {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Ensure proper page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  article section,
+  .prose section {
+    page-break-inside: avoid;
+  }
+
+  /* Optimize typography for print */
+  body {
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+
+  h1 {
+    font-size: 24pt !important;
+    margin-top: 0 !important;
+  }
+
+  h2 {
+    font-size: 18pt !important;
+    margin-top: 16pt !important;
+    margin-bottom: 8pt !important;
+  }
+
+  h3 {
+    font-size: 14pt !important;
+  }
+
+  /* Show logo prominently */
+  .deck-logo {
+    display: block !important;
+    margin: 0 auto 20pt !important;
+    max-width: 100px !important;
+  }
+
+  /* Optimize tables for print */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    page-break-inside: avoid;
+  }
+
+  th, td {
+    border: 1px solid #ddd !important;
+    padding: 8pt !important;
+  }
+
+  /* Show URLs for links */
+  a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+
+  /* Don't show URLs for internal anchors */
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  /* Optimize images */
+  img {
+    max-width: 100% !important;
+    page-break-inside: avoid;
+  }
+
+  /* Summary metrics */
+  .summary-strip {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 12pt !important;
+    margin-bottom: 16pt !important;
+    page-break-inside: avoid;
+  }
+
+  .summary-card {
+    border: 1px solid #ddd !important;
+    padding: 8pt !important;
+    flex: 1 1 200px !important;
+  }
+
+  /* Traction timeline */
+  .traction-timeline {
+    page-break-inside: avoid;
+  }
+
+  /* Investment highlights */
+  .investment-card {
+    border: 1px solid #ddd !important;
+    padding: 12pt !important;
+    margin-bottom: 12pt !important;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure code blocks are readable */
+  pre, code {
+    background: #f5f5f5 !important;
+    border: 1px solid #ddd !important;
+    page-break-inside: avoid;
+    font-size: 9pt !important;
+  }
+
+  /* Callouts and quotes */
+  blockquote,
+  .callout {
+    border-left: 4px solid #000 !important;
+    padding-left: 12pt !important;
+    margin: 12pt 0 !important;
+    page-break-inside: avoid;
+  }
+
+  /* Hide personalized elements */
+  .personalized-welcome,
+  .investor-selector {
+    display: none !important;
+  }
+
+  /* Final CTA - make it print-friendly */
+  .final-cta {
+    border-top: 2px solid #000 !important;
+    padding-top: 16pt !important;
+    page-break-before: always;
+  }
+
+  /* Confidential label */
+  .label-caps {
+    font-size: 8pt !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1pt !important;
+  }
+
+  /* Remove shadows and effects */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Ensure good contrast */
+  [class*="text-black/"] {
+    color: #333 !important;
+  }
+
+  /* KPI Cards */
+  .kpi-card {
+    border: 1px solid #ddd !important;
+    padding: 12pt !important;
+    margin-bottom: 12pt !important;
+    page-break-inside: avoid;
+  }
+
+  /* Updates section */
+  .latest-update {
+    border: 1px solid #ddd !important;
+    padding: 12pt !important;
+    page-break-inside: avoid;
+  }
+}

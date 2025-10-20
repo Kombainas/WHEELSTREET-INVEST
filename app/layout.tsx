@@ -10,6 +10,7 @@ import PageTransitions from '@/components/PageTransitions'
 import GarageMode from '@/components/GarageMode'
 import ScrollProgress from '@/components/ScrollProgress'
 import InvestorSelector from '@/components/InvestorSelector'
+import ExitIntentPopup from '@/components/ExitIntentPopup'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -27,13 +28,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'WheelStreet' }],
   creator: 'WheelStreet',
   publisher: 'WheelStreet',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: 'cover',
-  },
   icons: {
     icon: '/wheel-street-logo.png',
     shortcut: '/wheel-street-logo.png',
@@ -63,6 +57,14 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: 'cover',
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -74,6 +76,7 @@ export default function RootLayout({
         <SkipLink />
         <ScrollProgress />
         <InvestorSelector />
+        <ExitIntentPopup />
         <GridBackground />
         <NoiseOverlay />
         <GarageMode />

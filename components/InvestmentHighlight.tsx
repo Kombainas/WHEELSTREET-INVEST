@@ -30,23 +30,35 @@ export default function InvestmentHighlight() {
 
         {/* Key Investment Details */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+          <motion.div
+            whileHover={{ scale: 1.05, y: -4 }}
+            transition={{ duration: 0.2 }}
+            className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
+          >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Keliame</div>
             <div className="text-3xl font-bold mb-1">{pitch.fundraise.amount}</div>
             <div className="text-sm text-white/70">{pitch.fundraise.equity}</div>
-          </div>
+          </motion.div>
 
-          <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+          <motion.div
+            whileHover={{ scale: 1.05, y: -4 }}
+            transition={{ duration: 0.2 }}
+            className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
+          >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Vertinimas</div>
             <div className="text-3xl font-bold mb-1">{pitch.valuation.amount}</div>
             <div className="text-sm text-white/70">{pitch.valuation.label}</div>
-          </div>
+          </motion.div>
 
-          <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+          <motion.div
+            whileHover={{ scale: 1.05, y: -4 }}
+            transition={{ duration: 0.2 }}
+            className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
+          >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">{pitch.target.label}</div>
             <div className="text-3xl font-bold mb-1">{pitch.target.amount}</div>
             <div className="text-sm text-white/70">{pitch.target.sublabel}</div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Use of Funds */}
@@ -67,18 +79,22 @@ export default function InvestmentHighlight() {
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/deck"
-            className="inline-block px-8 py-4 bg-white text-black font-medium text-center hover:bg-white/90 transition-all duration-200"
-          >
-            Peržiūrėti pilną planą
-          </Link>
-          <Link
-            href="mailto:invest@wheelstreet.lt?subject=Investment Inquiry"
-            className="inline-block px-8 py-4 bg-white/10 text-white font-medium text-center hover:bg-white/20 border border-white/20 transition-all duration-200"
-          >
-            Susisiekti dėl investicijos
-          </Link>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/deck"
+              className="inline-block px-8 py-4 bg-white text-black font-medium text-center hover:bg-white/90 hover:shadow-xl transition-all duration-200 rounded"
+            >
+              Peržiūrėti pilną planą
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="mailto:invest@wheelstreet.lt?subject=Investment Inquiry"
+              className="inline-block px-8 py-4 bg-white/10 text-white font-medium text-center hover:bg-white/20 border border-white/20 hover:border-white/40 transition-all duration-200 rounded"
+            >
+              Susisiekti dėl investicijos
+            </Link>
+          </motion.div>
         </div>
       </div>
     </motion.div>
