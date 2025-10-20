@@ -35,15 +35,27 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           >
+            {/* Investor Badge */}
+            <motion.div
+              className="inline-block mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <span className="px-4 py-2 bg-black text-white text-sm font-medium rounded-full">
+                🚀 Investor Portal
+              </span>
+            </motion.div>
+
             <motion.h1
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span className="block text-black">Keičiame</span>
+              <span className="block text-black">Investuokite į</span>
               <span className="inline-block bg-[#111] text-white px-6 py-2 mt-2">
-                automobilių rinką
+                automobilių ateitį
               </span>
             </motion.h1>
 
@@ -53,8 +65,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Pirmaujanti automobilių pirkimo ir pardavimo platforma Baltijos šalyse.
-              Greičiausias atsiskaitymas. Skaidrus procesas. Integruota ekosistema.
+              €10B Baltijos automobilių rinka. 24h atsiskaitymas. 88% organinis social media reach.
+              Integruota ekosistema nuo pardavimo iki draudimo.
             </motion.p>
 
             <motion.div

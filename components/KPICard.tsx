@@ -101,6 +101,9 @@ export default function KPICard({ metric, index = 0 }: KPICardProps) {
     value: displayValue,
   })
 
+  const trendIcon = metric.trend === 'up' ? '↑' : metric.trend === 'down' ? '↓' : ''
+  const trendColor = metric.trend === 'up' ? 'text-green-600' : metric.trend === 'down' ? 'text-red-600' : 'text-black/40'
+
   return (
     <div
       ref={cardRef}
@@ -111,9 +114,15 @@ export default function KPICard({ metric, index = 0 }: KPICardProps) {
       <div className="mb-4">
         <span className="label-caps text-black/60">{metric.label}</span>
       </div>
-      <div className="kpi-number" aria-live="polite" aria-atomic="true">
+      <div className="kpi-number mb-3" aria-live="polite" aria-atomic="true">
         {formattedValue}
       </div>
+      {metric.growth && (
+        <div className={`flex items-center gap-1 text-sm font-medium ${trendColor}`}>
+          {trendIcon && <span className="text-lg leading-none">{trendIcon}</span>}
+          <span>{metric.growth}</span>
+        </div>
+      )}
     </div>
   )
 }

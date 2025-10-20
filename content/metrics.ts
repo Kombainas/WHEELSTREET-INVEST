@@ -5,6 +5,8 @@ export interface Metric {
   decimals?: number
   prefix?: string
   suffix?: string
+  growth?: string
+  trend?: 'up' | 'down' | 'neutral'
 }
 
 export const metrics: Metric[] = [
@@ -13,12 +15,16 @@ export const metrics: Metric[] = [
     value: 20000,
     format: 'currency',
     decimals: 0,
+    growth: '+35% vs Q3',
+    trend: 'up',
   },
   {
     label: 'Vidutinė marža',
     value: 950,
     format: 'currency',
     decimals: 0,
+    growth: 'Per sandorį',
+    trend: 'neutral',
   },
   {
     label: 'Atsiskaitymas',
@@ -26,6 +32,8 @@ export const metrics: Metric[] = [
     format: 'number',
     decimals: 0,
     suffix: 'h',
+    growth: 'Greičiausi rinkoje',
+    trend: 'up',
   },
   {
     label: 'Peržiūros (90d)',
@@ -33,6 +41,8 @@ export const metrics: Metric[] = [
     format: 'number',
     decimals: 0,
     suffix: 'K+',
+    growth: '88% organic',
+    trend: 'up',
   },
 ]
 
