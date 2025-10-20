@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { readFile } from 'fs/promises'
 import { join } from 'path'
 import { updates } from '@/content/updates'
+import { slugify } from '@/lib/slugify'
 
 export const dynamic = 'force-dynamic'
 
@@ -78,19 +79,7 @@ export async function GET(request: NextRequest) {
           let excerpt = sectionContent.substring(0, 150).replace(/^##\s+.+$/m, '').trim()
 
           // Convert heading to slug for URL hash
-          const slug = heading
-            .toLowerCase()
-            .replace(/ą/g, 'a')
-            .replace(/č/g, 'c')
-            .replace(/ę/g, 'e')
-            .replace(/ė/g, 'e')
-            .replace(/į/g, 'i')
-            .replace(/š/g, 's')
-            .replace(/ų/g, 'u')
-            .replace(/ū/g, 'u')
-            .replace(/ž/g, 'z')
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/^-|-$/g, '')
+          const slug = slugify(heading)
 
           results.push({
             title: heading,

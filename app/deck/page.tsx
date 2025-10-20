@@ -8,6 +8,7 @@ import { Suspense } from 'react'
 import { useMDXComponents } from '@/components/mdx-components'
 import { extractSummaryMetrics, type SummaryMetric } from '@/lib/extractSummaryMetrics'
 import { getLastUpdated } from '@/lib/lastUpdated'
+import { slugify } from '@/lib/slugify'
 import DeckTOC from '@/components/DeckTOC'
 import ScrollProgress from '@/components/ScrollProgress'
 import BackToTop from '@/components/BackToTop'
@@ -32,10 +33,7 @@ function extractTocFromMdx(source: string): TocItem[] {
   while ((match = h2Regex.exec(source)) !== null) {
     number++
     const title = match[1].trim()
-    const id = title
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/\s+/g, '-')
+    const id = slugify(title)
     toc.push({ id, title, number })
   }
 

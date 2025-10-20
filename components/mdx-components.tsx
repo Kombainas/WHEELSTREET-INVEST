@@ -5,13 +5,7 @@ import Quote from './Quote'
 import Figure from './Figure'
 import { Disclosure } from './Disclosure'
 import TableComponents from './Table'
-
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-}
+import { slugify } from '@/lib/slugify'
 
 // Helper to detect if a cell value is numeric
 function isNumericCell(children: React.ReactNode): boolean {
