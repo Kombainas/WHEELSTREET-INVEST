@@ -2,8 +2,11 @@
 
 import Link from 'next/link'
 import { motion } from 'motion/react'
+import { investmentPitch } from '@/content/investment-pitch'
 
 export default function InvestmentHighlight() {
+  const pitch = investmentPitch
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -15,13 +18,13 @@ export default function InvestmentHighlight() {
         {/* Header */}
         <div className="mb-8 text-center">
           <div className="inline-block px-4 py-1 bg-white/10 rounded-full text-sm font-medium mb-4">
-            💰 Investicinė galimybė
+            {pitch.badge}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-3">
-            Investuokite į greičiausiai augančią automobilių platformą Baltijos šalyse
+            {pitch.headline}
           </h2>
           <p className="text-lg text-white/80">
-            Keičiame €10B automobilių rinką su technologija ir ekosistemos modeliu
+            {pitch.subheadline}
           </p>
         </div>
 
@@ -29,20 +32,20 @@ export default function InvestmentHighlight() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <div className="bg-white/5 p-6 rounded-lg border border-white/10">
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Keliame</div>
-            <div className="text-3xl font-bold mb-1">€1,000,000</div>
-            <div className="text-sm text-white/70">už 20-30% equity</div>
+            <div className="text-3xl font-bold mb-1">{pitch.fundraise.amount}</div>
+            <div className="text-sm text-white/70">{pitch.fundraise.equity}</div>
           </div>
 
           <div className="bg-white/5 p-6 rounded-lg border border-white/10">
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Vertinimas</div>
-            <div className="text-3xl font-bold mb-1">€3.3-5M</div>
-            <div className="text-sm text-white/70">Post-money valuation</div>
+            <div className="text-3xl font-bold mb-1">{pitch.valuation.amount}</div>
+            <div className="text-sm text-white/70">{pitch.valuation.label}</div>
           </div>
 
           <div className="bg-white/5 p-6 rounded-lg border border-white/10">
-            <div className="text-sm text-white/60 uppercase tracking-wide mb-2">24 mėn tikslas</div>
-            <div className="text-3xl font-bold mb-1">€250-330K</div>
-            <div className="text-sm text-white/70">Mėnesinės pajamos</div>
+            <div className="text-sm text-white/60 uppercase tracking-wide mb-2">{pitch.target.label}</div>
+            <div className="text-3xl font-bold mb-1">{pitch.target.amount}</div>
+            <div className="text-sm text-white/70">{pitch.target.sublabel}</div>
           </div>
         </div>
 
@@ -50,34 +53,15 @@ export default function InvestmentHighlight() {
         <div className="mb-8">
           <h3 className="text-lg font-bold mb-4">Lėšų panaudojimas:</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="flex items-start gap-3">
-              <div className="text-2xl">📦</div>
-              <div>
-                <div className="font-medium">Inventorius (40%)</div>
-                <div className="text-sm text-white/70">200-300 automobilių atsargos</div>
+            {pitch.useOfFunds.map((item, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <div className="text-2xl">{item.emoji}</div>
+                <div>
+                  <div className="font-medium">{item.title}</div>
+                  <div className="text-sm text-white/70">{item.description}</div>
+                </div>
               </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="text-2xl">👥</div>
-              <div>
-                <div className="font-medium">Komanda (30%)</div>
-                <div className="text-sm text-white/70">15-20 specialistų</div>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="text-2xl">🌍</div>
-              <div>
-                <div className="font-medium">Plėtra (20%)</div>
-                <div className="text-sm text-white/70">Latvija, Kinijos importas</div>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="text-2xl">💻</div>
-              <div>
-                <div className="font-medium">Technologijos (10%)</div>
-                <div className="text-sm text-white/70">AI, automatizacija</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
