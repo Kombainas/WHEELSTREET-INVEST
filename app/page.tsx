@@ -7,6 +7,13 @@ import InvestmentHighlight from '@/components/InvestmentHighlight'
 import LatestUpdate from '@/components/LatestUpdate'
 import PersonalizedWelcome from '@/components/PersonalizedWelcome'
 import PressMentions from '@/components/PressMentions'
+import RevenueChart from '@/components/RevenueChart'
+import CompetitiveTable from '@/components/CompetitiveTable'
+import UseOfFundsChart from '@/components/UseOfFundsChart'
+import SocialMediaStats from '@/components/SocialMediaStats'
+import TeamSection from '@/components/TeamSection'
+import FAQSection from '@/components/FAQSection'
+import RiskDisclosures from '@/components/RiskDisclosures'
 import { metrics } from '@/content/metrics'
 
 export default function Home() {
@@ -39,13 +46,46 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* Latest Update Section */}
+      {/* Revenue Growth Chart */}
       <Section className="py-20 bg-black/[0.02]">
+        <div className="max-w-6xl mx-auto">
+          <RevenueChart />
+        </div>
+      </Section>
+
+      {/* Social Media Stats */}
+      <SocialMediaStats />
+
+      {/* Latest Update Section */}
+      <Section className="py-20 bg-white">
         <LatestUpdate />
       </Section>
 
+      {/* Competitive Advantage Table */}
+      <Section className="py-20 bg-black/[0.02]">
+        <div className="max-w-6xl mx-auto">
+          <CompetitiveTable />
+        </div>
+      </Section>
+
+      {/* Use of Funds Chart */}
+      <Section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <UseOfFundsChart />
+        </div>
+      </Section>
+
+      {/* Team Section */}
+      <TeamSection />
+
       {/* Press Mentions Section */}
       <PressMentions />
+
+      {/* FAQ Section */}
+      <FAQSection />
+
+      {/* Risk Disclosures */}
+      <RiskDisclosures />
 
       <WhyWheelStreet />
     </>
