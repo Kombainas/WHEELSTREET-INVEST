@@ -122,20 +122,6 @@ export default function TeamSection() {
             ))}
           </div>
         </div>
-
-        {/* Call to Action */}
-        <div className="mt-12 p-8 bg-black text-white rounded-lg text-center">
-          <h3 className="text-2xl font-bold mb-3">Prisijunk prie Komandos</h3>
-          <p className="text-white/80 mb-6 max-w-2xl mx-auto">
-            Ieškome talentų operations, tech ir sales pozicijoms. Dabar auginame komandą iki 15-20 žmonių.
-          </p>
-          <a
-            href="mailto:careers@wheelstreet.lt?subject=Career Opportunity"
-            className="inline-block px-8 py-3 bg-white text-black font-medium hover:bg-white/90 transition-colors rounded"
-          >
-            Karjeros galimybės →
-          </a>
-        </div>
       </div>
     </div>
   )

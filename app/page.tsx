@@ -6,13 +6,11 @@ import WhyWheelStreet from '@/components/WhyWheelStreet'
 import InvestmentHighlight from '@/components/InvestmentHighlight'
 import LatestUpdate from '@/components/LatestUpdate'
 import PersonalizedWelcome from '@/components/PersonalizedWelcome'
-import PressMentions from '@/components/PressMentions'
 import RevenueChart from '@/components/RevenueChart'
 import CompetitiveTable from '@/components/CompetitiveTable'
 import UseOfFundsChart from '@/components/UseOfFundsChart'
 import SocialMediaStats from '@/components/SocialMediaStats'
 import TeamSection from '@/components/TeamSection'
-import FAQSection from '@/components/FAQSection'
 import RiskDisclosures from '@/components/RiskDisclosures'
 import { metrics } from '@/content/metrics'
 
@@ -77,12 +75,6 @@ export default function Home() {
 
       {/* Team Section */}
       <TeamSection />
-
-      {/* Press Mentions Section */}
-      <PressMentions />
-
-      {/* FAQ Section */}
-      <FAQSection />
 
       {/* Risk Disclosures */}
       <RiskDisclosures />
