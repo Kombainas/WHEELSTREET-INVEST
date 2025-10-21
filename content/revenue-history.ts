@@ -4,22 +4,22 @@ export interface RevenueDataPoint {
   label: string
 }
 
-// Real revenue data - Business started June 2024
+// Real revenue data - Business started June 2025
 // Actual monthly revenue from launch to current (6 months)
 export const revenueHistory: RevenueDataPoint[] = [
-  { month: '2024-06', revenue: 9000, label: 'Bir' },   // Launch: €9K
-  { month: '2024-07', revenue: 12000, label: 'Lie' },  // €12K
-  { month: '2024-08', revenue: 10000, label: 'Rugp' }, // €10K
-  { month: '2024-09', revenue: 20000, label: 'Rugs' }, // €20K (2x growth!)
-  { month: '2024-10', revenue: 20000, label: 'Spa' },  // €20K (last month)
-  { month: '2024-11', revenue: 25000, label: 'Lap' },  // €25K (current month)
+  { month: '2025-06', revenue: 9000, label: 'Bir' },   // Launch: €9K
+  { month: '2025-07', revenue: 12000, label: 'Lie' },  // €12K
+  { month: '2025-08', revenue: 10000, label: 'Rugp' }, // €10K
+  { month: '2025-09', revenue: 20000, label: 'Rugs' }, // €20K (2x growth!)
+  { month: '2025-10', revenue: 20000, label: 'Spa' },  // €20K (last month)
+  { month: '2025-11', revenue: 25000, label: 'Lap' },  // €25K (current month)
 ]
 
 // Projection based on current growth trajectory
 export const projectedRevenue: RevenueDataPoint[] = [
-  { month: '2024-12', revenue: 28000, label: 'Gr' },      // December '24
-  { month: '2025-01', revenue: 30000, label: 'Sau \'25' }, // January '25
-  { month: '2025-02', revenue: 33000, label: 'Vas \'25' }, // February '25
+  { month: '2025-12', revenue: 28000, label: 'Gr' },      // December '25
+  { month: '2026-01', revenue: 30000, label: 'Sau \'26' }, // January '26
+  { month: '2026-02', revenue: 33000, label: 'Vas \'26' }, // February '26
 ]
 
 // Calculate growth metrics
