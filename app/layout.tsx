@@ -10,7 +10,6 @@ import PageTransitions from '@/components/PageTransitions'
 import GarageMode from '@/components/GarageMode'
 import ScrollProgress from '@/components/ScrollProgress'
 import InvestorSelector from '@/components/InvestorSelector'
-import ExitIntentPopup from '@/components/ExitIntentPopup'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -78,7 +77,6 @@ export default function RootLayout({
         <SkipLink />
         <ScrollProgress />
         <InvestorSelector />
-        <ExitIntentPopup />
         <GridBackground />
         <NoiseOverlay />
         <GarageMode />
