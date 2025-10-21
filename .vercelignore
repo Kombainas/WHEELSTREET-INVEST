@@ -1,0 +1,14 @@
+# Don't upload these to Vercel
+.next
+node_modules
+.git
+.env.local
+.env
+.DS_Store
+*.log
+.backups
+data/analytics.json
+coverage
+.vscode
+.idea
+README.md
