@@ -17,9 +17,9 @@ export const revenueHistory: RevenueDataPoint[] = [
 
 // Projection based on current growth trajectory
 export const projectedRevenue: RevenueDataPoint[] = [
-  { month: '2025-12', revenue: 28000, label: 'Gr' },      // December '25
-  { month: '2026-01', revenue: 30000, label: 'Sau \'26' }, // January '26
-  { month: '2026-02', revenue: 33000, label: 'Vas \'26' }, // February '26
+  { month: '2025-12', revenue: 48000, label: 'Gr' },      // December '25
+  { month: '2026-01', revenue: 55000, label: 'Sau \'26' }, // January '26
+  { month: '2026-02', revenue: 65000, label: 'Vas \'26' }, // February '26
 ]
 
 // Calculate growth metrics

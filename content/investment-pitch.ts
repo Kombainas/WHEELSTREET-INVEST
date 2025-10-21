@@ -47,7 +47,7 @@ export const investmentPitch: InvestmentPitch = {
     },
     {
       emoji: '👥',
-      title: 'Komanda (15%)',
+      title: 'TOP LYGIO Komanda (15%)',
       description: '20 žmonių komanda',
     },
     {

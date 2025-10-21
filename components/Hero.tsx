@@ -67,8 +67,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              €10B Baltijos automobilių rinka. 24h atsiskaitymas. 88% organinis social media reach.
-              Integruota ekosistema nuo pardavimo iki draudimo.
+              €7B Baltijos automobilių rinka. 24h atsiskaitymas. 88% organinis social media reach.
+              Integruota ekosistema nuo pardavimo su garantija iki draudimo ir priežiūros
             </motion.p>
 
             <motion.div
