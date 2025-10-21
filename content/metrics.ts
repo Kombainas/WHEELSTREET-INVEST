@@ -20,7 +20,7 @@ export const metrics: Metric[] = [
   },
   {
     label: 'Vidutinė marža',
-    value: 1400,
+    value: 950,
     format: 'currency',
     decimals: 0,
     growth: 'Per sandorį',
