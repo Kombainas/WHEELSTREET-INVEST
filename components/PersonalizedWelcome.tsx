@@ -40,7 +40,7 @@ export default function PersonalizedWelcome() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="bg-gradient-to-r from-black to-black/90 text-white px-6 py-4 mb-8 rounded-lg border border-white/10"
+      className="bg-gradient-to-r from-black to-black/90 text-white px-6 py-4 mb-6 rounded-lg border border-white/10"
     >
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

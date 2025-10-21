@@ -25,7 +25,7 @@ export default function Hero() {
     <section id="hero" className="relative overflow-hidden bg-white">
       {/* Content with subtle parallax */}
       <motion.div
-        className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-32 pb-16 sm:pb-24 relative z-10"
+        className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-32 pb-8 sm:pb-12 relative z-10"
         style={{ y }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl">

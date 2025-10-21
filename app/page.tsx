@@ -17,19 +17,19 @@ export default function Home() {
       <Hero />
 
       {/* Personalized Welcome Banner */}
-      <Section className="pt-8">
+      <Section className="pt-4">
         <PersonalizedWelcome />
       </Section>
 
       <DiagonalConnector fromId="hero" toId="investment" />
 
       {/* Investment Highlight Section */}
-      <Section id="investment" className="py-20 bg-white">
+      <Section id="investment" className="py-16 lg:py-20 bg-white">
         <InvestmentHighlight />
       </Section>
 
       {/* Metrics Section */}
-      <Section id="metrics" className="border-t border-black/10 py-20">
+      <Section id="metrics" className="border-t border-black/10 py-16 lg:py-20">
         <div className="mb-12 text-center">
           <span className="label-caps text-black/60">Pagrindiniai veiklos rodikliai</span>
           <h2 className="text-3xl font-bold mt-2">Traction & Momentum</h2>
@@ -42,7 +42,7 @@ export default function Home() {
       </Section>
 
       {/* Revenue Growth Chart */}
-      <Section className="py-20 bg-black/[0.02]">
+      <Section className="py-16 bg-black/[0.02]">
         <div className="max-w-6xl mx-auto">
           <RevenueChart />
         </div>
@@ -52,12 +52,12 @@ export default function Home() {
       <SocialMediaStats />
 
       {/* Latest Update Section */}
-      <Section className="py-20 bg-white">
+      <Section className="py-12 md:py-16 bg-white">
         <LatestUpdate />
       </Section>
 
       {/* Competitive Advantage Table */}
-      <Section className="py-20 bg-black/[0.02]">
+      <Section className="py-16 bg-black/[0.02]">
         <div className="max-w-6xl mx-auto">
           <CompetitiveTable />
         </div>
