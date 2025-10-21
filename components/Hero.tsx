@@ -55,8 +55,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <span className="block text-black mb-2">Investuokite į</span>
-              <span className="inline-block bg-[#111] text-white px-6 py-2 mt-2 shadow-xl">
+              <span className="block text-black">Investuokite į</span>
+              <span className="inline-block bg-[#111] text-white px-6 py-2 mt-3 shadow-xl">
                 automobilių ateitį
               </span>
             </motion.h1>
