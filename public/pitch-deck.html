@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WheelStreet - Investicinis Pasiūlymas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: white;
+            color: #1a1a1a;
+            line-height: 1.6;
+            font-size: 11pt;
+        }
+        
+        .page {
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 25mm;
+            background: white;
+        }
+        
+        .cover {
+            height: 297mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: none;
+            padding: 60px 40px;
+        }
+        
+        .logo {
+            max-width: 450px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+        
+        .cover h1 {
+            font-size: 24pt;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .cover .investment-ask {
+            font-size: 64pt;
+            font-weight: 700;
+            color: #000;
+            margin: 40px 0;
+        }
+        
+        .cover .tagline {
+            font-size: 14pt;
+            color: #666;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        
+        .cover .date {
+            font-size: 12pt;
+            color: #999;
+            margin-top: 60px;
+        }
+        
+        h2 {
+            font-size: 20pt;
+            font-weight: 600;
+            margin: 40px 0 20px 0;
+            color: #000;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 13pt;
+            font-weight: 600;
+            margin: 25px 0 15px 0;
+            color: #000;
+        }
+        
+        p {
+            margin: 12px 0;
+            text-align: justify;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+            page-break-inside: avoid;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 10pt;
+        }
+        
+        table th {
+            background: #000;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .metric-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 28pt;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+        }
+        
+        .metric-label {
+            font-size: 9pt;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        ul {
+            margin: 15px 0 15px 25px;
+        }
+        
+        ul li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+        
+        .executive-summary {
+            background: #f5f5f5;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 4px solid #000;
+        }
+        
+        .highlight {
+            background: #000;
+            color: white;
+            padding: 25px;
+            margin: 25px 0;
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 25px 0;
+        }
+        
+        .info-box {
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+        
+        .info-box h3 {
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .competitive-box {
+            background: #f9f9f9;
+            border-left: 3px solid #000;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        @media print {
+            .page {
+                padding: 20mm;
+            }
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .metric-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="cover">
+            <img id="logoImg" alt="WheelStreet" class="logo">
+            <h1>Investicinis Pasiūlymas</h1>
+            <div class="investment-ask">200 000 €</div>
+            <div class="tagline">
+                Paspartinti augimą ir įsitvirtinti rinkoje prieš plėtrą į Baltijos šalis
+            </div>
+            <div class="date">Spalis 2025</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <div class="executive-summary">
+            <h3 style="margin-top: 0;">Santrauka</h3>
+            <p><strong>WheelStreet</strong> – modernus naudotų automobilių tarpininkavimo (brokerystės) modelis, kuris keičia pasenusią Lietuvos rinką. Per 6 mėnesius pardavėme 150+ automobilių su vidutiniu 3 savaičių pardavimo laiku (rinkos vidurkis 8-12 sav.).</p>
+            <p style="margin-top: 15px;">Ieškome 200 000 € investicijos, kad išaugintume komandą nuo 6 iki 10 pardavėjų, padidintume komisinį parką nuo 80 iki 200+ automobilių ir pasiektume 50 pardavimų per mėnesį iki 2025 m. pabaigos. Tikslas 2026 m. parduoti vidutiniškai bent 40% automobilių nuo turimo parko. Įdarbinti lizingo specialistą, kas iškels gaunamą komisinį mokestį. Per ketvirtį parduoti bent po 150 garantijų ne mūsų parduodamiems automobiliams.</p>
+            <p style="margin-top: 15px;"><strong>Break-even projekcija: 2026 Q1.</strong></p>
+        </div>
+
+        <div class="section">
+            <h2>Kas mes esame</h2>
+            <p><strong>WheelStreet</strong> – modernus naudotų automobilių tarpininkavimo (brokerystės) modelis, kuris keičia pasenusią rinką.</p>
+            
+            <p>Veikiame vieno langelio principu: nuo automobilio įvertinimo iki apmokėjimo – viskas vienoje sistemoje.</p>
+            
+            <p>Įmonė jungia pardavėjus, pirkėjus ir partnerius (lizingo bei garantijų teikėjus) į skaidrų ir greitą pardavimo procesą.</p>
+            
+            <p><strong>WSInsurance</strong> – integruota garantijų ir draudimo paslauga (partneris Mango Insurance), suteikianti papildomas pajamas ir patikimumą klientui.</p>
+        </div>
+
+        <div class="section">
+            <h2>Rinkos galimybės</h2>
+            <p>Lietuvos naudotų automobilių rinka – viena didžiausių sektorių šalyje:</p>
+            <ul>
+                <li><strong>~180 000</strong> automobilių parduodama Lietuvoje per metus</li>
+                <li><strong>~32 000</strong> naujų automobilių per metus</li>
+                <li><strong>~148 000</strong> naudotų automobilių – milžiniška rinka su mažu profesionalizacijos lygiu</li>
+            </ul>
+            
+            <div class="highlight">
+                <p style="font-size: 13pt; text-align: center;">
+                    <strong>Tikslas:</strong> Užimti dominuojančią poziciją automobilių pardavėjų sektoriuje ir tapti rinkos lydere Lietuvoje, prieš plėtrą į Baltijos šalis
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Rinkos problema</h2>
+            <p>Naudotų automobilių rinkoje trūksta skaidrumo, greičio ir pasitikėjimo:</p>
+            <ul>
+                <li>Pagrindiniai žaidėjai (portaluose, aikštelėse) užlaiko pinigus nuo 14 iki 90 dienų</li>
+                <li>Dalis pardavėjų parduoda netvarkingus ar defektinius automobilius, dažnai klaidina pirkėjus</li>
+                <li>Nėra vieno patikimo kanalo, kuris atsiskaitytų tiesiogiai, suteiktų garantiją ir atstovautų tiek pirkėjo, tiek pardavėjo interesus</li>
+            </ul>
+        </div>
+
+        <div class="highlight">
+            <h3 style="color: white; border-bottom: 1px solid white; padding-bottom: 10px;">Sprendimas</h3>
+            <p><strong>WheelStreet</strong> – patikimų automobilių ekspertų komanda, siūlanti viską, ko reikia saugiam sandoriui:</p>
+            <ul style="margin-left: 0; list-style-position: inside;">
+                <li>Atsiskaitymas tiesiogiai su pardavėju, be pinigų užlaikymo</li>
+                <li>100% skaidrumas – automobilis tikrinamas servise (diagnostika, dažų matavimai)</li>
+                <li>6 mėn. / 10 000 km garantija kiekvienam parduotam automobiliui</li>
+                <li>Sandorio dokumentacija ir apmokėjimas – pilnai administruojami mūsų komandos</li>
+                <li>Vidutinis automobilio pardavimo laikas: ~3 savaitės (rinkos vidurkis 8-12 sav.)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Konkurencinė analizė</h2>
+            
+            <h3>Pagrindinis konkurentų segmentas: Pardavimas už komisą</h3>
+            
+            <div class="competitive-box">
+                <h3 style="margin-top: 0; border: none;">Deals on Wheels</h3>
+                <p><strong>Situacija:</strong> Pagrindinis akcininkas paliko įmonę ir pardavė akcijas. Pagal vidinę informaciją, veikla sekasi neypatingai.</p>
+                <p><strong>WheelStreet pozicija:</strong> Jau turime daugiau automobilių parke nei Deals on Wheels – aiškus signalas apie augantį rinkos dominavimą.</p>
+            </div>
+
+            <div class="competitive-box">
+                <h3 style="margin-top: 0; border: none;">VIN Motors</h3>
+                <p><strong>Pozicionavimas:</strong> Premium klasės automobiliai, žaidžia ant kokybės, turi neblogą reklamą.</p>
+                <p><strong>WheelStreet pozicija:</strong> Projekcija juos aplenkti po Naujųjų metų pagal pardavimų apimtis ir rinkos dalį.</p>
+            </div>
+
+            <div class="highlight">
+                <h3 style="color: white; border-bottom: 1px solid white;">Konkurencinis pranašumas</h3>
+                <ul style="margin-left: 0; list-style-position: inside;">
+                    <li><strong>Greičiausias pardavimo ciklas rinkoje:</strong> ~3 savaitės vs. 8-12 sav.</li>
+                    <li><strong>Tikras vieno langelio principas:</strong> garantijos, lizingas, draudimas – viską tvarkome mes</li>
+                    <li><strong>Organinis augimas per social media:</strong> 750k Instagram reach, 400k+ Reels peržiūros</li>
+                    <li><strong>Stipri klientų lojalumas:</strong> Klientai ne tik grįžta, bet ir rekomenduoja draugams bei kolegoms. Kai kurie klientai net investuoja į įmonę (pvz. vienas klientas investavo 100k€ automobilių pirkimui)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Rezultatai (Traction)</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <div class="metric-value">6</div>
+                    <div class="metric-label">Mėnesiai veikloje</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">150+</div>
+                    <div class="metric-label">Parduoti automobiliai</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">80</div>
+                    <div class="metric-label">Automobilių parke</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">30-40%</div>
+                    <div class="metric-label">Mėnesinis realizavimas</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">900 €</div>
+                    <div class="metric-label">Vidutinis komisas</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">~3 sav.</div>
+                    <div class="metric-label">Pardavimo laikas</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">750k</div>
+                    <div class="metric-label">Instagram reach</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-value">~4k €</div>
+                    <div class="metric-label">Mėnesinis pelnas</div>
+                </div>
+            </div>
+
+            <h3>Marketing Performance & Lead Generation</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rodiklis</th>
+                        <th>Reikšmė</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Instagram reach</td>
+                        <td><strong>750 000</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Nauji vartotojai</td>
+                        <td><strong>84%</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Reels peržiūros</td>
+                        <td><strong>>400 000</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Conversion rate</td>
+                        <td><strong>~33%</strong> (kas trečias leadas closinasi)</td>
+                    </tr>
+                    <tr>
+                        <td>Lead cost (paid media)</td>
+                        <td><strong>5-6 leadai/dieną</strong> už ~500 €/mėn.</td>
+                    </tr>
+                    <tr>
+                        <td>Skalės potencialas</td>
+                        <td>Su 3 000 € mėnesiniu biudžetu ir augančiu brand awareness. Leadsai 12x per 2026</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><strong>Lead šaltiniai:</strong></p>
+            <ul>
+                <li>Web leadai (per formą): Paid media + Organic (paid sudaro didesnę dalį)</li>
+                <li>Telefono skambučiai: Daugiausiai Organic iš content, nes klientams labai patinka turinys ir vizualas</li>
+                <li>Referrals: Stiprus word-of-mouth efektas</li>
+                <li>Renginiai</li>
+            </ul>
+
+            <h3>Partnerystės</h3>
+            <ul>
+                <li>Mango Insurance – garantijų ir draudimo paslaugos</li>
+                <li>ES tiekėjai – automobilių importo partneriai</li>
+                <li>JAE tiekėjai ir pardavėjai – automobilių importo partneriai Vidurio Rytams ir Azijos rinkoms</li>
+                <li>Servisai – techninė diagnostika</li>
+                <li>Lizingo bendrovės – finansavimo sprendimai</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Verslo modelis</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pajamų šaltinis</th>
+                        <th>Struktūra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Komisinis mokestis</strong></td>
+                        <td>4% (~900 € už auto, vidutinė kaina ~20 000 €)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Garantijos / WSInsurance</strong></td>
+                        <td>20-30% attach-rate, vid. 700 € marža</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Importas iš Kinijos ir ES (nauji)</strong></td>
+                        <td>~20-30% pelningumas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Importas (naudoti)</strong></td>
+                        <td>~10-20% pelningumas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Automobiliai pagal užsakymą</strong></td>
+                        <td>Import service</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Papildomi produktai</h3>
+            <ul>
+                <li>Finansavimas – partnerystė su lizingo bendrovėmis</li>
+                <li>Fast buy – greitas automobilių supirkimas</li>
+                <li>Garantijos – WSInsurance 6 mėn. / 10 000 km</li>
+            </ul>
+
+            <div class="highlight">
+                <p style="font-size: 16pt; text-align: center; font-weight: 600;">
+                    Pelno marža (po visų išlaidų): <strong>20-25%</strong>
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Vertikali integracija – Augimo strategija</h2>
+            <p>WheelStreet planuoja plėtrą į gretutines verslo linijas, sukuriant pilną automobilių ekosistemą:</p>
+
+            <h3>Automobilių dalys ir aksesuarai</h3>
+            <div class="competitive-box">
+                <p><strong>Produktai:</strong> E-commerce platforma originalių ir aftermarket dalių pardavimui, automobilių aksesuarai, chip tuning paslaugos</p>
+                <p><strong>Komanda:</strong> Cofounderis Jonas turi stiprią e-commerce patirtį ir tinklą</p>
+                <p><strong>Finansinis profilis:</strong> Labai geras cashflow verslas</p>
+            </div>
+
+            <h3>Fiziniai salonai ir naujų automobilių prekyba</h3>
+            <div class="competitive-box">
+                <p><strong>Planas:</strong> Fizinės lokacijos steigimas (Minsko pl. projektas su Kęstučio gatvės plėtra)</p>
+                <p><strong>Brandų pritraukimas:</strong> Esant užmegztiems ryšiams su Kinijos tiekėjais, yra galimybė atsivežti naujų automobilių brandus į Lietuvą</p>
+                <p><strong>Tikslas:</strong> Tapti ne tik naudotų, bet ir naujų automobilių platintoju</p>
+            </div>
+
+            <h3>Papildomos paslaugos</h3>
+            <ul>
+                <li><strong>Lizingo ir draudimo brokerystė:</strong> Plėtra į finansavimo sprendimų tarpininkavimą</li>
+                <li><strong>Chip tuning ir performance:</strong> Papildomos pajamos iš automobilių modifikacijų</li>
+            </ul>
+
+            <div class="highlight">
+                <h3 style="color: white; border-bottom: 1px solid white;">Sinergija</h3>
+                <p>Visi šie verslai papildo vienas kitą per <strong>cross-selling</strong> galimybes:</p>
+                <ul style="margin-left: 0; list-style-position: inside;">
+                    <li>Klientas perka automobilį → siūlome garantiją, lizingą, draudimą</li>
+                    <li>Klientas su automobiliu → siūlome dalis, aksesuarus, chip tuning</li>
+                    <li>Klientas grįžta už kitu automobiliu → lojalumas ir pakartotinis pardavimas</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Augimo planas</h2>
+            
+            <h3>2025 Q4 tikslai</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rodiklis</th>
+                        <th>Dabartinė būklė</th>
+                        <th>Tikslas 2025 Q4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Komanda</td>
+                        <td>6 pardavėjai + 1 pardavimų vadovas</td>
+                        <td><strong>10 pardavėjų</strong> + 1 vadovas + 1 lizingo specialistas</td>
+                    </tr>
+                    <tr>
+                        <td>Komisinis parkas</td>
+                        <td>80 automobilių</td>
+                        <td><strong>200 automobilių</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Pardavimai per ketvirtį</td>
+                        <td>~25/mėn.</td>
+                        <td><strong>50 pardavimų/mėn.</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Komisas (tikslas)</td>
+                        <td>~30k €/mėn.</td>
+                        <td><strong>45 000 €/mėn.</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Garantijų pardavimas</td>
+                        <td>-</td>
+                        <td><strong>100 garantijų</strong> (~80 000 € komisas)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2026 metai – Projekcijos</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Kryptis</th>
+                        <th>Tikslas</th>
+                        <th>Pajamos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Komisas</td>
+                        <td><strong>960 vnt per metus</strong></td>
+                        <td><strong>~1 150 000 €</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Papildomos garantijos</td>
+                        <td><strong>600 vnt per metus</strong></td>
+                        <td><strong>~420 000 €</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Importas (nauji auto)</td>
+                        <td><strong>120 vnt per metus</strong></td>
+                        <td><strong>~840 000 €</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Importas (naudoti auto)</td>
+                        <td><strong>60 vnt per metus</strong></td>
+                        <td><strong>~180 000 €</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Pagal užsakymą</td>
+                        <td><strong>60 vnt per metus</strong></td>
+                        <td><strong>~120 000 €</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <table style="margin-top: 20px;">
+                <thead>
+                    <tr>
+                        <th>Kryptis</th>
+                        <th>Tikslas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Vertikali integracija</td>
+                        <td>E-shop startas (2025 Q4)</td>
+                    </tr>
+                    <tr>
+                        <td>Cash-flow positive</td>
+                        <td><strong>2026 Q1</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Pardavimų dinamika</td>
+                        <td>+50 automobilių kas ketvirtį nuo 2026 Q1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2026-2027 metai: Baltijos plėtra</h3>
+            <ul>
+                <li><strong>Plėtra į Rygą</strong> – antras biuras Latvijoje</li>
+                <li>Tikslas – tapti <strong>lyderiu Lietuvoje ir Baltijos šalyse</strong> pagal kokybę ir žinomumą</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>Investicinis pasiūlymas</h2>
+            
+            <div class="highlight">
+                <h3 style="color: white; text-align: center; border: none; font-size: 18pt; margin-bottom: 20px;">
+                    Ieškomas kapitalas: 200 000 €
+                </h3>
+                <p style="text-align: center; font-size: 13pt;">
+                    Tikslas – paspartinti augimą ir įsitvirtinti rinkoje prieš plėtrą į Baltijos šalis
+                </p>
+            </div>
+
+            <h3>Investicija bus skirta:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sritis</th>
+                        <th>Tikslas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Komandos plėtra</strong></td>
+                        <td>Samdyti ir mokyti 4 papildomus pardavėjus + lizingo specialistą</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Marketingas</strong></td>
+                        <td>Socialinių tinklų reklama (Instagram, TikTok), lead generation, įvaizdžio stiprinimas</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Importas</strong></td>
+                        <td>Padidinti naujų ir naudotų automobilių importą (apyvartinis kapitalas)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sistemų tobulinimas</strong></td>
+                        <td>CRM, e-commerce platforma, automatizacija, techninė infrastruktūra</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Vertikali integracija</strong></td>
+                        <td>E-shop startas (2025 Q4)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Exit strategijos</h2>
+            
+            <div class="highlight">
+                <h3 style="color: white; border-bottom: 1px solid white;">Auto1 Group – Strateginis pirkėjas</h3>
+                <p><strong>Auto1 Group</strong> yra Europos didžiausias naudotų automobilių platformos operatorius. Šiuo metu jie <strong>neveikia Baltijos šalyse</strong>, tačiau WheelStreet gali būti idealus <strong>entry mode</strong> į Lietuvos ir Baltijos rinką.</p>
+                <p style="margin-top: 15px;"><strong>Kodėl tai svarbu:</strong></p>
+                <ul style="margin-left: 0; list-style-position: inside;">
+                    <li>Auto1 ieško įsigiję veikiančių platformų naujose rinkose</li>
+                    <li>WheelStreet turi įrodytą traction ir augimo modelį</li>
+                    <li>Stipri komanda, patikimi procesai, gera reputacija</li>
+                </ul>
+            </div>
+
+            <h3>Kitos exit galimybės</h3>
+            <div class="two-col">
+                <div class="info-box">
+                    <h3>Strateginis pardavimas</h3>
+                    <p><strong>Autoplius</strong> – Lietuvos rinkos lyderis portale</p>
+                    <p><strong>Fortegra</strong> – insurance-focused konsolidatorius (esame su partneriais susiję)</p>
+                </div>
+                <div class="info-box">
+                    <h3>Series A finansavimas</h3>
+                    <p>Institucinių investuotojų pritraukimas po 18-24 mėnesių, kai bus įrodytas Baltijos plėtros modelis</p>
+                </div>
+            </div>
+            
+            <div class="info-box" style="margin-top: 20px;">
+                <h3>Dividendinis išėjimas</h3>
+                <p>Stabilus pelno dalijimas ilgalaikiam investuotojui, ypač pasiekus cash-flow positive 2026 Q1</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Kodėl verta investuoti</h2>
+            
+            <div class="two-col">
+                <div class="info-box">
+                    <h3>✓ Įrodyta traction</h3>
+                    <ul style="margin-left: 0; list-style-position: inside;">
+                        <li>150+ parduotų automobilių per 6 mėn.</li>
+                        <li>Realios pajamos ir pelningumas</li>
+                        <li>Organinis augimas per social media</li>
+                        <li>Daugiau automobilių nei Deals on Wheels</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h3>✓ Skaidrus modelis</h3>
+                    <ul style="margin-left: 0; list-style-position: inside;">
+                        <li>Greitas atsiskaitymas</li>
+                        <li>Garantijos</li>
+                        <li>3 sav. pardavimo terminas</li>
+                        <li>Stiprus customer retention</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h3>✓ Aukšta marža ir scalability</h3>
+                    <ul style="margin-left: 0; list-style-position: inside;">
+                        <li>4% komisas (900 €/auto)</li>
+                        <li>20-25% pelningumas</li>
+                        <li>Komisinis modelis – žemi fixed costs</li>
+                        <li>Papildomos pajamos (garantijos, importas)</li>
+                    </ul>
+                </div>
+                
+                <div class="info-box">
+                    <h3>✓ Auganti rinka</h3>
+                    <ul style="margin-left: 0; list-style-position: inside;">
+                        <li>180k automobilių per metus Lietuvoje</li>
+                        <li>Klientų pasitikėjimo poreikis didėja</li>
+                        <li>Baltijos plėtra 2026-2027</li>
+                        <li>Auto1 entry opportunity</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight" style="margin-top: 40px;">
+                <p style="text-align: center; font-size: 15pt; font-weight: 600;">
+                    200 000 € investicija: Cash-flow positive 2026 Q1 | Baltijos plėtra 2026-2027 | Exit per Auto1/Series A
+                </p>
+            </div>
+        </div>
+
+        <div style="margin-top: 80px; padding-top: 30px; border-top: 1px solid #ddd; text-align: center; color: #999; font-size: 9pt;">
+            <p>WheelStreet | Investicinis pasiūlymas | Konfidencialu</p>
+        </div>
+    </div>
+
+    <script>
+        async function loadLogo() {
+            try {
+                const logoData = await window.fs.readFile('WHEELSTREET.jpg');
+                const blob = new Blob([logoData], { type: 'image/jpeg' });
+                const url = URL.createObjectURL(blob);
+                document.getElementById('logoImg').src = url;
+            } catch (error) {
+                console.error('Error loading logo:', error);
+                document.getElementById('logoImg').style.display = 'none';
+                const coverDiv = document.querySelector('.cover');
+                const logoDiv = document.createElement('div');
+                logoDiv.style.cssText = 'font-size: 48pt; font-weight: 700; letter-spacing: 10px; margin-bottom: 60px;';
+                logoDiv.textContent = 'WHEELSTREET';
+                coverDiv.insertBefore(logoDiv, coverDiv.firstChild);
+            }
+        }
+        
+        loadLogo();
+    </script>
+</body>
+</html>

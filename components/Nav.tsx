@@ -32,12 +32,14 @@ export default async function Nav() {
           {isLoggedIn ? (
             <>
               <SearchButton />
-              <Link
-                href="/pitchdeck"
+              <a
+                href="/pitch-deck.html"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
               >
-                Pitch Deck
-              </Link>
+                Pitch Deck ↗
+              </a>
               <Link
                 href="/deck"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
