@@ -15,7 +15,7 @@ interface SocialStat {
 const socialStats: SocialStat[] = [
   {
     label: 'Total Views (90d)',
-    value: 400,
+    value: 750,
     suffix: 'K+',
     description: '88% organic reach - viral content without ads',
     color: '#E4405F', // Instagram gradient color
@@ -23,9 +23,9 @@ const socialStats: SocialStat[] = [
   },
   {
     label: 'Top Reel Views',
-    value: 121,
+    value: 398,
     suffix: 'K',
-    description: 'Single post reached 121,000 views',
+    description: 'Single post reached 398K views',
     color: '#C13584',
     icon: '🎬',
   },
@@ -39,7 +39,7 @@ const socialStats: SocialStat[] = [
   },
   {
     label: 'Accounts Reached',
-    value: 119,
+    value: 219,
     suffix: 'K',
     description: '↑377% growth in reach month-over-month',
     color: '#FD1D1D',

@@ -25,10 +25,10 @@ export interface InvestmentPitch {
 export const investmentPitch: InvestmentPitch = {
   badge: '💰 Investicinė galimybė',
   headline: 'Investuokite į greičiausiai augančią automobilių platformą Baltijos šalyse',
-  subheadline: 'Keičiame €10B automobilių rinką su technologija ir ekosistemos modeliu',
+  subheadline: 'Keičiame €7B automobilių rinką su technologijomir aukščiausia kokybe',
   fundraise: {
-    amount: '€1,000,000',
-    equity: 'už 20-30% equity',
+    amount: '€X?',
+    equity: 'už 20±% equity',
   },
   valuation: {
     amount: '€3.3-5M',
@@ -37,7 +37,7 @@ export const investmentPitch: InvestmentPitch = {
   target: {
     label: '24 mėn tikslas',
     amount: '€250-330K',
-    sublabel: 'Mėnesinės pajamos',
+    sublabel: 'Mėnesinės pajamos (Be importo) ',
   },
   useOfFunds: [
     {
@@ -47,17 +47,17 @@ export const investmentPitch: InvestmentPitch = {
     },
     {
       emoji: '👥',
-      title: 'Komanda (30%)',
-      description: '15-20 specialistų',
+      title: 'Komanda (15%)',
+      description: '20 žmonių komanda',
     },
     {
       emoji: '🌍',
-      title: 'Plėtra (20%)',
+      title: 'Plėtra + Operacinės išlaidos (35%)',
       description: 'Latvija, Kinijos importas',
     },
     {
       emoji: '💻',
-      title: 'Technologijos (10%)',
+      title: 'Technologijos (5%)',
       description: 'AI, automatizacija',
     },
   ],

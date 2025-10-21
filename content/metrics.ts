@@ -20,7 +20,7 @@ export const metrics: Metric[] = [
   },
   {
     label: 'Vidutinė marža',
-    value: 950,
+    value: 1600,
     format: 'currency',
     decimals: 0,
     growth: 'Per sandorį',
@@ -36,8 +36,8 @@ export const metrics: Metric[] = [
     trend: 'up',
   },
   {
-    label: 'Peržiūros (90d)',
-    value: 400,
+    label: 'Peržiūros (60d)',
+    value: 780,
     format: 'number',
     decimals: 0,
     suffix: 'K+',

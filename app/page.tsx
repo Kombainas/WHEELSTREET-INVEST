@@ -8,7 +8,6 @@ import LatestUpdate from '@/components/LatestUpdate'
 import PersonalizedWelcome from '@/components/PersonalizedWelcome'
 import RevenueChart from '@/components/RevenueChart'
 import CompetitiveTable from '@/components/CompetitiveTable'
-import UseOfFundsChart from '@/components/UseOfFundsChart'
 import SocialMediaStats from '@/components/SocialMediaStats'
 import { metrics } from '@/content/metrics'
 
@@ -61,13 +60,6 @@ export default function Home() {
       <Section className="py-20 bg-black/[0.02]">
         <div className="max-w-6xl mx-auto">
           <CompetitiveTable />
-        </div>
-      </Section>
-
-      {/* Use of Funds Chart */}
-      <Section className="py-20 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <UseOfFundsChart />
         </div>
       </Section>
 
