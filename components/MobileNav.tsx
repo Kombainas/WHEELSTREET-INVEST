@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import SearchButton from './SearchButton'
-import LogoutButton from './LogoutButton'
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
@@ -113,11 +112,6 @@ export default function MobileNav() {
                 >
                   Bonusas ⭐
                 </Link>
-              </div>
-
-              {/* Logout Button */}
-              <div className="p-4 border-t border-black/10">
-                <LogoutButton />
               </div>
             </nav>
           </div>
