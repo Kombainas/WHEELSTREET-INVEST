@@ -39,6 +39,12 @@ export default async function Nav() {
                 Pitch Deck
               </Link>
               <Link
+                href="/deck"
+                className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
+              >
+                Verslo planas
+              </Link>
+              <Link
                 href="/data-room"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
               >

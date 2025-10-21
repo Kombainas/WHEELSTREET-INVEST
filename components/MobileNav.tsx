@@ -82,6 +82,12 @@ export default function MobileNav() {
                   Pitch Deck
                 </Link>
                 <Link
+                  href="/deck"
+                  className="block px-6 py-3 text-base hover:bg-black/5 transition-colors"
+                >
+                  Verslo planas
+                </Link>
+                <Link
                   href="/data-room"
                   className="block px-6 py-3 text-base hover:bg-black/5 transition-colors"
                 >

@@ -13,13 +13,13 @@ export interface BonusProject {
 export const bonusProjects: BonusProject[] = [
   {
     id: '1',
-    title: 'Elektrinių paspirtukų tinklas Vilniuje',
-    description: 'Pilnas e-mobility ekosistemos plėtros planas sostinėje. Aprėpia infrastructure, partnerybes su savivaldybe ir revenue projections.',
+    title: 'Autoplius Disruptor Platform',
+    description: 'Transaction-first automobilių platforma su AI kainodara, 24h mokėjimais pardavėjams ir integruotu finansavimu. Strateginis exit: Autoplius.lt įsigijimas €10-15M vertei.',
     pdfPath: '/files/bonusas/projektas-1.pdf',
-    category: 'Mobility',
+    category: 'Marketplace',
     metric: {
-      label: 'Projected IRR',
-      value: '34%'
+      label: 'Exit target',
+      value: '€10-15M'
     }
   },
   {
