@@ -36,8 +36,8 @@ export default function PageTransitions({ children }: PageTransitionsProps) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{
-          duration: 0.3,
-          ease: [0.4, 0, 0.2, 1] // Smooth cubic-bezier easing
+          duration: 0.15, // Faster: 0.3s → 0.15s for instant feel
+          ease: [0.4, 0, 0.2, 1]
         }}
         style={{ willChange: 'opacity' }}
       >

@@ -10,6 +10,7 @@ import PageTransitions from '@/components/PageTransitions'
 import GarageMode from '@/components/GarageMode'
 import ScrollProgress from '@/components/ScrollProgress'
 import InvestorSelector from '@/components/InvestorSelector'
+import TopLoadingBar from '@/components/TopLoadingBar'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -74,6 +75,7 @@ export default function RootLayout({
   return (
     <html lang="lt">
       <body className={inter.className}>
+        <TopLoadingBar />
         <SkipLink />
         <ScrollProgress />
         <InvestorSelector />
