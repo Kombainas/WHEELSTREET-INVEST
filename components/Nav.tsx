@@ -33,10 +33,10 @@ export default async function Nav() {
             <>
               <SearchButton />
               <Link
-                href="/deck"
+                href="/pitchdeck"
                 className="text-sm hover:opacity-70 transition-opacity focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black rounded"
               >
-                Planas
+                Pitch Deck
               </Link>
               <Link
                 href="/data-room"

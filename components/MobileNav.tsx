@@ -76,10 +76,10 @@ export default function MobileNav() {
               {/* Navigation Links */}
               <div className="flex-1 overflow-y-auto py-4">
                 <Link
-                  href="/deck"
+                  href="/pitchdeck"
                   className="block px-6 py-3 text-base hover:bg-black/5 transition-colors"
                 >
-                  Planas
+                  Pitch Deck
                 </Link>
                 <Link
                   href="/data-room"
