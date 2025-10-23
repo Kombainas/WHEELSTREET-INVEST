@@ -237,7 +237,7 @@ export default function PartnersPage() {
           <div className="bg-white border border-black/10 rounded-xl p-6 shadow-lg hover:-translate-y-1 transition-all duration-300">
             <Users className="w-12 h-12 mb-4 text-black" />
             <h4 className="text-xl font-bold mb-3">Cross-sell galimybės</h4>
-            <p className="text-black/70">Kiekvienas WheelStreet klientas – potencialus Premium Auto Spa klientas. ~150 naujų klientų per metus.</p>
+            <p className="text-black/70">Kiekvienas WheelStreet klientas – potencialus Premium Auto Spa klientas. Natūralus klientų srautas iš mūsų platformos.</p>
           </div>
 
           <div className="bg-white border border-black/10 rounded-xl p-6 shadow-lg hover:-translate-y-1 transition-all duration-300">
@@ -267,9 +267,9 @@ export default function PartnersPage() {
               <div className="flex-1">
                 <h3 className="text-xl font-bold mb-2">Pilotinė partnerystė</h3>
                 <ul className="space-y-1 text-black/70">
-                  <li>• 15% nuolaida visiems WheelStreet klientams</li>
+                  <li>• Speciali nuolaida visiems WheelStreet klientams</li>
                   <li>• Bendras marketing'as: Instagram, email kampanijos</li>
-                  <li>• Tikslus: 30+ klientų per ketvirtį</li>
+                  <li>• Tikslus: aktyvus klientų įtraukimas</li>
                 </ul>
               </div>
             </div>
@@ -303,7 +303,7 @@ export default function PartnersPage() {
                 <ul className="space-y-1 text-black/70">
                   <li>• Bendras plėtros planas: Rygoje ir Taline</li>
                   <li>• Strateginiai partneriai vietinius detailing centrus</li>
-                  <li>• Tikslus: +300 klientų per metus visose rinkose</li>
+                  <li>• Tikslus: spartus augimas Baltijos regione</li>
                 </ul>
               </div>
             </div>
@@ -320,15 +320,10 @@ export default function PartnersPage() {
       >
         <h2 className="text-4xl font-bold mb-12 text-center">Partnerystės poveikis (2026 projekcija)</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           <div className="bg-gradient-to-br from-black to-black/90 text-white rounded-xl p-6 shadow-lg">
-            <div className="text-4xl font-bold mb-2">150+</div>
-            <div className="text-sm text-white/70">Naujų klientų iš WheelStreet per metus</div>
-          </div>
-
-          <div className="bg-gradient-to-br from-black to-black/90 text-white rounded-xl p-6 shadow-lg">
-            <div className="text-4xl font-bold mb-2">€15K+</div>
-            <div className="text-sm text-white/70">Papildomas revenue per metus (abiem)</div>
+            <div className="text-4xl font-bold mb-2">Didelis</div>
+            <div className="text-sm text-white/70">Naujų klientų srautas iš WheelStreet</div>
           </div>
 
           <div className="bg-gradient-to-br from-black to-black/90 text-white rounded-xl p-6 shadow-lg">
