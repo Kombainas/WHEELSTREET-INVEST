@@ -2,7 +2,7 @@
 
 import Section from '@/components/Section'
 import { motion } from 'motion/react'
-import { Star, MapPin, Phone, Mail, Clock, Award, TrendingUp, Users, Sparkles } from 'lucide-react'
+import { Star, MapPin, Phone, Mail, Clock, Award, Users, Sparkles } from 'lucide-react'
 
 interface Partner {
   name: string
@@ -233,17 +233,11 @@ export default function PartnersPage() {
         </div>
 
         {/* Partnership Benefits Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           <div className="bg-white border border-black/10 rounded-xl p-6 shadow-lg hover:-translate-y-1 transition-all duration-300">
             <Users className="w-12 h-12 mb-4 text-black" />
             <h4 className="text-xl font-bold mb-3">Cross-sell galimybės</h4>
             <p className="text-black/70">Kiekvienas WheelStreet klientas – potencialus Premium Auto Spa klientas. ~150 naujų klientų per metus.</p>
-          </div>
-
-          <div className="bg-white border border-black/10 rounded-xl p-6 shadow-lg hover:-translate-y-1 transition-all duration-300">
-            <TrendingUp className="w-12 h-12 mb-4 text-black" />
-            <h4 className="text-xl font-bold mb-3">Papildomas revenue</h4>
-            <p className="text-black/70">Premium Auto Spa nuolaidos kodai generuoja komisinius. Revenue share modelis abiem naudinga.</p>
           </div>
 
           <div className="bg-white border border-black/10 rounded-xl p-6 shadow-lg hover:-translate-y-1 transition-all duration-300">
@@ -343,7 +337,7 @@ export default function PartnersPage() {
           </div>
 
           <div className="bg-gradient-to-br from-black to-black/90 text-white rounded-xl p-6 shadow-lg">
-            <div className="text-4xl font-bold mb-2">3x</div>
+            <div className="text-4xl font-bold mb-2">5x</div>
             <div className="text-sm text-white/70">Konkurencinis pranašumas prieš rinką</div>
           </div>
         </div>
