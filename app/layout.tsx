@@ -9,7 +9,7 @@ import SkipLink from '@/components/SkipLink'
 import PageTransitions from '@/components/PageTransitions'
 import GarageMode from '@/components/GarageMode'
 import ScrollProgress from '@/components/ScrollProgress'
-import InvestorSelector from '@/components/InvestorSelector'
+import NDAAcceptance from '@/components/NDAAcceptance'
 import TopLoadingBar from '@/components/TopLoadingBar'
 
 const inter = Inter({
@@ -78,7 +78,7 @@ export default function RootLayout({
         <TopLoadingBar />
         <SkipLink />
         <ScrollProgress />
-        <InvestorSelector />
+        <NDAAcceptance />
         <GridBackground />
         <NoiseOverlay />
         <GarageMode />
