@@ -308,6 +308,36 @@ export default function PartnersPage() {
               </div>
             </div>
           </div>
+
+          {/* 2027+ AI Integration */}
+          <div className="bg-gradient-to-br from-black to-black/90 text-white border-2 border-black rounded-xl p-6 shadow-2xl">
+            <div className="flex items-start gap-4">
+              <div className="bg-white text-black rounded-lg px-4 py-2 font-bold text-sm whitespace-nowrap flex items-center gap-2">
+                <span>🤖</span>
+                <span>2027+</span>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold mb-3 text-white">AI Ekosistemos Integracija</h3>
+                <p className="text-white/90 mb-3 leading-relaxed">
+                  Partnerystės evoliucija į pilną AI-powered automotive care ekosistemą:
+                </p>
+                <ul className="space-y-2 text-white/80">
+                  <li>• <strong>AI Rekomendacijų Variklis:</strong> Automatinis detailing paslaugų siūlymas pagal automobilio būklę ir istoriją</li>
+                  <li>• <strong>Computer Vision:</strong> Automobilių būklės skenavimas pirkimo metu → tiesioginė integracija su Premium Auto Spa pasiūlymais</li>
+                  <li>• <strong>Prediktyvė priežiūra:</strong> AI prognozuoja, kada reikia detailing/ceramic coating pagal naudojimo duomenis</li>
+                  <li>• <strong>Chatbot & Automatizacija:</strong> 24/7 rezervacijos, automatinis follow-up, personalizuoti pasiūlymai</li>
+                  <li>• <strong>Dynamic Pricing:</strong> AI optimizuoja kainas pagal paklausą, sezoną, klientų lojalumo lygį</li>
+                  <li>• <strong>Cross-sell AI:</strong> Automobilių pardavimas + draudimas + detailing + finansavimas — viena AI platforma</li>
+                </ul>
+                <div className="mt-4 pt-4 border-t border-white/20">
+                  <p className="text-sm text-white/60">
+                    <strong>Potencialas:</strong> Pirma pilnai AI-integruota automotive care platforma Baltijos regione.
+                    Investuotojai gali dalyvauti papildomose AI iniciatyvose (žr. Bonusas puslapis 🔒).
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
 
