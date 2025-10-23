@@ -58,9 +58,13 @@ export default function PasswordProtection({
             {/* Header */}
             <div className="text-center mb-8">
               <div className="text-4xl mb-4">🔒</div>
-              <h1 className="text-2xl font-bold mb-2">Apsaugotas turinys</h1>
-              <p className="text-black/60">
-                Šis puslapis apsaugotas slaptažodžiu
+              <h1 className="text-2xl font-bold mb-2">Konfidencialus turinys</h1>
+              <p className="text-black/70 leading-relaxed">
+                Šis puslapis skirtas tik rimtiems investuotojams.<br />
+                Čia rasite detalų verslo planą, finansines prognozes ir papildomus AI projektus.
+              </p>
+              <p className="text-sm text-black/50 mt-3">
+                Slaptažodį galite gauti susisiekę žemiau
               </p>
             </div>
 
@@ -101,6 +105,25 @@ export default function PasswordProtection({
             {/* Footer */}
             <div className="mt-6 text-center text-sm text-black/40">
               Apsauga aktyvi tik šiai sesijai
+            </div>
+
+            {/* Contact CTA */}
+            <div className="mt-8 pt-6 border-t border-black/10">
+              <div className="text-center mb-4">
+                <p className="text-sm text-black/60 mb-3">
+                  Dėl papildomų AI milijonų:
+                </p>
+                <div className="text-lg font-bold text-black mb-3">
+                  Jonas +370 615 88214
+                </div>
+                <a
+                  href="tel:+37061588214"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-black/90 transition-all duration-200 shadow-md hover:shadow-lg"
+                >
+                  <span className="text-xl">📞</span>
+                  Skambinti dabar
+                </a>
+              </div>
             </div>
           </div>
         </div>
