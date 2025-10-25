@@ -110,7 +110,7 @@ export default function Hero() {
             transition={{ duration: 1, delay: 0.3 }}
           >
             <LottieAnimation
-              animationUrl="/animations/moving-car.json"
+              animationUrl="/animations/car-driving-road.lottie"
               className="w-full h-full"
               loop={true}
               autoplay={true}

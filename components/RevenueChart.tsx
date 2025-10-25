@@ -1,8 +1,15 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { motion } from 'motion/react'
 import { useState, useEffect } from 'react'
 import { revenueHistory, projectedRevenue, calculateGrowth } from '@/content/revenue-history'
+
+// Dynamic import for Lottie animation
+const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
+  ssr: false,
+  loading: () => null,
+})
 
 export default function RevenueChart() {
   const [isVisible, setIsVisible] = useState(false)
@@ -64,7 +71,7 @@ export default function RevenueChart() {
 
   return (
     <motion.div
-      className="bg-white border border-black/10 rounded-lg p-8"
+      className="relative bg-white border border-black/10 rounded-lg p-8 overflow-hidden"
       style={{
         boxShadow: '0 4px 6px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.03)',
       }}
@@ -73,14 +80,24 @@ export default function RevenueChart() {
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
+      {/* Background Animation */}
+      <div className="absolute bottom-0 right-0 w-64 h-64 opacity-8 pointer-events-none">
+        <LottieAnimation
+          animationUrl="/animations/mountain-car.json"
+          className="w-full h-full"
+          loop={true}
+          autoplay={true}
+        />
+      </div>
+
       {/* Header */}
-      <div className="mb-8">
+      <div className="relative z-10 mb-8">
         <h3 className="text-2xl font-bold mb-2" style={{ letterSpacing: '-0.01em' }}>Pajamų Augimas</h3>
         <p className="text-black/60">Mėnesinės pajamos 2024 metais</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
         <motion.div
           className="bg-black/[0.02] p-4 rounded-lg border border-black/5"
           whileHover={{ scale: 1.02, backgroundColor: 'rgba(0, 0, 0, 0.03)' }}

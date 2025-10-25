@@ -1,7 +1,14 @@
 'use client'
 
+import dynamic from 'next/dynamic'
 import { motion } from 'motion/react'
 import { TrendingUp, Target, DollarSign, Calendar } from 'lucide-react'
+
+// Dynamic import for Lottie animation
+const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
+  ssr: false,
+  loading: () => null,
+})
 
 export default function ExitStrategy() {
   const targetAcquirers = [
@@ -38,8 +45,18 @@ export default function ExitStrategy() {
   ]
 
   return (
-    <section className="py-16 md:py-20 bg-gradient-to-br from-black via-black/95 to-black/90 text-white">
-      <div className="container mx-auto px-4">
+    <section className="relative py-16 md:py-20 bg-gradient-to-br from-black via-black/95 to-black/90 text-white overflow-hidden">
+      {/* Background Animation */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-5 pointer-events-none">
+        <LottieAnimation
+          animationUrl="/animations/minimalist-car.json"
+          className="w-full h-full scale-150"
+          loop={true}
+          autoplay={true}
+        />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

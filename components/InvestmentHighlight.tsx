@@ -1,10 +1,17 @@
 'use client'
 
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
 import { motion } from 'motion/react'
 import { useState, useEffect } from 'react'
 import { investmentPitch } from '@/content/investment-pitch'
 import { useCardTilt } from '@/hooks/useCardTilt'
+
+// Dynamic import for Lottie animation
+const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
+  ssr: false,
+  loading: () => null,
+})
 
 export default function InvestmentHighlight() {
   const pitch = investmentPitch
@@ -31,7 +38,19 @@ export default function InvestmentHighlight() {
       transition={{ duration: 0.6, delay: 0.2 }}
       className="max-w-5xl mx-auto"
     >
-      <div className="bg-gradient-to-br from-black to-black/90 text-white p-8 md:p-12 rounded-lg shadow-2xl border border-white/10">
+      <div className="relative bg-gradient-to-br from-black to-black/90 text-white p-8 md:p-12 rounded-lg shadow-2xl border border-white/10 overflow-hidden">
+        {/* Background Animation */}
+        <div className="absolute inset-0 opacity-5 pointer-events-none">
+          <LottieAnimation
+            animationUrl="/animations/minimalist-car.json"
+            className="w-full h-full scale-150"
+            loop={true}
+            autoplay={true}
+          />
+        </div>
+
+        {/* Content (positioned above animation) */}
+        <div className="relative z-10">
         {/* Header */}
         <div className="mb-8 text-center">
           <div className="inline-block px-4 py-1 bg-white/10 rounded-full text-sm font-medium mb-4">
@@ -127,6 +146,7 @@ export default function InvestmentHighlight() {
               Susisiekti dėl investicijos
             </Link>
           </motion.div>
+        </div>
         </div>
       </div>
     </motion.div>
