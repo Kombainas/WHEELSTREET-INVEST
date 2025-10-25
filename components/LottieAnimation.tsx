@@ -80,7 +80,7 @@ export default function LottieAnimation({
         autoplay={autoplay}
         style={{ width: '100%', height: '100%' }}
         rendererSettings={{
-          preserveAspectRatio: 'xMidYMid slice',
+          preserveAspectRatio: 'xMidYMid meet',
           progressiveLoad: true,
         }}
       />
