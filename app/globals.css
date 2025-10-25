@@ -2,9 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(90deg, #000 0%, #333 50%, #000 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shine 3s linear infinite;
+  }
+
+  @keyframes gradient-shine {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+}
+
 @layer base {
   html {
     @apply antialiased;
+    scroll-behavior: smooth;
   }
 
   body {

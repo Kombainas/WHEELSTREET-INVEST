@@ -45,7 +45,7 @@ export default function InvestmentHighlight() {
             className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
           >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Keliame</div>
-            <div className="text-3xl font-bold mb-1">{pitch.fundraise.amount}</div>
+            <div className="text-3xl font-bold mb-1 gradient-text-white">{pitch.fundraise.amount}</div>
             <div className="text-sm text-white/70">{pitch.fundraise.equity}</div>
           </motion.div>
 

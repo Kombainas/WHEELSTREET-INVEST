@@ -6,6 +6,7 @@ import { revenueHistory, projectedRevenue, calculateGrowth } from '@/content/rev
 
 export default function RevenueChart() {
   const [isVisible, setIsVisible] = useState(false)
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const allData = [...revenueHistory, ...projectedRevenue]
   const maxRevenue = Math.max(...allData.map(d => d.revenue))
   const minRevenue = Math.min(...revenueHistory.map(d => d.revenue))
@@ -116,6 +117,28 @@ export default function RevenueChart() {
 
       {/* Chart */}
       <div className="relative w-full overflow-x-auto">
+        {/* Tooltip */}
+        {hoveredIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="absolute bg-black text-white px-4 py-2 rounded-lg text-sm font-medium shadow-xl pointer-events-none z-10"
+            style={{
+              left: `${(xScale(hoveredIndex) / width) * 100}%`,
+              top: `${(yScale(allData[hoveredIndex].revenue) / height) * 100 - 8}%`,
+              transform: 'translate(-50%, -100%)',
+            }}
+          >
+            <div className="text-xs text-white/70 mb-1">{allData[hoveredIndex].label}</div>
+            <div className="font-bold">€{(allData[hoveredIndex].revenue / 1000).toFixed(1)}K</div>
+            {hoveredIndex >= revenueHistory.length && (
+              <div className="text-xs text-green-400 mt-1">Projekcija</div>
+            )}
+          </motion.div>
+        )}
+
         <svg
           viewBox={`0 0 ${width} ${height}`}
           className="w-full h-auto"
@@ -185,34 +208,83 @@ export default function RevenueChart() {
             transition={{ duration: 2, delay: 1.5, ease: 'easeInOut' }}
           />
 
+          {/* Hover crosshair */}
+          {hoveredIndex !== null && (
+            <motion.line
+              x1={xScale(hoveredIndex)}
+              y1={padding.top}
+              x2={xScale(hoveredIndex)}
+              y2={height - padding.bottom}
+              stroke="#000"
+              strokeWidth="1"
+              strokeDasharray="4 2"
+              opacity="0.3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.3 }}
+              transition={{ duration: 0.15 }}
+            />
+          )}
+
           {/* Data points */}
           {revenueHistory.map((d, i) => (
-            <motion.circle
-              key={i}
-              cx={xScale(i)}
-              cy={yScale(d.revenue)}
-              r="5"
-              fill="#000"
-              initial={{ scale: 0 }}
-              animate={{ scale: isVisible ? 1 : 0 }}
-              transition={{ duration: 0.3, delay: 2 + i * 0.05 }}
-            />
+            <g key={i}>
+              <motion.circle
+                cx={xScale(i)}
+                cy={yScale(d.revenue)}
+                r={hoveredIndex === i ? "8" : "5"}
+                fill="#000"
+                initial={{ scale: 0 }}
+                animate={{ scale: isVisible ? 1 : 0 }}
+                transition={{ duration: 0.3, delay: 2 + i * 0.05 }}
+                style={{ cursor: 'pointer' }}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => setHoveredIndex(i === hoveredIndex ? null : i)}
+              />
+              {/* Larger invisible hit area for easier hovering */}
+              <circle
+                cx={xScale(i)}
+                cy={yScale(d.revenue)}
+                r="15"
+                fill="transparent"
+                style={{ cursor: 'pointer' }}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onClick={() => setHoveredIndex(i === hoveredIndex ? null : i)}
+              />
+            </g>
           ))}
 
           {/* Projected data points */}
           {projectedRevenue.map((d, i) => {
             const realIndex = revenueHistory.length + i
             return (
-              <motion.circle
-                key={i}
-                cx={xScale(realIndex)}
-                cy={yScale(d.revenue)}
-                r="5"
-                fill="#22c55e"
-                initial={{ scale: 0 }}
-                animate={{ scale: isVisible ? 1 : 0 }}
-                transition={{ duration: 0.3, delay: 2.5 + i * 0.1 }}
-              />
+              <g key={i}>
+                <motion.circle
+                  cx={xScale(realIndex)}
+                  cy={yScale(d.revenue)}
+                  r={hoveredIndex === realIndex ? "8" : "5"}
+                  fill="#22c55e"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: isVisible ? 1 : 0 }}
+                  transition={{ duration: 0.3, delay: 2.5 + i * 0.1 }}
+                  style={{ cursor: 'pointer' }}
+                  onMouseEnter={() => setHoveredIndex(realIndex)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  onClick={() => setHoveredIndex(realIndex === hoveredIndex ? null : realIndex)}
+                />
+                {/* Larger invisible hit area */}
+                <circle
+                  cx={xScale(realIndex)}
+                  cy={yScale(d.revenue)}
+                  r="15"
+                  fill="transparent"
+                  style={{ cursor: 'pointer' }}
+                  onMouseEnter={() => setHoveredIndex(realIndex)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  onClick={() => setHoveredIndex(realIndex === hoveredIndex ? null : realIndex)}
+                />
+              </g>
             )
           })}
 
