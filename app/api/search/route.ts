@@ -15,16 +15,7 @@ interface SearchResult {
 
 export async function GET(request: NextRequest) {
   try {
-    const session = request.cookies.get('investor_session')
-    const validToken = process.env.SESSION_TOKEN
-
-    if (!session || session.value !== validToken) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      )
-    }
-
+    // No authentication required - open access per LOGIN DISABLED policy
     const searchParams = request.nextUrl.searchParams
     const query = searchParams.get('q')?.toLowerCase() || ''
 

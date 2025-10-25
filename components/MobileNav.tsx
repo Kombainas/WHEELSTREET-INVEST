@@ -65,8 +65,8 @@ export default function MobileNav() {
           />
 
           {/* Menu Panel */}
-          <div className="fixed top-0 right-0 bottom-0 w-4/5 max-w-sm bg-white z-50 lg:hidden shadow-2xl">
-            <nav className="flex flex-col h-full pt-16">
+          <div className="fixed top-16 right-0 bottom-0 w-4/5 max-w-sm bg-white z-[60] lg:hidden shadow-2xl">
+            <nav className="flex flex-col h-full">
               {/* Search */}
               <div className="p-4 border-b border-black/10">
                 <SearchButton />
