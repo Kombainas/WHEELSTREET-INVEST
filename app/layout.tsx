@@ -11,6 +11,7 @@ import GarageMode from '@/components/GarageMode'
 import ScrollProgress from '@/components/ScrollProgress'
 import NDAAcceptance from '@/components/NDAAcceptance'
 import TopLoadingBar from '@/components/TopLoadingBar'
+import LoadingScreen from '@/components/LoadingScreen'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -75,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="lt">
       <body className={inter.className}>
+        <LoadingScreen />
         <TopLoadingBar />
         <SkipLink />
         <ScrollProgress />
