@@ -32,14 +32,14 @@ export default function PageTransitions({ children }: PageTransitionsProps) {
     <AnimatePresence mode="wait">
       <motion.div
         key={pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
         transition={{
-          duration: 0.15, // Faster: 0.3s → 0.15s for instant feel
-          ease: [0.4, 0, 0.2, 1]
+          duration: 0.4,
+          ease: [0.25, 0.46, 0.45, 0.94], // iOS-native easing
         }}
-        style={{ willChange: 'opacity' }}
+        style={{ willChange: 'opacity, transform' }}
       >
         {children}
       </motion.div>

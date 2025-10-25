@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { motion } from 'motion/react'
 import type { Metric } from '@/content/metrics'
 import { formatMetric } from '@/content/metrics'
 
@@ -105,8 +106,16 @@ export default function KPICard({ metric, index = 0 }: KPICardProps) {
   const trendColor = metric.trend === 'up' ? 'text-green-600' : metric.trend === 'down' ? 'text-red-600' : 'text-black/40'
 
   return (
-    <div
+    <motion.div
       ref={cardRef}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }}
       className="border border-black/10 rounded-lg p-8 bg-white hover:border-black/20 hover:-translate-y-1 transition-all duration-200 focus-within:ring-2 focus-within:ring-black shadow-sm hover:shadow-lg"
       role="region"
       aria-label={`${metric.label}: ${formattedValue}`}
@@ -123,6 +132,6 @@ export default function KPICard({ metric, index = 0 }: KPICardProps) {
           <span>{metric.growth}</span>
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }
