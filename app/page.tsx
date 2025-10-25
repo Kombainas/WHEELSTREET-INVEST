@@ -9,6 +9,7 @@ import RevenueChart from '@/components/RevenueChart'
 import CompetitiveTable from '@/components/CompetitiveTable'
 import SocialMediaStats from '@/components/SocialMediaStats'
 import ExitStrategy from '@/components/ExitStrategy'
+import FinancialModel from '@/components/FinancialModel'
 import InvestmentCalculator from '@/components/InvestmentCalculator'
 import { metrics } from '@/content/metrics'
 
@@ -61,6 +62,9 @@ export default function Home() {
 
       {/* Exit Strategy */}
       <ExitStrategy />
+
+      {/* Financial Model */}
+      <FinancialModel />
 
       {/* Investment Calculator */}
       <InvestmentCalculator />
