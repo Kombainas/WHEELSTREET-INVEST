@@ -2,11 +2,24 @@
 
 import Link from 'next/link'
 import { motion } from 'motion/react'
+import { useState, useEffect } from 'react'
 import { investmentPitch } from '@/content/investment-pitch'
 import { useCardTilt } from '@/hooks/useCardTilt'
 
 export default function InvestmentHighlight() {
   const pitch = investmentPitch
+  const [isDesktop, setIsDesktop] = useState(true)
+
+  // Disable 3D tilt on mobile for performance
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768)
+    }
+    checkDesktop()
+    window.addEventListener('resize', checkDesktop)
+    return () => window.removeEventListener('resize', checkDesktop)
+  }, [])
+
   const tilt1 = useCardTilt({ maxTilt: 5, scale: 1.03 })
   const tilt2 = useCardTilt({ maxTilt: 5, scale: 1.03 })
   const tilt3 = useCardTilt({ maxTilt: 5, scale: 1.03 })
@@ -39,9 +52,9 @@ export default function InvestmentHighlight() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            style={{ ...tilt1.style, ...tilt1.transform }}
-            onMouseMove={tilt1.handleMouseMove}
-            onMouseLeave={tilt1.handleMouseLeave}
+            style={isDesktop ? { ...tilt1.style, ...tilt1.transform } : {}}
+            onMouseMove={isDesktop ? tilt1.handleMouseMove : undefined}
+            onMouseLeave={isDesktop ? tilt1.handleMouseLeave : undefined}
             className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
           >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Keliame</div>
@@ -54,9 +67,9 @@ export default function InvestmentHighlight() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            style={{ ...tilt2.style, ...tilt2.transform }}
-            onMouseMove={tilt2.handleMouseMove}
-            onMouseLeave={tilt2.handleMouseLeave}
+            style={isDesktop ? { ...tilt2.style, ...tilt2.transform } : {}}
+            onMouseMove={isDesktop ? tilt2.handleMouseMove : undefined}
+            onMouseLeave={isDesktop ? tilt2.handleMouseLeave : undefined}
             className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
           >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Vertinimas</div>
@@ -69,9 +82,9 @@ export default function InvestmentHighlight() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            style={{ ...tilt3.style, ...tilt3.transform }}
-            onMouseMove={tilt3.handleMouseMove}
-            onMouseLeave={tilt3.handleMouseLeave}
+            style={isDesktop ? { ...tilt3.style, ...tilt3.transform } : {}}
+            onMouseMove={isDesktop ? tilt3.handleMouseMove : undefined}
+            onMouseLeave={isDesktop ? tilt3.handleMouseLeave : undefined}
             className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
           >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">{pitch.target.label}</div>

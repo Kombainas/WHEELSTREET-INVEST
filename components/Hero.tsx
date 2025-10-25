@@ -25,7 +25,7 @@ export default function Hero() {
     <section id="hero" className="relative overflow-hidden bg-white">
       {/* Content with subtle parallax */}
       <motion.div
-        className="container mx-auto px-4 sm:px-6 pt-20 sm:pt-32 pb-8 sm:pb-12 relative z-10"
+        className="container mx-auto px-4 sm:px-6 pt-16 sm:pt-32 pb-6 sm:pb-12 relative z-10"
         style={{ y }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl">
@@ -81,7 +81,7 @@ export default function Hero() {
                   ref={elementRef}
                   href="/deck"
                   aria-label="Peržiūrėti investicinį planą"
-                  className="inline-block px-8 py-4 bg-black text-white font-medium text-lg hover:bg-white hover:text-black border-2 border-black transition-all duration-300 touch-manipulation active:scale-95 md:active:scale-100"
+                  className="inline-block px-8 py-5 md:py-4 bg-black text-white font-medium text-lg hover:bg-white hover:text-black border-2 border-black transition-all duration-300 touch-manipulation active:scale-95 md:active:scale-100 min-h-[56px] md:min-h-0"
                   style={{
                     transform: typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches
                       ? `translate(${position.x}px, ${position.y}px)`
