@@ -5,8 +5,20 @@ import Image from 'next/image'
 import { useState, useEffect } from 'react'
 import SearchButton from './SearchButton'
 import MobileNav from './MobileNav'
+import { useProject } from '@/lib/projects/ProjectContext'
 
 export default function Nav() {
+  // Try to get project config, fall back to defaults if not available
+  let projectConfig = { name: 'WheelStreet', logo: '/wheel-street-logo.png' }
+  try {
+    const context = useProject()
+    if (context?.config) {
+      projectConfig = context.config
+    }
+  } catch (e) {
+    // Context not available (e.g., in layout), use defaults
+  }
+
   const [scrolled, setScrolled] = useState(false)
 
   // Track scroll position for backdrop blur effect
@@ -29,11 +41,11 @@ export default function Nav() {
         <Link
           href="/"
           className="flex items-center focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black rounded"
-          aria-label="Wheelstreet - Home"
+          aria-label={`${projectConfig.name} - Home`}
         >
           <Image
-            src="/wheel-street-logo.png"
-            alt="Wheelstreet logo"
+            src={projectConfig.logo}
+            alt={`${projectConfig.name} logo`}
             width={48}
             height={48}
             priority

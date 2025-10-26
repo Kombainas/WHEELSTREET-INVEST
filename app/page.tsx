@@ -11,7 +11,7 @@ import SocialMediaStats from '@/components/SocialMediaStats'
 import ExitStrategy from '@/components/ExitStrategy'
 import FinancialModel from '@/components/FinancialModel'
 import InvestmentCalculator from '@/components/InvestmentCalculator'
-import { metrics } from '@/content/metrics'
+import { metrics as defaultMetrics } from '@/content/metrics'
 import { loadProject } from '@/lib/projects/loader'
 import { ProjectProvider } from '@/lib/projects/ProjectContext'
 
@@ -24,6 +24,10 @@ export default async function Home({
   // Defaults to 'wheelstreet' if no parameter provided
   const projectSlug = searchParams.project || 'wheelstreet'
   const project = await loadProject(projectSlug)
+
+  // Use project metrics if available, otherwise fall back to default metrics
+  const metrics = project.metrics || defaultMetrics
+
   return (
     <ProjectProvider project={project}>
       <Hero />

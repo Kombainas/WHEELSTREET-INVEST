@@ -6,6 +6,7 @@ import { motion } from 'motion/react'
 import { useState, useEffect } from 'react'
 import { investmentPitch } from '@/content/investment-pitch'
 import { useCardTilt } from '@/hooks/useCardTilt'
+import { useProject } from '@/lib/projects/ProjectContext'
 
 // Dynamic import for Lottie animation
 const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
@@ -14,6 +15,7 @@ const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
 })
 
 export default function InvestmentHighlight() {
+  const { config } = useProject()
   const pitch = investmentPitch
   const [isDesktop, setIsDesktop] = useState(true)
 
@@ -77,8 +79,8 @@ export default function InvestmentHighlight() {
             className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
           >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Keliame</div>
-            <div className="text-3xl font-bold mb-1 gradient-text-white">{pitch.fundraise.amount}</div>
-            <div className="text-sm text-white/70">{pitch.fundraise.equity}</div>
+            <div className="text-3xl font-bold mb-1 gradient-text-white">{config.fundraise.amount}</div>
+            <div className="text-sm text-white/70">už {config.fundraise.equity}</div>
           </motion.div>
 
           <motion.div
@@ -92,8 +94,8 @@ export default function InvestmentHighlight() {
             className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
           >
             <div className="text-sm text-white/60 uppercase tracking-wide mb-2">Vertinimas</div>
-            <div className="text-3xl font-bold mb-1">{pitch.valuation.amount}</div>
-            <div className="text-sm text-white/70">{pitch.valuation.label}</div>
+            <div className="text-3xl font-bold mb-1">{config.fundraise.valuation}</div>
+            <div className="text-sm text-white/70">Post-money valuation</div>
           </motion.div>
 
           <motion.div
@@ -106,9 +108,9 @@ export default function InvestmentHighlight() {
             onMouseLeave={isDesktop ? tilt3.handleMouseLeave : undefined}
             className="bg-white/5 p-6 rounded-lg border border-white/10 hover:border-white/30 hover:bg-white/10 transition-colors cursor-pointer"
           >
-            <div className="text-sm text-white/60 uppercase tracking-wide mb-2">{pitch.target.label}</div>
-            <div className="text-3xl font-bold mb-1">{pitch.target.amount}</div>
-            <div className="text-sm text-white/70">{pitch.target.sublabel}</div>
+            <div className="text-sm text-white/60 uppercase tracking-wide mb-2">{config.target.timeframe} tikslas</div>
+            <div className="text-3xl font-bold mb-1">{config.target.mrr}</div>
+            <div className="text-sm text-white/70">Mėnesinės pajamos</div>
           </motion.div>
         </div>
 

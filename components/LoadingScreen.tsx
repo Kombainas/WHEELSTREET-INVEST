@@ -3,8 +3,20 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { useProject } from '@/lib/projects/ProjectContext'
 
 export default function LoadingScreen() {
+  // Try to get project config, fall back to defaults if not available
+  let projectConfig = { name: 'WheelStreet', logo: '/wheel-street-logo.png' }
+  try {
+    const context = useProject()
+    if (context?.config) {
+      projectConfig = context.config
+    }
+  } catch (e) {
+    // Context not available (e.g., in layout), use defaults
+  }
+
   const [isLoading, setIsLoading] = useState(true)
   const [progress, setProgress] = useState(0)
 
@@ -57,8 +69,8 @@ export default function LoadingScreen() {
             className="mb-8"
           >
             <Image
-              src="/wheel-street-logo.png"
-              alt="WheelStreet"
+              src={projectConfig.logo}
+              alt={projectConfig.name}
               width={120}
               height={120}
               priority
@@ -73,7 +85,7 @@ export default function LoadingScreen() {
             transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="text-3xl md:text-4xl font-bold text-black mb-2"
           >
-            WheelStreet
+            {projectConfig.name}
           </motion.h1>
 
           <motion.p

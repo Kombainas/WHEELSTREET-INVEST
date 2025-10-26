@@ -4,6 +4,7 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { useMagnetic } from '@/hooks/useMagnetic'
+import { useProject } from '@/lib/projects/ProjectContext'
 
 // Dynamic import for Lottie animation
 const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
@@ -16,6 +17,7 @@ const LottieAnimation = dynamic(() => import('./LottieAnimation'), {
 })
 
 export default function Hero() {
+  const { config } = useProject()
   const { elementRef, position } = useMagnetic<HTMLAnchorElement>({ strength: 12 })
   const { scrollY } = useScroll()
   // Reduce parallax on mobile for performance (only 20px movement)
@@ -57,7 +59,7 @@ export default function Hero() {
             >
               <span className="block text-black">Investuokite į</span>
               <span className="inline-block bg-[#111] text-white px-6 py-2 mt-3 shadow-xl">
-                automobilių ateitį
+                {config.name}
               </span>
             </motion.h1>
 
