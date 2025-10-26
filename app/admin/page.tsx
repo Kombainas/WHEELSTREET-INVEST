@@ -6,7 +6,7 @@ import { updates as initialUpdates } from '@/content/updates'
 import { investmentPitch as initialPitch } from '@/content/investment-pitch'
 
 export default function AdminPanel() {
-  const [activeTab, setActiveTab] = useState<'metrics' | 'updates' | 'pitch'>('metrics')
+  const [activeTab, setActiveTab] = useState<'metrics' | 'updates' | 'pitch' | 'projects'>('metrics')
   const [metrics, setMetrics] = useState(initialMetrics)
   const [updates, setUpdates] = useState(initialUpdates)
   const [pitch, setPitch] = useState(initialPitch)
@@ -91,6 +91,16 @@ export default function AdminPanel() {
             }`}
           >
             💰 Investment Pitch
+          </button>
+          <button
+            onClick={() => setActiveTab('projects')}
+            className={`px-6 py-3 font-medium transition-colors ${
+              activeTab === 'projects'
+                ? 'border-b-2 border-black text-black'
+                : 'text-black/40 hover:text-black/60'
+            }`}
+          >
+            🏗️ Projects
           </button>
         </div>
 
@@ -319,6 +329,91 @@ export default function AdminPanel() {
                     }
                     className="w-full px-3 py-2 border border-black/20 rounded"
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Projects Tab */}
+        {activeTab === 'projects' && (
+          <div className="space-y-8">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold">Multi-Project Management</h2>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
+              <h3 className="font-bold text-lg mb-2">🎉 Multi-Project Infrastructure Ready!</h3>
+              <p className="text-sm text-black/70 mb-4">
+                The foundation for multi-project support is now in place. You can add new investor pages by creating project folders.
+              </p>
+              <div className="space-y-2 text-sm">
+                <p><strong>Current Projects:</strong></p>
+                <ul className="list-disc ml-6 space-y-1">
+                  <li><strong>WheelStreet</strong> - Active (default project)</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="border border-black/10 rounded-lg p-6">
+              <h3 className="font-bold text-lg mb-4">📁 How to Add New Project</h3>
+              <div className="space-y-4 text-sm">
+                <div>
+                  <h4 className="font-semibold mb-2">Method 1: Manual (Recommended for now)</h4>
+                  <ol className="list-decimal ml-6 space-y-2">
+                    <li>Copy template folder:
+                      <pre className="mt-1 p-2 bg-black/5 rounded text-xs">
+cp -r content/projects/_TEMPLATE content/projects/ai-saas
+                      </pre>
+                    </li>
+                    <li>Edit <code className="bg-black/5 px-1 py-0.5 rounded">config.json</code> with your project data</li>
+                    <li>Commit and push to GitHub</li>
+                    <li>Access at: <code className="bg-black/5 px-1 py-0.5 rounded">/?project=ai-saas</code></li>
+                  </ol>
+                </div>
+
+                <div className="pt-4 border-t border-black/10">
+                  <h4 className="font-semibold mb-2">Method 2: Visual UI (Coming Soon)</h4>
+                  <p className="text-black/60">
+                    A visual interface for creating projects will be added here in the next phase.
+                    For now, use the manual method above.
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-black/10">
+                  <p className="text-black/60">
+                    📚 <strong>Full Documentation:</strong> See <code className="bg-black/5 px-1 py-0.5 rounded">docs/ADD_NEW_PROJECT.md</code> for detailed instructions.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="border border-black/10 rounded-lg p-6">
+              <h3 className="font-bold text-lg mb-4">🎯 Quick Reference</h3>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div>
+                  <h4 className="font-semibold mb-2">Template Location:</h4>
+                  <code className="text-xs bg-black/5 px-2 py-1 rounded block">
+                    content/projects/_TEMPLATE/
+                  </code>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">WheelStreet Config:</h4>
+                  <code className="text-xs bg-black/5 px-2 py-1 rounded block">
+                    content/projects/wheelstreet/
+                  </code>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Project Loader:</h4>
+                  <code className="text-xs bg-black/5 px-2 py-1 rounded block">
+                    lib/projects/loader.ts
+                  </code>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Type Definitions:</h4>
+                  <code className="text-xs bg-black/5 px-2 py-1 rounded block">
+                    lib/projects/types.ts
+                  </code>
                 </div>
               </div>
             </div>
