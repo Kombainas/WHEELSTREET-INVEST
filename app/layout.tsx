@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import GridBackground from '@/components/GridBackground'
 import NoiseOverlay from '@/components/NoiseOverlay'
-import Nav from '@/components/Nav'
+import ConditionalNav from '@/components/ConditionalNav'
 import Footer from '@/components/Footer'
 import SkipLink from '@/components/SkipLink'
 import PageTransitions from '@/components/PageTransitions'
@@ -84,7 +84,7 @@ export default function RootLayout({
         <GridBackground />
         <NoiseOverlay />
         <GarageMode />
-        <Nav />
+        <ConditionalNav />
         <main id="main-content" className="min-h-screen">
           <PageTransitions>{children}</PageTransitions>
         </main>
