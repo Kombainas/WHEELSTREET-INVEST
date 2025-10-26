@@ -1,0 +1,36 @@
+{
+  "id": "wheelstreet",
+  "name": "WheelStreet",
+  "slug": "wheelstreet",
+  "industry": "Automotive Marketplace",
+  "tagline": "Automobilių ateitis Baltijos šalyse",
+  "logo": "/wheel-street-logo.png",
+  "status": "active",
+  "fundraise": {
+    "amount": "€200,000",
+    "equity": "20%",
+    "valuation": "€3.3-5M",
+    "structure": "Direct equity / SAFE note"
+  },
+  "target": {
+    "timeframe": "24 months",
+    "mrr": "€250-330K",
+    "arr": "€3-4M",
+    "breakEven": "2026 Q2"
+  },
+  "theme": {
+    "primaryColor": "#000000",
+    "accentColor": "#10b981",
+    "gradient": "from-black to-black/90"
+  },
+  "features": {
+    "showLoadingScreen": true,
+    "showRevenueChart": true,
+    "showSocialMediaStats": true,
+    "showPartnerSection": true,
+    "showCompetitiveTable": true,
+    "showFinancialModel": true,
+    "showInvestmentCalculator": true,
+    "showExitStrategy": true
+  }
+}

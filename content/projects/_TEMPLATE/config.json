@@ -1,0 +1,36 @@
+{
+  "id": "project-slug",
+  "name": "Project Name",
+  "slug": "project-slug",
+  "industry": "Your Industry (e.g., AI, FinTech, SaaS)",
+  "tagline": "Your project tagline",
+  "logo": "/logos/your-logo.png",
+  "status": "draft",
+  "fundraise": {
+    "amount": "€500,000",
+    "equity": "10%",
+    "valuation": "€5M",
+    "structure": "Direct equity"
+  },
+  "target": {
+    "timeframe": "24 months",
+    "mrr": "€100K",
+    "arr": "€1.2M",
+    "breakEven": "2026 Q3"
+  },
+  "theme": {
+    "primaryColor": "#3B82F6",
+    "accentColor": "#8B5CF6",
+    "gradient": "from-blue-600 to-purple-600"
+  },
+  "features": {
+    "showLoadingScreen": true,
+    "showRevenueChart": true,
+    "showSocialMediaStats": false,
+    "showPartnerSection": true,
+    "showCompetitiveTable": true,
+    "showFinancialModel": true,
+    "showInvestmentCalculator": true,
+    "showExitStrategy": true
+  }
+}
