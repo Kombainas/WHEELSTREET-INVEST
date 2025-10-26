@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { metrics as initialMetrics } from '@/content/metrics'
 import { updates as initialUpdates } from '@/content/updates'
 import { investmentPitch as initialPitch } from '@/content/investment-pitch'
+import AIProjectChat from '@/components/AIProjectChat'
 
 export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState<'metrics' | 'updates' | 'pitch' | 'projects'>('metrics')
@@ -373,11 +374,11 @@ cp -r content/projects/_TEMPLATE content/projects/ai-saas
                 </div>
 
                 <div className="pt-4 border-t border-black/10">
-                  <h4 className="font-semibold mb-2">Method 2: Visual UI (Coming Soon)</h4>
-                  <p className="text-black/60">
-                    A visual interface for creating projects will be added here in the next phase.
-                    For now, use the manual method above.
+                  <h4 className="font-semibold mb-4">Method 2: AI Chat Assistant 🤖 (NEW!)</h4>
+                  <p className="text-black/60 mb-4">
+                    Let AI ask you questions and generate the project configuration automatically!
                   </p>
+                  <AIProjectChat />
                 </div>
 
                 <div className="pt-4 border-t border-black/10">
