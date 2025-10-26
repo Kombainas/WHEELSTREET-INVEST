@@ -9,12 +9,20 @@ interface Message {
   content: string
 }
 
+interface ValidationError {
+  field: string
+  message: string
+}
+
 export default function AIProjectChat() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [pitchText, setPitchText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [extractedConfig, setExtractedConfig] = useState<ProjectConfig | null>(null)
+  const [editableConfig, setEditableConfig] = useState<ProjectConfig | null>(null)
+  const [isEditing, setIsEditing] = useState(false)
+  const [validationErrors, setValidationErrors] = useState<ValidationError[]>([])
   const [isCreating, setIsCreating] = useState(false)
   const [createSuccess, setCreateSuccess] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -28,6 +36,69 @@ export default function AIProjectChat() {
   useEffect(() => {
     scrollToBottom()
   }, [messages])
+
+  // Validation function
+  const validateConfig = (config: ProjectConfig): ValidationError[] => {
+    const errors: ValidationError[] = []
+
+    // Validate required fields
+    if (!config.name || config.name.trim().length === 0) {
+      errors.push({ field: 'name', message: 'Project name is required' })
+    }
+
+    if (!config.slug || config.slug.trim().length === 0) {
+      errors.push({ field: 'slug', message: 'Project slug is required' })
+    } else if (!/^[a-z0-9-]+$/.test(config.slug)) {
+      errors.push({ field: 'slug', message: 'Slug must be lowercase letters, numbers, and hyphens only' })
+    }
+
+    if (!config.industry || config.industry.trim().length === 0) {
+      errors.push({ field: 'industry', message: 'Industry is required' })
+    }
+
+    // Validate fundraise amounts
+    if (!config.fundraise.amount) {
+      errors.push({ field: 'fundraise.amount', message: 'Fundraise amount is required' })
+    }
+
+    if (!config.fundraise.equity) {
+      errors.push({ field: 'fundraise.equity', message: 'Equity percentage is required' })
+    } else {
+      const equityNum = parseFloat(config.fundraise.equity)
+      if (isNaN(equityNum) || equityNum <= 0 || equityNum > 100) {
+        errors.push({ field: 'fundraise.equity', message: 'Equity must be between 0% and 100%' })
+      }
+    }
+
+    if (!config.fundraise.valuation) {
+      errors.push({ field: 'fundraise.valuation', message: 'Valuation is required' })
+    }
+
+    // Validate target fields
+    if (!config.target.mrr) {
+      errors.push({ field: 'target.mrr', message: 'Target MRR is required' })
+    }
+
+    if (!config.target.timeframe) {
+      errors.push({ field: 'target.timeframe', message: 'Timeframe is required' })
+    }
+
+    return errors
+  }
+
+  // Restart conversation
+  const restartConversation = () => {
+    if (confirm('Are you sure you want to start over? All current progress will be lost.')) {
+      setMessages([])
+      setInput('')
+      setPitchText('')
+      setExtractedConfig(null)
+      setEditableConfig(null)
+      setIsEditing(false)
+      setValidationErrors([])
+      setCreateSuccess(false)
+    }
+  }
 
   // Start conversation
   const startConversation = async () => {
@@ -106,6 +177,7 @@ export default function AIProjectChat() {
             const data = JSON.parse(jsonMatch[1])
             if (data.complete && data.projectConfig) {
               setExtractedConfig(data.projectConfig)
+              setEditableConfig(data.projectConfig)
             }
           } catch (e) {
             // Not valid JSON yet
@@ -164,6 +236,7 @@ export default function AIProjectChat() {
             const data = JSON.parse(jsonMatch[1])
             if (data.complete && data.projectConfig) {
               setExtractedConfig(data.projectConfig)
+              setEditableConfig(data.projectConfig)
             }
           } catch (e) {
             // Not valid JSON yet
@@ -181,9 +254,45 @@ export default function AIProjectChat() {
     }
   }
 
+  // Start editing
+  const startEditing = () => {
+    setIsEditing(true)
+    setValidationErrors([])
+  }
+
+  // Save edits
+  const saveEdits = () => {
+    if (!editableConfig) return
+
+    const errors = validateConfig(editableConfig)
+    if (errors.length > 0) {
+      setValidationErrors(errors)
+      return
+    }
+
+    setExtractedConfig(editableConfig)
+    setIsEditing(false)
+    setValidationErrors([])
+  }
+
+  // Cancel editing
+  const cancelEditing = () => {
+    setEditableConfig(extractedConfig)
+    setIsEditing(false)
+    setValidationErrors([])
+  }
+
   // Create project
   const createProject = async () => {
     if (!extractedConfig) return
+
+    // Final validation before creating
+    const errors = validateConfig(extractedConfig)
+    if (errors.length > 0) {
+      setValidationErrors(errors)
+      alert('Please fix validation errors before creating the project.')
+      return
+    }
 
     setIsCreating(true)
     try {
@@ -204,7 +313,7 @@ export default function AIProjectChat() {
       } else {
         setMessages([...messages, {
           role: 'assistant',
-          content: `❌ Error: ${data.error}\n\nPlease try a different project name.`
+          content: `❌ Error: ${data.error}\n\nPlease try a different project name or slug.`
         }])
       }
     } catch (error) {
@@ -229,13 +338,25 @@ export default function AIProjectChat() {
     <div className="border border-black/10 rounded-lg overflow-hidden bg-white shadow-lg">
       {/* Header */}
       <div className="bg-gradient-to-r from-black to-black/90 text-white p-4">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span>🤖</span>
-          <span>AI Project Generator</span>
-        </h3>
-        <p className="text-sm text-white/70 mt-1">
-          I'll ask you questions about your project and generate an investor page automatically
-        </p>
+        <div className="flex items-center justify-between">
+          <div>
+            <h3 className="text-lg font-bold flex items-center gap-2">
+              <span>🤖</span>
+              <span>AI Project Generator</span>
+            </h3>
+            <p className="text-sm text-white/70 mt-1">
+              I'll ask you questions about your project and generate an investor page automatically
+            </p>
+          </div>
+          {messages.length > 0 && !createSuccess && (
+            <button
+              onClick={restartConversation}
+              className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded transition-colors"
+            >
+              🔄 Restart
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Messages */}
@@ -334,36 +455,181 @@ export default function AIProjectChat() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
+      {/* Input / Preview & Edit */}
       {messages.length > 0 && !createSuccess && (
         <div className="border-t border-black/10 p-4 bg-white">
-          {extractedConfig ? (
+          {extractedConfig && !isEditing ? (
+            // Preview Mode
             <div className="space-y-3">
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">✅</span>
-                  <span className="font-bold text-green-800">
-                    Project Configuration Ready!
-                  </span>
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">✅</span>
+                    <span className="font-bold text-green-800">
+                      Project Configuration Ready!
+                    </span>
+                  </div>
+                  <button
+                    onClick={startEditing}
+                    className="px-3 py-1 text-sm bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
+                  >
+                    ✏️ Edit
+                  </button>
                 </div>
                 <p className="text-sm text-green-700 mb-3">
-                  I've collected all the information. Ready to create your investor page?
+                  Review your project details below. Click "Edit" to make changes or "Create Project" to proceed.
                 </p>
-                <div className="text-xs text-green-600 space-y-1">
-                  <div>📌 Project: {extractedConfig.name}</div>
-                  <div>💰 Fundraise: {extractedConfig.fundraise.amount} for {extractedConfig.fundraise.equity}</div>
-                  <div>🎯 Target MRR: {extractedConfig.target.mrr}</div>
+                <div className="text-xs text-green-700 space-y-1 bg-white/50 p-3 rounded">
+                  <div><strong>📌 Name:</strong> {extractedConfig.name}</div>
+                  <div><strong>🔗 Slug:</strong> {extractedConfig.slug}</div>
+                  <div><strong>🏢 Industry:</strong> {extractedConfig.industry}</div>
+                  <div><strong>💰 Fundraise:</strong> {extractedConfig.fundraise.amount} for {extractedConfig.fundraise.equity}</div>
+                  <div><strong>📊 Valuation:</strong> {extractedConfig.fundraise.valuation}</div>
+                  <div><strong>🎯 Target MRR:</strong> {extractedConfig.target.mrr}</div>
+                  <div><strong>⏱️ Timeframe:</strong> {extractedConfig.target.timeframe}</div>
                 </div>
               </div>
               <button
                 onClick={createProject}
                 disabled={isCreating}
-                className="w-full px-6 py-3 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition-colors disabled:opacity-50"
+                className="w-full px-6 py-3 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
               >
                 {isCreating ? '⏳ Creating Project...' : '✨ Create Project'}
               </button>
             </div>
+          ) : editableConfig && isEditing ? (
+            // Edit Mode
+            <div className="space-y-3">
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-2xl">✏️</span>
+                  <span className="font-bold text-blue-800">
+                    Edit Project Configuration
+                  </span>
+                </div>
+
+                {/* Validation Errors */}
+                {validationErrors.length > 0 && (
+                  <div className="mb-4 bg-red-50 border border-red-200 rounded p-3">
+                    <div className="font-bold text-red-800 mb-2">⚠️ Please fix these errors:</div>
+                    <ul className="text-xs text-red-700 space-y-1">
+                      {validationErrors.map((error, index) => (
+                        <li key={index}>• {error.message}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {/* Edit Form */}
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <label className="block font-medium mb-1 text-black/70">Project Name *</label>
+                    <input
+                      type="text"
+                      value={editableConfig.name}
+                      onChange={(e) => setEditableConfig({...editableConfig, name: e.target.value})}
+                      className="w-full px-3 py-2 border border-black/20 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block font-medium mb-1 text-black/70">Slug (URL) *</label>
+                    <input
+                      type="text"
+                      value={editableConfig.slug}
+                      onChange={(e) => setEditableConfig({...editableConfig, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-')})}
+                      className="w-full px-3 py-2 border border-black/20 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none font-mono text-xs"
+                      placeholder="project-name"
+                    />
+                    <p className="text-xs text-black/50 mt-1">Will be accessible at: /?project={editableConfig.slug}</p>
+                  </div>
+
+                  <div>
+                    <label className="block font-medium mb-1 text-black/70">Industry *</label>
+                    <input
+                      type="text"
+                      value={editableConfig.industry}
+                      onChange={(e) => setEditableConfig({...editableConfig, industry: e.target.value})}
+                      className="w-full px-3 py-2 border border-black/20 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block font-medium mb-1 text-black/70">Fundraise Amount *</label>
+                      <input
+                        type="text"
+                        value={editableConfig.fundraise.amount}
+                        onChange={(e) => setEditableConfig({...editableConfig, fundraise: {...editableConfig.fundraise, amount: e.target.value}})}
+                        className="w-full px-3 py-2 border border-black/20 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        placeholder="€500K"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-medium mb-1 text-black/70">Equity % *</label>
+                      <input
+                        type="text"
+                        value={editableConfig.fundraise.equity}
+                        onChange={(e) => setEditableConfig({...editableConfig, fundraise: {...editableConfig.fundraise, equity: e.target.value}})}
+                        className="w-full px-3 py-2 border border-black/20 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        placeholder="10%"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-medium mb-1 text-black/70">Valuation *</label>
+                    <input
+                      type="text"
+                      value={editableConfig.fundraise.valuation}
+                      onChange={(e) => setEditableConfig({...editableConfig, fundraise: {...editableConfig.fundraise, valuation: e.target.value}})}
+                      className="w-full px-3 py-2 border border-black/20 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                      placeholder="€5M"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block font-medium mb-1 text-black/70">Target MRR *</label>
+                      <input
+                        type="text"
+                        value={editableConfig.target.mrr}
+                        onChange={(e) => setEditableConfig({...editableConfig, target: {...editableConfig.target, mrr: e.target.value}})}
+                        className="w-full px-3 py-2 border border-black/20 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        placeholder="€100K"
+                      />
+                    </div>
+                    <div>
+                      <label className="block font-medium mb-1 text-black/70">Timeframe *</label>
+                      <input
+                        type="text"
+                        value={editableConfig.target.timeframe}
+                        onChange={(e) => setEditableConfig({...editableConfig, target: {...editableConfig.target, timeframe: e.target.value}})}
+                        className="w-full px-3 py-2 border border-black/20 rounded focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        placeholder="24 months"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex gap-2">
+                <button
+                  onClick={cancelEditing}
+                  className="flex-1 px-6 py-3 bg-black/10 text-black font-medium rounded-lg hover:bg-black/20 transition-colors"
+                >
+                  ❌ Cancel
+                </button>
+                <button
+                  onClick={saveEdits}
+                  className="flex-1 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  ✅ Save Changes
+                </button>
+              </div>
+            </div>
           ) : (
+            // Chat Input
             <div className="flex gap-2">
               <textarea
                 ref={inputRef}
