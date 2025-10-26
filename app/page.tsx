@@ -12,10 +12,20 @@ import ExitStrategy from '@/components/ExitStrategy'
 import FinancialModel from '@/components/FinancialModel'
 import InvestmentCalculator from '@/components/InvestmentCalculator'
 import { metrics } from '@/content/metrics'
+import { loadProject } from '@/lib/projects/loader'
+import { ProjectProvider } from '@/lib/projects/ProjectContext'
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: { project?: string }
+}) {
+  // Load project data based on URL parameter
+  // Defaults to 'wheelstreet' if no parameter provided
+  const projectSlug = searchParams.project || 'wheelstreet'
+  const project = await loadProject(projectSlug)
   return (
-    <>
+    <ProjectProvider project={project}>
       <Hero />
 
       <DiagonalConnector fromId="hero" toId="investment" />
@@ -70,6 +80,6 @@ export default function Home() {
       <InvestmentCalculator />
 
       <WhyWheelStreet />
-    </>
+    </ProjectProvider>
   )
 }
