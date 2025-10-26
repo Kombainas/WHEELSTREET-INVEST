@@ -12,6 +12,7 @@ interface Message {
 export default function AIProjectChat() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
+  const [pitchText, setPitchText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [extractedConfig, setExtractedConfig] = useState<ProjectConfig | null>(null)
   const [isCreating, setIsCreating] = useState(false)
@@ -122,6 +123,64 @@ export default function AIProjectChat() {
     }
   }
 
+  // Extract data from pasted text
+  const extractFromText = async () => {
+    if (!pitchText.trim() || isLoading) return
+
+    setIsLoading(true)
+    const extractionMessage: Message = {
+      role: 'user',
+      content: `Please extract ALL project information from this pitch deck text and return it in JSON format:\n\n${pitchText}`
+    }
+    setMessages([extractionMessage])
+
+    try {
+      const response = await fetch('/api/projects/ai-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: [extractionMessage] }),
+      })
+
+      const reader = response.body?.getReader()
+      const decoder = new TextDecoder()
+      let aiMessage = ''
+
+      if (reader) {
+        while (true) {
+          const { done, value } = await reader.read()
+          if (done) break
+
+          const chunk = decoder.decode(value)
+          aiMessage += chunk
+
+          // Update messages in real-time
+          setMessages([extractionMessage, { role: 'assistant', content: aiMessage }])
+        }
+
+        // Try to extract ProjectConfig JSON
+        const jsonMatch = aiMessage.match(/```json\n([\s\S]*?)\n```/)
+        if (jsonMatch) {
+          try {
+            const data = JSON.parse(jsonMatch[1])
+            if (data.complete && data.projectConfig) {
+              setExtractedConfig(data.projectConfig)
+            }
+          } catch (e) {
+            // Not valid JSON yet
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error extracting from text:', error)
+      setMessages([extractionMessage, {
+        role: 'assistant',
+        content: '❌ Sorry, I encountered an error while reading your text. Please try again or use the chat option.'
+      }])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   // Create project
   const createProject = async () => {
     if (!extractedConfig) return
@@ -182,19 +241,65 @@ export default function AIProjectChat() {
       {/* Messages */}
       <div className="h-[500px] overflow-y-auto p-6 space-y-4 bg-black/[0.02]">
         {messages.length === 0 ? (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">💬</div>
-            <h4 className="text-xl font-bold mb-2">Ready to create your investor page?</h4>
-            <p className="text-black/60 mb-6">
-              Click the button below to start a conversation with the AI assistant
-            </p>
-            <button
-              onClick={startConversation}
-              disabled={isLoading}
-              className="px-6 py-3 bg-black text-white font-medium rounded hover:bg-black/90 transition-colors disabled:opacity-50"
-            >
-              {isLoading ? '🤔 Thinking...' : '🚀 Start Conversation'}
-            </button>
+          <div className="py-6 px-4">
+            <div className="text-center mb-6">
+              <div className="text-5xl mb-3">🤖💬</div>
+              <h4 className="text-xl font-bold mb-2">Create Your Investor Page</h4>
+              <p className="text-black/60 text-sm">
+                Choose how you want to provide your project information
+              </p>
+            </div>
+
+            {/* Option 1: Paste Text */}
+            <div className="mb-6 p-4 border border-black/10 rounded-lg bg-white">
+              <h5 className="font-bold mb-2 flex items-center gap-2">
+                <span>📄</span>
+                <span>Option 1: Paste Your Pitch Deck (RECOMMENDED)</span>
+              </h5>
+              <p className="text-sm text-black/60 mb-3">
+                Paste your business plan, pitch deck, or any project description. AI will read it and extract all information automatically!
+              </p>
+              <textarea
+                placeholder="Paste your pitch deck, business plan, or project description here...&#10;&#10;Example:&#10;We're building AI Automation Platform, an AI/SaaS solution.&#10;Raising €500,000 for 10% equity at €5M valuation.&#10;Target MRR is €100K in 24 months..."
+                rows={6}
+                value={pitchText}
+                onChange={(e) => setPitchText(e.target.value)}
+                className="w-full p-3 border border-black/20 rounded-lg text-sm resize-none focus:outline-none focus:ring-2 focus:ring-black/20"
+                disabled={isLoading}
+              />
+              <button
+                onClick={extractFromText}
+                disabled={isLoading || !pitchText.trim()}
+                className="mt-3 w-full px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? '🤖 AI is reading...' : '✨ Extract Data from Text'}
+              </button>
+            </div>
+
+            {/* Divider */}
+            <div className="flex items-center gap-4 my-6">
+              <div className="flex-1 border-t border-black/10"></div>
+              <span className="text-black/40 text-sm font-medium">OR</span>
+              <div className="flex-1 border-t border-black/10"></div>
+            </div>
+
+            {/* Option 2: Chat */}
+            <div className="p-4 border border-black/10 rounded-lg bg-black/[0.02]">
+              <h5 className="font-bold mb-2 flex items-center gap-2">
+                <span>💬</span>
+                <span>Option 2: Answer Questions</span>
+              </h5>
+              <p className="text-sm text-black/60 mb-3">
+                AI will ask you 7 questions one by one to collect all information.
+              </p>
+              <button
+                onClick={startConversation}
+                disabled={isLoading}
+                className="w-full px-6 py-3 bg-black text-white font-medium rounded-lg hover:bg-black/90 transition-colors disabled:opacity-50"
+              >
+                {isLoading ? '🤔 Thinking...' : '🚀 Start Q&A Conversation'}
+              </button>
+            </div>
           </div>
         ) : (
           <AnimatePresence>

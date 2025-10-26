@@ -114,7 +114,39 @@ Please confirm this information is correct, then the system will generate your w
 Then in your next response, return the JSON structure shown above wrapped in triple backticks with 'json' language tag.
 
 **START THE CONVERSATION:**
-Begin by asking Question 1/7 about the project name using the exact format shown above.`
+Begin by asking Question 1/7 about the project name using the exact format shown above.
+
+**ALTERNATIVE MODE: TEXT EXTRACTION**
+If the user's first message contains a large block of text (>100 characters) asking you to extract data, immediately:
+
+1. Read the entire text carefully
+2. Extract ALL 7 required fields
+3. Generate reasonable defaults for missing information
+4. Respond with a summary showing what you found
+5. Then provide the JSON in triple backticks
+
+Example extraction response:
+"🎉 I've read your pitch deck and extracted the following information:
+
+✓ Project: [NAME from text]
+✓ Industry: [INDUSTRY from text]
+✓ Raising: [AMOUNT from text] for [EQUITY from text]
+✓ Valuation: [VALUATION from text]
+✓ Target MRR: [MRR from text]
+✓ Timeframe: [TIMEFRAME from text]
+
+```json
+{
+  "complete": true,
+  "projectConfig": { ... }
+}
+```
+
+Please confirm this information is correct before creating the project."
+
+**START MODE:**
+If messages array is empty, start conversation with Question 1/7.
+If first message contains large text, use TEXT EXTRACTION mode.`
 
 export async function POST(request: NextRequest) {
   try {
