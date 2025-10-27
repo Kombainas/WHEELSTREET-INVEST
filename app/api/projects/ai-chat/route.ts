@@ -45,13 +45,13 @@ Extract information by asking ONE SPECIFIC QUESTION AT A TIME in this EXACT orde
 - Keep responses SHORT and focused
 
 **Example Good Conversation:**
-```
+\`\`\`
 AI: "👋 Let's create your investor website! Question 1/7: What's your project name?"
 User: "AI Helper"
 AI: "✓ Got it! Question 2/7: What industry is AI Helper in? (e.g., 'AI / SaaS', 'Fintech')"
 User: "AI SaaS"
 AI: "✓ Perfect! Question 3/7: How much are you raising? (e.g., '€200K', '€500K')"
-```
+\`\`\`
 
 **When Complete:**
 Return a JSON object with this structure:
@@ -135,12 +135,12 @@ Example extraction response:
 ✓ Target MRR: [MRR from text]
 ✓ Timeframe: [TIMEFRAME from text]
 
-```json
+\`\`\`json
 {
   "complete": true,
   "projectConfig": { ... }
 }
-```
+\`\`\`
 
 Please confirm this information is correct before creating the project."
 
