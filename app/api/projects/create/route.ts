@@ -6,7 +6,7 @@ import type { ProjectConfig } from '@/lib/projects/types'
 
 export async function POST(request: NextRequest) {
   try {
-    const { projectConfig }: { projectConfig: ProjectConfig } = await request.json()
+    const { projectConfig, pitchText }: { projectConfig: ProjectConfig; pitchText?: string } = await request.json()
 
     // Validate required fields
     if (!projectConfig.id || !projectConfig.name || !projectConfig.slug) {
@@ -35,6 +35,25 @@ export async function POST(request: NextRequest) {
     await writeFile(
       configPath,
       JSON.stringify(projectConfig, null, 2),
+      'utf-8'
+    )
+
+    // Write pitch-deck.txt if provided
+    if (pitchText && pitchText.trim()) {
+      const pitchPath = join(projectPath, 'pitch-deck.txt')
+      await writeFile(pitchPath, pitchText.trim(), 'utf-8')
+    }
+
+    // Write metadata.json
+    const metadata = {
+      createdAt: new Date().toISOString(),
+      lastModified: new Date().toISOString(),
+      version: 1,
+    }
+    const metadataPath = join(projectPath, 'metadata.json')
+    await writeFile(
+      metadataPath,
+      JSON.stringify(metadata, null, 2),
       'utf-8'
     )
 

@@ -5,6 +5,7 @@ import { metrics as initialMetrics } from '@/content/metrics'
 import { updates as initialUpdates } from '@/content/updates'
 import { investmentPitch as initialPitch } from '@/content/investment-pitch'
 import AIProjectChat from '@/components/AIProjectChat'
+import ProjectList from '@/components/ProjectList'
 
 export default function AdminPanel() {
   const [activeTab, setActiveTab] = useState<'metrics' | 'updates' | 'pitch' | 'projects'>('metrics')
@@ -14,6 +15,8 @@ export default function AdminPanel() {
   const [saving, setSaving] = useState(false)
   const [saveState, setSaveState] = useState<'idle' | 'backing-up' | 'saving' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
+  const [editingProject, setEditingProject] = useState<string | null>(null)
+  const [editPitchText, setEditPitchText] = useState<string>('')
 
   const saveChanges = async (fileType: string, data: any) => {
     setSaving(true)
@@ -52,6 +55,29 @@ export default function AdminPanel() {
         setMessage('')
         setSaveState('idle')
       }, 3000)
+    }
+  }
+
+  const handleEditProject = async (slug: string) => {
+    try {
+      // Fetch the saved pitch deck text
+      const response = await fetch(`/api/projects/${slug}/pitch`)
+
+      if (response.ok) {
+        const data = await response.json()
+        setEditPitchText(data.pitchText || '')
+        setEditingProject(slug)
+
+        // Scroll to AI Chat section
+        setTimeout(() => {
+          document.getElementById('ai-chat-section')?.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
+      } else {
+        alert('❌ Could not load pitch deck text for editing')
+      }
+    } catch (error) {
+      console.error('Error loading pitch deck:', error)
+      alert('❌ Failed to load project for editing')
     }
   }
 
@@ -343,80 +369,37 @@ export default function AdminPanel() {
               <h2 className="text-2xl font-bold">Multi-Project Management</h2>
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-6">
-              <h3 className="font-bold text-lg mb-2">🎉 Multi-Project Infrastructure Ready!</h3>
-              <p className="text-sm text-black/70 mb-4">
-                The foundation for multi-project support is now in place. You can add new investor pages by creating project folders.
+            {/* Project List */}
+            <div className="border border-black/10 rounded-lg p-6">
+              <ProjectList onEdit={handleEditProject} />
+            </div>
+
+            {/* AI Chat Assistant */}
+            <div id="ai-chat-section" className="border border-black/10 rounded-lg p-6">
+              <h3 className="font-bold text-lg mb-4">
+                {editingProject ? `✏️ Edit Project: ${editingProject}` : '🤖 Create New Project with AI'}
+              </h3>
+              <p className="text-black/60 mb-4">
+                {editingProject
+                  ? 'The saved pitch deck text has been loaded below. You can re-extract the data or make changes.'
+                  : 'Paste your pitch deck or let AI ask you questions to generate the project configuration automatically!'}
               </p>
-              <div className="space-y-2 text-sm">
-                <p><strong>Current Projects:</strong></p>
-                <ul className="list-disc ml-6 space-y-1">
-                  <li><strong>WheelStreet</strong> - Active (default project)</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="border border-black/10 rounded-lg p-6">
-              <h3 className="font-bold text-lg mb-4">📁 How to Add New Project</h3>
-              <div className="space-y-4 text-sm">
-                <div>
-                  <h4 className="font-semibold mb-2">Method 1: Manual (Recommended for now)</h4>
-                  <ol className="list-decimal ml-6 space-y-2">
-                    <li>Copy template folder:
-                      <pre className="mt-1 p-2 bg-black/5 rounded text-xs">
-cp -r content/projects/_TEMPLATE content/projects/ai-saas
-                      </pre>
-                    </li>
-                    <li>Edit <code className="bg-black/5 px-1 py-0.5 rounded">config.json</code> with your project data</li>
-                    <li>Commit and push to GitHub</li>
-                    <li>Access at: <code className="bg-black/5 px-1 py-0.5 rounded">/?project=ai-saas</code></li>
-                  </ol>
-                </div>
-
-                <div className="pt-4 border-t border-black/10">
-                  <h4 className="font-semibold mb-4">Method 2: AI Chat Assistant 🤖 (NEW!)</h4>
-                  <p className="text-black/60 mb-4">
-                    Let AI ask you questions and generate the project configuration automatically!
-                  </p>
-                  <AIProjectChat />
-                </div>
-
-                <div className="pt-4 border-t border-black/10">
-                  <p className="text-black/60">
-                    📚 <strong>Full Documentation:</strong> See <code className="bg-black/5 px-1 py-0.5 rounded">docs/ADD_NEW_PROJECT.md</code> for detailed instructions.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="border border-black/10 rounded-lg p-6">
-              <h3 className="font-bold text-lg mb-4">🎯 Quick Reference</h3>
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <h4 className="font-semibold mb-2">Template Location:</h4>
-                  <code className="text-xs bg-black/5 px-2 py-1 rounded block">
-                    content/projects/_TEMPLATE/
-                  </code>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">WheelStreet Config:</h4>
-                  <code className="text-xs bg-black/5 px-2 py-1 rounded block">
-                    content/projects/wheelstreet/
-                  </code>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Project Loader:</h4>
-                  <code className="text-xs bg-black/5 px-2 py-1 rounded block">
-                    lib/projects/loader.ts
-                  </code>
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Type Definitions:</h4>
-                  <code className="text-xs bg-black/5 px-2 py-1 rounded block">
-                    lib/projects/types.ts
-                  </code>
-                </div>
-              </div>
+              {editingProject && (
+                <button
+                  onClick={() => {
+                    setEditingProject(null)
+                    setEditPitchText('')
+                  }}
+                  className="mb-4 px-4 py-2 bg-gray-200 text-black rounded hover:bg-gray-300"
+                >
+                  ← Cancel Edit (Create New Instead)
+                </button>
+              )}
+              <AIProjectChat
+                key={editingProject || 'new'}
+                initialPitchText={editPitchText}
+                editMode={editingProject}
+              />
             </div>
           </div>
         )}

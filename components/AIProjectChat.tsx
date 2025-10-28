@@ -14,10 +14,15 @@ interface ValidationError {
   message: string
 }
 
-export default function AIProjectChat() {
+interface AIProjectChatProps {
+  initialPitchText?: string
+  editMode?: string | null
+}
+
+export default function AIProjectChat({ initialPitchText = '', editMode = null }: AIProjectChatProps = {}) {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
-  const [pitchText, setPitchText] = useState('')
+  const [pitchText, setPitchText] = useState(initialPitchText)
   const [isLoading, setIsLoading] = useState(false)
   const [extractedConfig, setExtractedConfig] = useState<ProjectConfig | null>(null)
   const [editableConfig, setEditableConfig] = useState<ProjectConfig | null>(null)
@@ -299,7 +304,10 @@ export default function AIProjectChat() {
       const response = await fetch('/api/projects/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ projectConfig: extractedConfig }),
+        body: JSON.stringify({
+          projectConfig: extractedConfig,
+          pitchText: pitchText // Save the original pitch deck text
+        }),
       })
 
       const data = await response.json()
