@@ -7,10 +7,11 @@ interface Project {
   slug: string
   name: string
   fundraise: {
-    target: number
-    currency: string
+    amount: string  // Pre-formatted string like "€200,000"
+    equity: string  // String like "20%"
+    valuation: string
+    structure: string
   }
-  equity: number
   createdAt?: string
   lastModified?: string
 }
@@ -120,14 +121,15 @@ export default function ProjectList({ onEdit }: ProjectListProps) {
     })
   }
 
-  const formatCurrency = (amount: number, currency: string) => {
-    return new Intl.NumberFormat('lt-LT', {
-      style: 'currency',
-      currency: currency,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(amount)
-  }
+  // No longer needed - amounts come pre-formatted from API
+  // const formatCurrency = (amount: number, currency: string) => {
+  //   return new Intl.NumberFormat('lt-LT', {
+  //     style: 'currency',
+  //     currency: currency,
+  //     minimumFractionDigits: 0,
+  //     maximumFractionDigits: 0,
+  //   }).format(amount)
+  // }
 
   if (loading) {
     return (
@@ -187,12 +189,12 @@ export default function ProjectList({ onEdit }: ProjectListProps) {
                   <div>
                     <span className="text-gray-600">Fundraise:</span>{' '}
                     <span className="font-semibold">
-                      {formatCurrency(project.fundraise.target, project.fundraise.currency)}
+                      {project.fundraise.amount}
                     </span>
                   </div>
                   <div>
                     <span className="text-gray-600">Equity:</span>{' '}
-                    <span className="font-semibold">{project.equity}%</span>
+                    <span className="font-semibold">{project.fundraise.equity}</span>
                   </div>
                   <div>
                     <span className="text-gray-600">Created:</span>{' '}
