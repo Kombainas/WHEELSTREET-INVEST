@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /partners
+Disallow: /admin
+Disallow: /member
+Disallow: /v/
+Disallow: /api/
