@@ -2,138 +2,142 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Instagram, Youtube } from "lucide-react";
 import { useDictionary } from "@/i18n/provider";
-
-const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Youtube, href: "#", label: "YouTube" },
-];
 
 export function Footer() {
   const t = useDictionary();
 
-  const footerLinks = {
-    product: {
-      title: t.footer.product,
-      links: [
-        { label: t.footer.productLinks[0], href: "#features" },
-        { label: t.footer.productLinks[1], href: "#programs" },
-        { label: t.footer.productLinks[2], href: "#pricing" },
-        { label: t.footer.productLinks[3], href: "#" },
-        { label: t.footer.productLinks[4], href: "#" },
-      ],
-    },
-    company: {
-      title: t.footer.company,
-      links: [
-        { label: t.footer.companyLinks[0], href: "#" },
-        { label: t.footer.companyLinks[1], href: "#" },
-        { label: t.footer.companyLinks[2], href: "#" },
-        { label: t.footer.companyLinks[3], href: "#" },
-        { label: t.footer.companyLinks[4], href: "#" },
-      ],
-    },
-    legal: {
-      title: t.footer.legal,
-      links: [
-        { label: t.footer.legalLinks[0], href: "#" },
-        { label: t.footer.legalLinks[1], href: "#" },
-        { label: t.footer.legalLinks[2], href: "#" },
-        { label: t.footer.legalLinks[3], href: "#" },
-      ],
-    },
-  };
-
   return (
-    <footer className="bg-background border-t border-black/8">
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-16 md:py-20">
+    <footer className="bg-white" style={{ borderTop: "1px solid rgba(0,0,0,0.1)" }}>
 
-        {/* Top row: brand + newsletter + links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 lg:gap-12 mb-16">
+      {/* ── Newsletter — centred like kismas.com ── */}
+      <div
+        className="py-16 md:py-20 flex flex-col items-center text-center"
+        style={{ borderBottom: "1px solid rgba(0,0,0,0.08)" }}
+      >
+        <p
+          className="mb-6"
+          style={{
+            fontSize: "0.6875rem",
+            fontWeight: 500,
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            color: "rgba(0,0,0,0.4)",
+          }}
+        >
+          {t.footer.newsletter}
+        </p>
+        <form
+          className="flex w-full"
+          style={{ maxWidth: "380px", border: "1px solid rgba(0,0,0,0.15)" }}
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <input
+            type="email"
+            placeholder={t.footer.emailPlaceholder}
+            className="flex-1 px-5 py-3 text-[0.875rem] bg-transparent outline-none placeholder:text-black/30"
+          />
+          <button
+            type="submit"
+            className="px-6 py-3 text-[0.8125rem] font-medium tracking-[0.04em] transition-colors hover:bg-black hover:text-white"
+            style={{ borderLeft: "1px solid rgba(0,0,0,0.15)" }}
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+
+      {/* ── Main link columns ── */}
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-14 md:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 lg:gap-16 mb-14">
 
           {/* Brand */}
-          <div className="col-span-2 lg:col-span-2">
-            <Link href="/" className="inline-block mb-4">
+          <div className="col-span-2 md:col-span-1">
+            <Link href="/" className="inline-block mb-5">
               <Image
                 src="/assets/logos/7am-text.png"
                 alt="7AM"
-                width={80}
-                height={28}
-                className="h-7 w-auto object-contain"
+                width={60}
+                height={22}
+                className="h-[22px] w-auto object-contain"
               />
             </Link>
-            <p className="text-sm text-muted-foreground leading-relaxed max-w-xs mb-6">
+            <p style={{ fontSize: "0.875rem", color: "rgba(0,0,0,0.45)", maxWidth: "200px", lineHeight: 1.65 }}>
               {t.footer.description}
             </p>
-
-            {/* Newsletter */}
-            <p className="text-xs font-medium tracking-[0.12em] uppercase mb-3">{t.footer.newsletter}</p>
-            <form className="flex border border-black/12" onSubmit={(e) => e.preventDefault()}>
-              <input
-                type="email"
-                placeholder={t.footer.emailPlaceholder}
-                className="flex-1 px-4 py-2.5 text-sm bg-transparent outline-none placeholder:text-muted-foreground"
-              />
-              <button
-                type="submit"
-                className="px-4 border-l border-black/12 text-foreground hover:bg-secondary transition-colors"
-                aria-label="Subscribe"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
-
-            {/* Social links — only show if real URLs */}
-            {socialLinks.some((s) => s.href !== "#") && (
-              <div className="flex gap-3 mt-5">
-                {socialLinks.filter((s) => s.href !== "#").map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.href}
-                    aria-label={s.label}
-                    className="w-9 h-9 border border-black/12 flex items-center justify-center
-                               text-muted-foreground hover:text-foreground hover:border-black/30 transition-colors"
-                  >
-                    <s.icon className="w-4 h-4" />
-                  </a>
-                ))}
-              </div>
-            )}
+            <div className="flex gap-4 mt-5">
+              {["Instagram", "YouTube"].map((s) => (
+                <a key={s} href="#" className="text-[0.8125rem] text-black/40 hover:text-black transition-colors">
+                  {s}
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Link columns */}
-          {Object.values(footerLinks).map((section) => (
-            <div key={section.title}>
-              <h3 className="text-xs font-medium tracking-[0.12em] uppercase mb-5 text-foreground">
-                {section.title}
-              </h3>
-              <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Product */}
+          <div>
+            <h3 className="mb-5" style={{ fontSize: "0.6875rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(0,0,0,0.38)" }}>
+              {t.footer.product}
+            </h3>
+            <ul className="space-y-3.5">
+              {(t.footer.productLinks as string[]).map((label, i) => (
+                <li key={i}>
+                  <Link href={["#features","#programs","#pricing","#","#"][i] ?? "#"} className="text-[0.875rem] text-black/55 hover:text-black transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h3 className="mb-5" style={{ fontSize: "0.6875rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(0,0,0,0.38)" }}>
+              {t.footer.company}
+            </h3>
+            <ul className="space-y-3.5">
+              {(t.footer.companyLinks as string[]).map((label, i) => (
+                <li key={i}>
+                  <Link href="#" className="text-[0.875rem] text-black/55 hover:text-black transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="mb-5" style={{ fontSize: "0.6875rem", fontWeight: 500, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(0,0,0,0.38)" }}>
+              {t.footer.legal}
+            </h3>
+            <ul className="space-y-3.5">
+              {(t.footer.legalLinks as string[]).map((label, i) => (
+                <li key={i}>
+                  <Link href="#" className="text-[0.875rem] text-black/55 hover:text-black transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-black/8 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div
+          className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 pt-8"
+          style={{ borderTop: "1px solid rgba(0,0,0,0.08)", fontSize: "0.8125rem", color: "rgba(0,0,0,0.35)" }}
+        >
           <p>&copy; {new Date().getFullYear()} {t.footer.copyright}</p>
-          <div className="flex gap-6">
-            <Link href="#" className="hover:text-foreground transition-colors">{t.footer.privacy}</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">{t.footer.terms}</Link>
-            <Link href="#" className="hover:text-foreground transition-colors">{t.footer.cookies}</Link>
+          <div className="flex gap-5">
+            <Link href="#" className="hover:text-black transition-colors">{t.footer.privacy}</Link>
+            <Link href="#" className="hover:text-black transition-colors">{t.footer.terms}</Link>
+            <Link href="#" className="hover:text-black transition-colors">{t.footer.cookies}</Link>
           </div>
         </div>
       </div>
+
     </footer>
   );
 }

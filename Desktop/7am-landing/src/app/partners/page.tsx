@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/navbar";
+import { AnnouncementBar } from "@/components/announcement-bar";
 import { Footer } from "@/components/footer";
 import { PartnersList } from "@/components/landing/partners-list";
 
@@ -10,9 +11,11 @@ export const metadata: Metadata = {
 
 export default function PartnersPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main className="bg-white">
+      <AnnouncementBar />
       <Navbar />
-      <div className="pt-20" />
+      {/* offset: 44px announcement bar + 52px navbar */}
+      <div style={{ paddingTop: "calc(44px + 52px)" }} />
       <PartnersList />
       <Footer />
     </main>

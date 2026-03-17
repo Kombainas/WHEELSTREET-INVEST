@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Navbar } from "@/components/navbar";
+import { AnnouncementBar } from "@/components/announcement-bar";
 import { Footer } from "@/components/footer";
 import { PartnerDetail } from "@/components/landing/partner-detail";
 import { partners, getPartnerBySlug } from "@/data/partners";
@@ -33,9 +34,11 @@ export default async function PartnerPage({ params }: Props) {
   if (!partner) notFound();
 
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main className="bg-white">
+      <AnnouncementBar />
       <Navbar />
-      <div className="pt-20" />
+      {/* offset: 44px announcement bar + 52px navbar */}
+      <div style={{ paddingTop: "calc(44px + 52px)" }} />
       <PartnerDetail partner={partner} />
       <Footer />
     </main>

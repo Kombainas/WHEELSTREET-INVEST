@@ -2,29 +2,35 @@
 
 import { Quote } from "lucide-react";
 import { Marquee } from "@/components/ui/marquee";
-import { Reveal, StaggerContainer, StaggerItem } from "@/components/motion/reveal";
+import { Reveal } from "@/components/motion/reveal";
 import { useDictionary } from "@/i18n/provider";
 
 const avatarInitials = ["SC", "MJ", "ER", "DP", "LT", "AK"];
 
 function TestimonialCard({
-  testimonial,
+  t,
 }: {
-  testimonial: { name: string; role: string; content: string; avatar: string };
+  t: { name: string; role: string; content: string; avatar: string };
 }) {
   return (
-    <div className="w-[340px] editorial-card group h-full flex flex-col shrink-0 border border-black/8">
-      <Quote className="w-6 h-6 text-foreground/20 mb-4" />
-      <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-6">
-        &ldquo;{testimonial.content}&rdquo;
+    <div
+      className="w-[320px] shrink-0 flex flex-col p-7 group hover:bg-white transition-colors duration-200"
+      style={{ border: "1px solid rgba(0,0,0,0.1)", background: "#FAFAFA" }}
+    >
+      <Quote className="w-5 h-5 mb-5" style={{ color: "rgba(0,0,0,0.15)" }} />
+      <p className="text-[0.875rem] leading-relaxed flex-1 mb-6 text-black/65">
+        &ldquo;{t.content}&rdquo;
       </p>
-      <div className="flex items-center gap-3 pt-4 border-t border-black/6">
-        <div className="w-9 h-9 bg-foreground text-background flex items-center justify-center text-xs font-medium shrink-0">
-          {testimonial.avatar}
+      <div className="flex items-center gap-3 pt-5" style={{ borderTop: "1px solid rgba(0,0,0,0.07)" }}>
+        <div
+          className="w-8 h-8 flex items-center justify-center shrink-0 text-[0.6875rem] font-medium"
+          style={{ background: "#000000", color: "#FFFFFF" }}
+        >
+          {t.avatar}
         </div>
         <div>
-          <p className="text-sm font-medium">{testimonial.name}</p>
-          <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+          <p className="text-[0.875rem] font-medium leading-tight">{t.name}</p>
+          <p className="text-[0.75rem] text-black/45 mt-0.5">{t.role}</p>
         </div>
       </div>
     </div>
@@ -41,28 +47,31 @@ export function SocialProof() {
     avatar: avatarInitials[i],
   }));
 
-  const firstRow = testimonials.slice(0, 3);
+  const firstRow  = testimonials.slice(0, 3);
   const secondRow = testimonials.slice(3, 6);
 
   return (
-    <section id="testimonials" className="py-24 md:py-32 bg-secondary overflow-hidden">
+    <section id="testimonials" className="py-24 md:py-32 overflow-hidden" style={{ background: "#F5F5F5" }}>
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
-
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16 md:mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 mb-16 md:mb-20">
           <Reveal>
-            <span className="section-label">{t.socialProof.label}</span>
+            <span className="section-label mb-5 inline-block">{t.socialProof.label}</span>
             <h2
-              className="font-light tracking-tight leading-[1.1] mt-4"
-              style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
+              style={{
+                fontSize: "clamp(2rem, 3.5vw, 3rem)",
+                fontWeight: 500,
+                letterSpacing: "-0.01em",
+                lineHeight: 1.08,
+              }}
             >
               {t.socialProof.title}{" "}
-              <span className="font-semibold">{t.socialProof.titleHighlight}</span>{" "}
+              <em style={{ fontStyle: "italic" }}>{t.socialProof.titleHighlight}</em>{" "}
               {t.socialProof.titleEnd}
             </h2>
           </Reveal>
-          <Reveal delay={0.1} className="flex items-end">
-            <p className="text-muted-foreground leading-relaxed max-w-md">
+          <Reveal delay={0.1} className="flex lg:items-end">
+            <p className="text-[0.9375rem] text-black/55 leading-relaxed max-w-md">
               {t.socialProof.subtitle}
             </p>
           </Reveal>
@@ -71,24 +80,23 @@ export function SocialProof() {
 
       {/* Full-width marquee rows */}
       <div className="relative space-y-4">
-        <Marquee pauseOnHover className="[--duration:55s] [--gap:1rem]">
-          {firstRow.map((t) => (
-            <div key={t.name} className="px-2">
-              <TestimonialCard testimonial={t} />
+        <Marquee pauseOnHover className="[--duration:50s] [--gap:1rem]">
+          {firstRow.map((item) => (
+            <div key={item.name} className="px-2">
+              <TestimonialCard t={item} />
             </div>
           ))}
         </Marquee>
-        <Marquee reverse pauseOnHover className="[--duration:55s] [--gap:1rem]">
-          {secondRow.map((t) => (
-            <div key={t.name} className="px-2">
-              <TestimonialCard testimonial={t} />
+        <Marquee reverse pauseOnHover className="[--duration:50s] [--gap:1rem]">
+          {secondRow.map((item) => (
+            <div key={item.name} className="px-2">
+              <TestimonialCard t={item} />
             </div>
           ))}
         </Marquee>
-
         {/* Edge fades */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-secondary to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-secondary to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#F5F5F5]" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#F5F5F5]" />
       </div>
     </section>
   );

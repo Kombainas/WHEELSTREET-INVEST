@@ -1,6 +1,8 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { ChevronDown } from "lucide-react";
 
 const LOCALES = [
   { code: "lt", label: "LT" },
@@ -14,36 +16,65 @@ function getCurrentLocale(): string {
   return match?.[1] || "lt";
 }
 
-export function LanguageSwitcher({ variant = "light" }: { variant?: "light" | "dark" }) {
+export function LanguageSwitcher({ transparent = false }: { transparent?: boolean; variant?: string }) {
   const router = useRouter();
-  const current = getCurrentLocale();
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState(getCurrentLocale);
+  const ref = useRef<HTMLDivElement>(null);
 
   function setLocale(code: string) {
     document.cookie = `lang=${code};path=/;max-age=${60 * 60 * 24 * 365};samesite=lax`;
+    setCurrent(code);
+    setOpen(false);
     router.refresh();
   }
 
-  const isDark = variant === "dark";
+  // Close on outside click
+  useEffect(() => {
+    function handle(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handle);
+    return () => document.removeEventListener("mousedown", handle);
+  }, []);
+
+  const textColor = transparent ? "rgba(255,255,255,0.7)" : "rgba(0,0,0,0.55)";
+  const hoverColor = transparent ? "#FFFFFF" : "#000000";
 
   return (
-    <div className="flex items-center gap-0.5">
-      {LOCALES.map(({ code, label }) => (
-        <button
-          key={code}
-          onClick={() => setLocale(code)}
-          className={`px-2 py-1 rounded text-xs font-medium transition-colors ${
-            current === code
-              ? isDark
-                ? "bg-white/15 text-white"
-                : "bg-gray-900 text-white"
-              : isDark
-                ? "text-gray-400 hover:text-white"
-                : "text-gray-500 hover:text-gray-900"
-          }`}
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-center gap-0.5 transition-colors"
+        style={{ fontSize: "0.875rem", fontWeight: 400, color: textColor }}
+        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = hoverColor)}
+        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = textColor)}
+      >
+        {current.toUpperCase()}
+        <ChevronDown className="w-3 h-3 mt-px" />
+      </button>
+
+      {open && (
+        <div
+          className="absolute top-full right-0 mt-1 py-1 bg-white z-[200] min-w-[60px]"
+          style={{ border: "1px solid rgba(0,0,0,0.1)", boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }}
         >
-          {label}
-        </button>
-      ))}
+          {LOCALES.map(({ code, label }) => (
+            <button
+              key={code}
+              onClick={() => setLocale(code)}
+              className="w-full text-left px-3 py-2 transition-colors hover:bg-[#F5F5F5]"
+              style={{
+                fontSize: "0.875rem",
+                fontWeight: current === code ? 500 : 400,
+                color: current === code ? "#000" : "rgba(0,0,0,0.55)",
+              }}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

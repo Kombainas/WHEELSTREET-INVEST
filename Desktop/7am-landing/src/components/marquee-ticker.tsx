@@ -1,51 +1,75 @@
 "use client";
 
 interface MarqueeTickerProps {
-  /** Items to repeat in the ticker */
   items?: string[];
-  /** Speed in seconds for one full pass — lower = faster */
   speed?: number;
-  /** Black bg (default) or inverted white bg */
+  /** true = white bg with black text (inverted), false = black bg with white text */
   invert?: boolean;
 }
 
 const DEFAULT_ITEMS = [
   "7AM COMMUNITY",
+  "RUN EARLY. LIVE BETTER.",
   "KAUNAS · VILNIUS",
   "RYTAS KEIČIA GYVENIMĄ",
-  "EARLY RISERS",
   "SVEIKA GYVENSENA",
+  "EARLY RISERS CLUB",
   "BE THE BEST VERSION",
+  "START AT 7AM",
 ];
 
 export function MarqueeTicker({
   items = DEFAULT_ITEMS,
-  speed = 30,
+  speed = 35,
   invert = false,
 }: MarqueeTickerProps) {
-  // Duplicate the list so there's always content filling the screen
-  const repeated = [...items, ...items, ...items, ...items];
+  // 4× repeat guarantees seamless fill at any viewport width
+  const track = [...items, ...items, ...items, ...items];
+
+  const bg   = invert ? "#FFFFFF" : "#000000";
+  const fg   = invert ? "#000000" : "#FFFFFF";
+  const sep  = invert ? "rgba(0,0,0,0.25)" : "rgba(255,255,255,0.25)";
+  const bdr  = invert ? "1px solid rgba(0,0,0,0.1)" : "none";
 
   return (
     <div
-      className={`w-full overflow-hidden py-3 border-y ${
-        invert
-          ? "bg-background border-black/10 text-foreground"
-          : "bg-foreground border-foreground text-background"
-      }`}
       aria-hidden="true"
+      style={{
+        width: "100%",
+        overflow: "hidden",
+        background: bg,
+        borderTop: bdr,
+        borderBottom: bdr,
+        paddingTop: "0.6875rem",
+        paddingBottom: "0.6875rem",
+      }}
     >
       <div
-        className="flex whitespace-nowrap will-change-transform"
-        style={{ animation: `ticker ${speed}s linear infinite` }}
+        style={{
+          display: "flex",
+          whiteSpace: "nowrap",
+          width: "max-content",
+          willChange: "transform",
+          animation: `ticker ${speed}s linear infinite`,
+        }}
       >
-        {repeated.map((item, i) => (
+        {track.map((item, i) => (
           <span
             key={i}
-            className="text-[11px] font-medium tracking-[0.18em] uppercase pr-12"
+            style={{
+              color: fg,
+              fontSize: "0.6875rem",
+              fontWeight: 500,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              paddingRight: "3rem",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "3rem",
+            }}
           >
             {item}
-            <span className="ml-12 opacity-40">·</span>
+            <span style={{ color: sep, fontSize: "0.5rem" }}>◆</span>
           </span>
         ))}
       </div>

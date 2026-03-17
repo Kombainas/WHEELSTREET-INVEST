@@ -39,7 +39,7 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* Sharp corners everywhere — kismas.com uses 0 radius */
+  /* 0 radius everywhere — exact kismas.com style */
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
@@ -48,7 +48,7 @@
   --radius-3xl: 0px;
   --radius-4xl: 0px;
 
-  /* Marquee animation */
+  /* Marquee */
   --animate-marquee: marquee var(--duration) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
   @keyframes marquee {
@@ -60,66 +60,61 @@
     to   { transform: translateY(calc(-100% - var(--gap))); }
   }
 
-  /* Ticker strip animation */
-  --animate-ticker: ticker 25s linear infinite;
-  @keyframes ticker {
-    0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
 }
 
-/* ─── Light / Editorial Theme ────────────────────────────────────────────── */
+/* ─── Theme — exact kismas.com values ───────────────────────────────────── */
 :root {
   --radius: 0rem;
 
-  /* Background: warm cream — kismas off-white */
-  --background: #FAFAF8;
-  --foreground: #0A0A0A;
+  /* kismas: pure white background */
+  --background: #FFFFFF;
+  --foreground: #000000;
 
   --card: #FFFFFF;
-  --card-foreground: #0A0A0A;
+  --card-foreground: #000000;
 
   --popover: #FFFFFF;
-  --popover-foreground: #0A0A0A;
+  --popover-foreground: #000000;
 
-  /* Primary = black, for buttons / accents */
-  --primary: #0A0A0A;
+  /* Primary = black */
+  --primary: #000000;
   --primary-foreground: #FFFFFF;
 
-  --secondary: #F0EFED;
-  --secondary-foreground: #0A0A0A;
+  /* kismas secondary bg: light grey */
+  --secondary: #F5F5F5;
+  --secondary-foreground: #000000;
 
-  --muted: #F0EFED;
+  --muted: #F5F5F5;
   --muted-foreground: #737373;
 
-  --accent: #F0EFED;
-  --accent-foreground: #0A0A0A;
+  --accent: #F5F5F5;
+  --accent-foreground: #000000;
 
   --destructive: #AA2826;
 
-  /* Thin 1px borders — kismas uses black at ~12% */
-  --border: oklch(0 0 0 / 12%);
-  --input: oklch(0 0 0 / 12%);
-  --ring: #0A0A0A;
+  /* kismas borders: black at 12% opacity */
+  --border: rgba(0, 0, 0, 0.12);
+  --input: rgba(0, 0, 0, 0.12);
+  --ring: #000000;
 
-  /* Chart neutrals */
-  --chart-1: #0A0A0A;
+  /* Charts */
+  --chart-1: #000000;
   --chart-2: #404040;
   --chart-3: #737373;
   --chart-4: #A3A3A3;
   --chart-5: #D4D4D4;
 
-  /* Sidebar (admin stays light) */
+  /* Sidebar */
   --sidebar: #FFFFFF;
-  --sidebar-foreground: #0A0A0A;
-  --sidebar-primary: #0A0A0A;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #000000;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F0EFED;
-  --sidebar-accent-foreground: #0A0A0A;
-  --sidebar-border: oklch(0 0 0 / 10%);
-  --sidebar-ring: #0A0A0A;
+  --sidebar-accent: #F5F5F5;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: rgba(0, 0, 0, 0.1);
+  --sidebar-ring: #000000;
 
-  /* Brand red — used only for logo / accent elements */
+  /* Brand */
   --brand-red: #C8102E;
 }
 
@@ -128,84 +123,134 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground antialiased;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* kismas headings: weight 500, tracking -0.01em */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
   }
 }
 
 /* ─── Utilities ──────────────────────────────────────────────────────────── */
 @layer utilities {
 
-  /* Editorial hover: image zoom */
+  /* Image zoom on hover — kismas: scale(1.03) 600ms ease */
   .img-zoom {
-    @apply overflow-hidden;
+    overflow: hidden;
   }
-  .img-zoom img,
-  .img-zoom > * {
+  .img-zoom img {
     transition: transform 600ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-  .img-zoom:hover img,
-  .img-zoom:hover > * {
+  .img-zoom:hover img {
     transform: scale(1.03);
   }
 
-  /* Thin underline nav link */
+  /* Nav underline — thin line grows from left */
   .nav-link-hover {
     position: relative;
   }
   .nav-link-hover::after {
     content: "";
     position: absolute;
-    bottom: -2px;
+    bottom: -4px;
     left: 0;
     width: 0;
     height: 1px;
     background: currentColor;
-    transition: width 0.3s ease;
+    transition: width 0.25s ease;
   }
   .nav-link-hover:hover::after {
     width: 100%;
   }
 
-  /* Editorial section label */
+  /* Section eyebrow label */
   .section-label {
-    @apply text-xs font-medium tracking-[0.15em] uppercase text-muted-foreground;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
   }
 
-  /* Black fill button, hover → outlined */
+  /* Primary button — black fill, hover: transparent + 2px inset (kismas exact) */
   .btn-primary {
-    @apply bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide
-           transition-all duration-200 inline-flex items-center gap-2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #000000;
+    color: #FFFFFF;
+    padding: 0.8125rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
   }
-  .btn-primary:hover {
-    @apply bg-transparent text-foreground;
-    box-shadow: inset 0 0 0 1.5px currentColor;
+  @media (hover: hover) {
+    .btn-primary:hover {
+      background: transparent;
+      color: #000000;
+      box-shadow: inset 0 0 0 2px #000000;
+    }
   }
 
-  /* Outlined button, hover → filled */
+  /* Outline button — border, hover: filled */
   .btn-outline {
-    @apply border border-foreground/20 text-foreground px-6 py-3 text-sm font-medium
-           tracking-wide transition-all duration-200 inline-flex items-center gap-2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: #000000;
+    padding: 0.8125rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.3);
+    transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
   }
-  .btn-outline:hover {
-    @apply bg-foreground text-background border-foreground;
+  @media (hover: hover) {
+    .btn-outline:hover {
+      background: #000000;
+      color: #FFFFFF;
+      box-shadow: inset 0 0 0 1px #000000;
+    }
   }
 
-  /* Thin divider line */
+  /* Divider */
   .divider {
-    @apply w-full h-px bg-foreground/10;
+    width: 100%;
+    height: 1px;
+    background: rgba(0,0,0,0.1);
   }
 
-  /* Subtle card — thin border only */
+  /* Editorial card */
   .editorial-card {
-    @apply bg-card border border-border/60 p-6 transition-colors duration-200;
+    background: #FFFFFF;
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    transition: background 0.2s ease;
   }
   .editorial-card:hover {
-    @apply bg-secondary;
+    background: #F5F5F5;
   }
 }
 
-/* ─── Smooth scroll ──────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
+}
+
+/* ─── Ticker keyframe — global, outside @theme ───────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
